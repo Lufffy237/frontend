@@ -1,0 +1,33 @@
+{
+  "app\\agences\\page.tsx -> @/components/agencies/AgencyCard": {
+    "id": "app\\agences\\page.tsx -> @/components/agencies/AgencyCard",
+    "files": [
+      "static/chunks/_app-pages-browser_components_agencies_AgencyCard_tsx.js"
+    ]
+  },
+  "app\\agences\\page.tsx -> @/components/agencies/AgencyFilters": {
+    "id": "app\\agences\\page.tsx -> @/components/agencies/AgencyFilters",
+    "files": [
+      "static/chunks/_app-pages-browser_components_agencies_AgencyFilters_tsx.js"
+    ]
+  },
+  "app\\agences\\page.tsx -> @/components/agencies/AgencyHero": {
+    "id": "app\\agences\\page.tsx -> @/components/agencies/AgencyHero",
+    "files": [
+      "static/chunks/_app-pages-browser_components_agencies_AgencyHero_tsx.js"
+    ]
+  },
+  "app\\agences\\page.tsx -> @/components/agencies/AgencyMap": {
+    "id": "app\\agences\\page.tsx -> @/components/agencies/AgencyMap",
+    "files": [
+      "static/css/_app-pages-browser_components_agencies_AgencyMap_tsx.css",
+      "static/chunks/_app-pages-browser_components_agencies_AgencyMap_tsx.js"
+    ]
+  },
+  "app\\agences\\page.tsx -> @/components/services/FloatingButtons": {
+    "id": "app\\agences\\page.tsx -> @/components/services/FloatingButtons",
+    "files": [
+      "static/chunks/_app-pages-browser_components_services_FloatingButtons_tsx.js"
+    ]
+  }
+}

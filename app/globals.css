@@ -1,0 +1,366 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #1a1a1a;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-secondary antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-lg;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+/* ============================================
+   UTILITAIRES PERSONNALISÉS (shadows, etc.)
+   ============================================ */
+@layer utilities {
+  .shadow-soft {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .shadow-medium {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .shadow-elevated {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.3);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      #f0f0f0 0%,
+      #e0e0e0 50%,
+      #f0f0f0 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+}
+
+@layer components {
+  /* ============================================
+     BOUTONS
+     ============================================ */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 
+           rounded-lg px-6 py-3 font-semibold text-sm
+           transition-all duration-300 ease-out
+           focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none
+           active:scale-[0.98];
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-white shadow-soft
+           hover:bg-primary-hover hover:shadow-medium hover:-translate-y-0.5
+           active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary text-white shadow-soft
+           hover:bg-secondary-light hover:shadow-medium hover:-translate-y-0.5
+           active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply btn bg-transparent border-2 border-primary text-primary
+           hover:bg-primary hover:text-white hover:shadow-medium hover:-translate-y-0.5
+           active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-secondary
+           hover:bg-surface hover:text-primary;
+  }
+
+  .btn-danger {
+    @apply btn bg-red-600 text-white shadow-soft
+           hover:bg-red-700 hover:shadow-medium hover:-translate-y-0.5
+           active:translate-y-0;
+  }
+
+  /* ============================================
+     CHAMPS DE FORMULAIRE
+     ============================================ */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg bg-background border border-border
+           text-secondary placeholder:text-muted
+           transition-all duration-300 ease-out
+           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+           hover:border-primary/50
+           disabled:bg-surface disabled:cursor-not-allowed;
+  }
+
+  .textarea-field {
+    @apply input-field resize-none min-h-[120px];
+  }
+
+  .select-field {
+    @apply input-field appearance-none cursor-pointer
+           bg-[length:20px] bg-[right_12px_center] bg-no-repeat pr-12;
+  }
+
+  .label-field {
+    @apply block text-sm font-medium text-secondary mb-2;
+  }
+
+  .error-message {
+    @apply text-sm text-red-600 mt-1.5 flex items-center gap-1;
+  }
+
+  /* ============================================
+     CARTES
+     ============================================ */
+  .card {
+    @apply bg-background rounded-lg border border-border shadow-soft
+           transition-all duration-300 ease-out;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-medium hover:-translate-y-1 hover:border-primary/30;
+  }
+
+  .card-interactive {
+    @apply card-hover cursor-pointer
+           focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
+
+  /* ============================================
+     BADGES
+     ============================================ */
+  .badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium
+           transition-all duration-200;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary-light text-primary-dark;
+  }
+
+  .badge-secondary {
+    @apply badge bg-surface text-secondary border border-border;
+  }
+
+  .badge-success {
+    @apply badge bg-green-100 text-green-800;
+  }
+
+  .badge-warning {
+    @apply badge bg-yellow-100 text-yellow-800;
+  }
+
+  .badge-danger {
+    @apply badge bg-red-100 text-red-800;
+  }
+
+  /* ============================================
+     ALERTES
+     ============================================ */
+  .alert {
+    @apply p-4 rounded-lg border flex items-start gap-3;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .alert-info {
+    @apply alert bg-blue-50 border-blue-200 text-blue-900;
+  }
+
+  .alert-success {
+    @apply alert bg-green-50 border-green-200 text-green-900;
+  }
+
+  .alert-warning {
+    @apply alert bg-yellow-50 border-yellow-200 text-yellow-900;
+  }
+
+  .alert-error {
+    @apply alert bg-red-50 border-red-200 text-red-900;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .animate-fade-in-down {
+    animation: fadeInDown 0.5s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+
+  .animate-pulse-soft {
+    animation: pulseSoft 2s ease-in-out infinite;
+  }
+}
+
+/* Masquer le footer public quand on est en mode admin */
+body.admin-mode footer {
+  display: none !important;
+}
+
+body.admin-mode header {
+  display: none !important;
+}
+
+body.admin-mode main {
+  padding-top: 0 !important;
+}
+
+/* S'assurer que le layout admin prend tout l'espace */
+.admin-layout {
+  min-height: 100vh;
+}
