@@ -4,7 +4,29 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, User, Mail, Phone, FileText, X, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
-import type { ContactFormData, JobApplicationData } from '../../shared';
+
+// --- TYPES DÉFINIS LOCALEMENT POUR ÉVITER LES ERREURS D'IMPORT ---
+export interface ContactFormData {
+  title: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}
+
+export interface JobApplicationData {
+  offerId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  cv: File | null;            // <-- Défini explicitement ici
+  coverLetter: File | null;   // <-- Défini explicitement ici
+  message: string;
+}
+// ------------------------------------------------------------------
 
 type FormMode = 'contact' | 'application';
 
@@ -31,8 +53,8 @@ export function ContactForm() {
     lastName: '',
     email: '',
     phone: '',
-    cv: null as any,
-    coverLetter: null as any,
+    cv: null,
+    coverLetter: null,
     message: '',
   });
 
@@ -164,13 +186,12 @@ export function ContactForm() {
     setErrors((prev) => ({ ...prev, [type]: '' }));
   };
 
-  // ✅ CORRECTION : Ajout de 'as any' pour satisfaire le type strict de JobApplicationData
   const removeFile = (type: 'cv' | 'coverLetter' | 'attachment') => {
     if (type === 'cv') {
-      setApplicationData((prev) => ({ ...prev, cv: null as any }));
+      setApplicationData((prev) => ({ ...prev, cv: null }));
       setCvFileName('');
     } else if (type === 'coverLetter') {
-      setApplicationData((prev) => ({ ...prev, coverLetter: null as any }));
+      setApplicationData((prev) => ({ ...prev, coverLetter: null }));
       setCoverLetterFileName('');
     } else {
       setAttachmentFileName('');
@@ -210,15 +231,15 @@ export function ContactForm() {
       setSuccess(true);
       toast.success('Candidature envoyée avec succès ! Nous étudierons votre dossier.');
       
-      // ✅ CORRECTION : Ajout de 'as any' pour la réinitialisation
+      // Reset
       setApplicationData({ 
         offerId: '', 
         firstName: '', 
         lastName: '', 
         email: '', 
         phone: '', 
-        cv: null as any, 
-        coverLetter: null as any, 
+        cv: null, 
+        coverLetter: null, 
         message: '' 
       });
       setCvFileName('');
