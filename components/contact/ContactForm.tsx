@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, User, Mail, Phone, FileText, X, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
-import type { ContactFormData, JobApplicationData } from 'shared';
+import type { ContactFormData, JobApplicationData } from '../../shared';
 
 type FormMode = 'contact' | 'application';
 
