@@ -51,14 +51,23 @@ export default function AgenciesPage() {
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/agencies/public');
+        // ✅ CORRECTION : Utilisation de la variable d'environnement avec fallback pour le local
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        const res = await fetch(`${apiUrl}/api/agencies/public`);
+        
+        if (!res.ok) {
+          throw new Error(`Erreur HTTP: ${res.status}`);
+        }
+        
         const data = await res.json();
         if (data.success) {
           setAgencies(data.data);
+        } else {
+          throw new Error(data.message || 'Erreur inconnue');
         }
       } catch (error) {
         console.error('Erreur de chargement des agences:', error);
-        toast.error('Impossible de charger la liste des agences');
+        toast.error('Impossible de charger la liste des agences. Vérifiez votre connexion.');
       } finally {
         setLoading(false);
       }
