@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 // ✅ Force le rendu dynamique pour empêcher Next.js de pré-générer cette page côté serveur
 export const dynamic = 'force-dynamic';
@@ -47,8 +47,8 @@ export default function AgenciesPage() {
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        // ✅ CORRECTION CRUCIALE : Utilisation de la variable d'environnement + appel de la route PUBLIQUE
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || '${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}';
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        // ✅ IMPORTANT : On utilise /public pour éviter l'erreur 401 Unauthorized
         const res = await fetch(`${apiUrl}/api/agencies/public`);
         
         if (!res.ok) {
