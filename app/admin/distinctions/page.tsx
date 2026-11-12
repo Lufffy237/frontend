@@ -1,4 +1,4 @@
-ï»¿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -43,11 +43,11 @@ export default function AdminAwardsPage() {
       });
       const data = await res.json();
       if (data.success) {
-        toast.success(editing ? 'Mis Ã  jour' : 'AjoutÃ©');
+        toast.success(editing ? 'Mis à jour' : 'Ajouté');
         setIsModalOpen(false); setEditing(null); setFormData({ title: '', year: new Date().getFullYear(), issuer: '', image: '', order: 0 });
         fetchData();
       }
-    } catch (e) { toast.error('Erreur rÃ©seau'); }
+    } catch (e) { toast.error('Erreur réseau'); }
     finally { setSubmitting(false); }
   };
 
@@ -56,7 +56,7 @@ export default function AdminAwardsPage() {
     setIsDeleting(true);
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/awards/${deleteId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
-      if (res.ok) { toast.success('SupprimÃ©'); fetchData(); }
+      if (res.ok) { toast.success('Supprimé'); fetchData(); }
     } catch (e) { toast.error('Erreur'); }
     finally { setIsDeleting(false); setDeleteId(null); }
   };
@@ -66,7 +66,7 @@ export default function AdminAwardsPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
-        <div><h1 className="text-3xl font-bold text-secondary">Distinctions</h1><p className="text-muted mt-1">GÃ©rez les prix et certifications de l'entreprise.</p></div>
+        <div><h1 className="text-3xl font-bold text-secondary">Distinctions</h1><p className="text-muted mt-1">Gérez les prix et certifications de l'entreprise.</p></div>
         <button onClick={() => { setEditing(null); setFormData({ title: '', year: new Date().getFullYear(), issuer: '', image: '', order: 0 }); setIsModalOpen(true); }} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors shadow-soft">
           <Plus className="w-4 h-4" /> Ajouter
         </button>
@@ -75,7 +75,7 @@ export default function AdminAwardsPage() {
       <div className="bg-white rounded-xl border border-border shadow-soft overflow-hidden">
         <table className="w-full text-left text-sm">
           <thead className="bg-surface border-b border-border">
-            <tr><th className="px-6 py-4 font-semibold text-secondary">Image</th><th className="px-6 py-4 font-semibold text-secondary">Titre</th><th className="px-6 py-4 font-semibold text-secondary">AnnÃ©e</th><th className="px-6 py-4 font-semibold text-secondary">DÃ©livrÃ© par</th><th className="px-6 py-4 font-semibold text-secondary text-right">Actions</th></tr>
+            <tr><th className="px-6 py-4 font-semibold text-secondary">Image</th><th className="px-6 py-4 font-semibold text-secondary">Titre</th><th className="px-6 py-4 font-semibold text-secondary">Année</th><th className="px-6 py-4 font-semibold text-secondary">Délivré par</th><th className="px-6 py-4 font-semibold text-secondary text-right">Actions</th></tr>
           </thead>
           <tbody className="divide-y divide-border">
             {awards.map((a) => (
@@ -105,14 +105,14 @@ export default function AdminAwardsPage() {
                 <ImageUploader value={formData.image} onChange={(url) => setFormData({ ...formData, image: url })} label="Image du prix/certificat" />
                 <input required type="text" placeholder="Titre de la distinction *" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary" />
                 <div className="grid grid-cols-2 gap-4">
-                  <input required type="number" placeholder="AnnÃ©e *" value={formData.year} onChange={e => setFormData({ ...formData, year: parseInt(e.target.value) })} className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary" />
+                  <input required type="number" placeholder="Année *" value={formData.year} onChange={e => setFormData({ ...formData, year: parseInt(e.target.value) })} className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary" />
                   <input type="number" placeholder="Ordre" value={formData.order} onChange={e => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })} className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary" />
                 </div>
-                <input type="text" placeholder="DÃ©livrÃ© par (ex: ISO, MinistÃ¨re...)" value={formData.issuer} onChange={e => setFormData({ ...formData, issuer: e.target.value })} className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary" />
+                <input type="text" placeholder="Délivré par (ex: ISO, Ministère...)" value={formData.issuer} onChange={e => setFormData({ ...formData, issuer: e.target.value })} className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary" />
                 <div className="flex justify-end gap-3 pt-4">
                   <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-secondary hover:bg-surface rounded-lg">Annuler</button>
                   <button type="submit" disabled={submitting} className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover flex items-center gap-2 disabled:opacity-50">
-                    {submitting && <Loader2 className="w-4 h-4 animate-spin" />} {editing ? 'Mettre Ã  jour' : 'Ajouter'}
+                    {submitting && <Loader2 className="w-4 h-4 animate-spin" />} {editing ? 'Mettre à jour' : 'Ajouter'}
                   </button>
                 </div>
               </form>
@@ -121,7 +121,7 @@ export default function AdminAwardsPage() {
         )}
       </AnimatePresence>
 
-      <ConfirmDialog isOpen={!!deleteId} onClose={() => setDeleteId(null)} onConfirm={executeDelete} title="Supprimer cette distinction ?" description="Cette action est irrÃ©versible." confirmText="Oui, supprimer" isLoading={isDeleting} />
+      <ConfirmDialog isOpen={!!deleteId} onClose={() => setDeleteId(null)} onConfirm={executeDelete} title="Supprimer cette distinction ?" description="Cette action est irréversible." confirmText="Oui, supprimer" isLoading={isDeleting} />
     </div>
   );
 }

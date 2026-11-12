@@ -1,4 +1,4 @@
-ï»¿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -47,8 +47,8 @@ export default function AdminDashboard() {
   }, [token]);
 
   const statCards = [
-    { label: 'Agences & DÃ©pÃ´ts', value: data?.stats.agencies ?? 0, icon: Building2, color: 'bg-blue-500', text: 'text-blue-600', bg: 'bg-blue-50' },
-    { label: 'Articles PubliÃ©s', value: data?.stats.articles ?? 0, icon: FileText, color: 'bg-green-500', text: 'text-green-600', bg: 'bg-green-50' },
+    { label: 'Agences & Dépôts', value: data?.stats.agencies ?? 0, icon: Building2, color: 'bg-blue-500', text: 'text-blue-600', bg: 'bg-blue-50' },
+    { label: 'Articles Publiés', value: data?.stats.articles ?? 0, icon: FileText, color: 'bg-green-500', text: 'text-green-600', bg: 'bg-green-50' },
     { label: 'Offres Actives', value: data?.stats.jobOffers ?? 0, icon: Briefcase, color: 'bg-purple-500', text: 'text-purple-600', bg: 'bg-purple-50' },
     { label: 'Demandes Contact', value: data?.stats.contacts ?? 0, icon: Users, color: 'bg-orange-500', text: 'text-orange-600', bg: 'bg-orange-50' },
   ];
@@ -66,10 +66,10 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-8">
-      {/* En-tÃªte */}
+      {/* En-tête */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="text-3xl font-bold text-secondary">Tableau de Bord</h1>
-        <p className="text-muted mt-1">Vue d'ensemble en temps rÃ©el de l'activitÃ© d'Ã‰lÃ©gance Pressing.</p>
+        <p className="text-muted mt-1">Vue d'ensemble en temps réel de l'activité d'Élégance Pressing.</p>
       </motion.div>
 
       {/* Cartes de statistiques */}
@@ -97,10 +97,10 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      {/* Section ActivitÃ©s RÃ©centes */}
+      {/* Section Activités Récentes */}
       <div className="grid lg:grid-cols-2 gap-6">
         
-        {/* DerniÃ¨res demandes de contact */}
+        {/* Dernières demandes de contact */}
         <motion.div 
           initial={{ opacity: 0, x: -20 }} 
           animate={{ opacity: 1, x: 0 }} 
@@ -109,11 +109,11 @@ export default function AdminDashboard() {
         >
           <h3 className="text-lg font-bold text-secondary mb-4 flex items-center gap-2">
             <Users className="w-5 h-5 text-primary" />
-            DerniÃ¨res demandes de contact
+            Dernières demandes de contact
           </h3>
           <div className="space-y-4">
             {data?.recentActivities.contacts.length === 0 ? (
-              <p className="text-muted text-sm text-center py-4">Aucune demande rÃ©cente.</p>
+              <p className="text-muted text-sm text-center py-4">Aucune demande récente.</p>
             ) : (
               data?.recentActivities.contacts.map((contact) => (
                 <div key={contact.id} className="flex items-start justify-between p-3 rounded-lg bg-surface border border-border">
@@ -141,7 +141,7 @@ export default function AdminDashboard() {
           </div>
         </motion.div>
 
-        {/* DerniÃ¨res agences ajoutÃ©es */}
+        {/* Dernières agences ajoutées */}
         <motion.div 
           initial={{ opacity: 0, x: 20 }} 
           animate={{ opacity: 1, x: 0 }} 
@@ -150,11 +150,11 @@ export default function AdminDashboard() {
         >
           <h3 className="text-lg font-bold text-secondary mb-4 flex items-center gap-2">
             <Building2 className="w-5 h-5 text-primary" />
-            DerniÃ¨res implantations
+            Dernières implantations
           </h3>
           <div className="space-y-4">
             {data?.recentActivities.agencies.length === 0 ? (
-              <p className="text-muted text-sm text-center py-4">Aucune agence rÃ©cente.</p>
+              <p className="text-muted text-sm text-center py-4">Aucune agence récente.</p>
             ) : (
               data?.recentActivities.agencies.map((agency) => (
                 <div key={agency.id} className="flex items-center justify-between p-3 rounded-lg bg-surface border border-border">
@@ -172,7 +172,7 @@ export default function AdminDashboard() {
                   <span className={`px-2 py-1 rounded-full text-xs font-bold ${
                     agency.type === 'AGENCY' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'
                   }`}>
-                    {agency.type === 'AGENCY' ? 'AGENCE' : 'DÃ‰PÃ”T'}
+                    {agency.type === 'AGENCY' ? 'AGENCE' : 'DÉPÔT'}
                   </span>
                 </div>
               ))

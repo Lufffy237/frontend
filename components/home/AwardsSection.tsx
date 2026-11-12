@@ -1,4 +1,4 @@
-ï»¿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -43,7 +43,7 @@ export function AwardsSection() {
             Nos Distinctions & Certifications
           </h2>
           <p className="text-muted max-w-2xl mx-auto">
-            La reconnaissance de notre engagement envers l'excellence, la qualitÃ© et la satisfaction de nos clients.
+            La reconnaissance de notre engagement envers l'excellence, la qualité et la satisfaction de nos clients.
           </p>
         </motion.div>
 
@@ -58,7 +58,7 @@ export function AwardsSection() {
               transition={{ delay: index * 0.1 }}
               className="group bg-white rounded-xl border border-border shadow-soft overflow-hidden hover:shadow-medium hover:-translate-y-1 transition-all duration-300"
             >
-              {/* Zone Image / IcÃ´ne de fallback */}
+              {/* Zone Image / Icône de fallback */}
               <div className="h-48 bg-gray-50 flex items-center justify-center overflow-hidden border-b border-border">
                 {award.image ? (
                   <img 
@@ -82,7 +82,7 @@ export function AwardsSection() {
                   </span>
                   {award.issuer && (
                     <span className="text-xs text-muted font-medium">
-                      DÃ©livrÃ© par {award.issuer}
+                      Délivré par {award.issuer}
                     </span>
                   )}
                 </div>

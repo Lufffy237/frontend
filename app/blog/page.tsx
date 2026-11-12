@@ -1,4 +1,4 @@
-ï»¿'use client';
+'use client';
 
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
@@ -94,12 +94,12 @@ export default function BlogPage() {
                       ...post,
                       content: post.content || '',
                       image: post.coverImage || 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800',
-                      categoryLabel: post.category?.name || 'Non catÃ©gorisÃ©',
+                      categoryLabel: post.category?.name || 'Non catégorisé',
                       category: (post.category?.slug as "recrutement" | "conseils" | "actualites") || "actualites",
                       publishedAt: post.createdAt,
                       readTime: post.readTime || '3 min',
-                      // âœ… CORRECTION : On extrait le nom de l'auteur pour correspondre au type string attendu par BlogCard
-                      author: post.author?.name || 'Ã‰lÃ©gance Pressing'
+                      // ? CORRECTION : On extrait le nom de l'auteur pour correspondre au type string attendu par BlogCard
+                      author: post.author?.name || 'Élégance Pressing'
                     }} 
                     index={index} 
                   />
@@ -116,7 +116,7 @@ export default function BlogPage() {
             </>
           ) : (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-20">
-              <p className="text-muted text-lg">Aucun article ne correspond Ã  cette catÃ©gorie pour le moment.</p>
+              <p className="text-muted text-lg">Aucun article ne correspond à cette catégorie pour le moment.</p>
             </motion.div>
           )}
         </div>
@@ -135,7 +135,7 @@ export default function BlogPage() {
             className="inline-flex items-center gap-3 text-primary font-bold text-sm md:text-base tracking-wider hover:underline"
           >
             <Facebook className="w-5 h-5" />
-            DÃ‰COUVRIR PLUS SUR NOTRE PAGE FACEBOOK
+            DÉCOUVRIR PLUS SUR NOTRE PAGE FACEBOOK
           </motion.a>
         </div>
       </section>

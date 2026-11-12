@@ -1,4 +1,4 @@
-ï»¿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -42,7 +42,7 @@ export function NetworkSection() {
             return acc;
           }, {} as Record<string, Agency[]>);
 
-          // âœ… CORRECTION : Cast explicite pour garantir que agencies est bien Agency[]
+          // ? CORRECTION : Cast explicite pour garantir que agencies est bien Agency[]
           const countriesList: CountryData[] = Object.entries(grouped).map(([name, agencies]) => ({
             id: name.toLowerCase().replace(/\s+/g, '-'),
             name: name.toUpperCase(),
@@ -61,16 +61,16 @@ export function NetworkSection() {
     fetchAgencies();
   }, []);
 
-  // Positions relatives (en %) - fidÃ¨les Ã  l'image
+  // Positions relatives (en %) - fidèles à l'image
   const countryPositions: Record<string, { x: number; y: number }> = {
     'tchad': { x: 78, y: 18 },
     'cameroun': { x: 58, y: 48 },
-    'guinÃ©e-Ã©quatoriale': { x: 18, y: 42 },
+    'guinée-équatoriale': { x: 18, y: 42 },
     'gabon': { x: 35, y: 78 },
     'congo': { x: 72, y: 78 },
   };
 
-  // Formes SVG rÃ©elles des pays avec drapeaux
+  // Formes SVG réelles des pays avec drapeaux
   const countrySVGs: Record<string, () => JSX.Element> = {
     'tchad': () => (
       <svg viewBox="0 0 100 180" className="w-full h-full" style={{ filter: 'drop-shadow(4px 6px 4px rgba(0,0,0,0.4))' }}>
@@ -109,7 +109,7 @@ export function NetworkSection() {
               fill="none" stroke="white" strokeWidth="1.5"/>
       </svg>
     ),
-    'guinÃ©e-Ã©quatoriale': () => (
+    'guinée-équatoriale': () => (
       <svg viewBox="0 0 120 70" className="w-full h-full" style={{ filter: 'drop-shadow(4px 6px 4px rgba(0,0,0,0.4))' }}>
         <defs>
           <clipPath id="guinee-clip">
@@ -228,11 +228,11 @@ export function NetworkSection() {
           <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
             {[
               ['tchad', 'cameroun'],
-              ['cameroun', 'guinÃ©e-Ã©quatoriale'],
+              ['cameroun', 'guinée-équatoriale'],
               ['cameroun', 'gabon'],
               ['cameroun', 'congo'],
               ['gabon', 'congo'],
-              ['guinÃ©e-Ã©quatoriale', 'gabon'],
+              ['guinée-équatoriale', 'gabon'],
             ].map(([from, to], idx) => {
               const fromPos = countryPositions[from];
               const toPos = countryPositions[to];
@@ -312,7 +312,7 @@ export function NetworkSection() {
                 >
                   <div className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-white"></div>
                   <div className="text-[7px] md:text-[8px] text-gray-500 font-bold uppercase tracking-wider leading-tight">
-                    Ã‰lÃ©gance Pressing
+                    Élégance Pressing
                   </div>
                   <div className="text-xs md:text-sm font-extrabold text-gray-900 leading-tight">
                     {country.name}
@@ -415,7 +415,7 @@ export function NetworkSection() {
                       <div>
                         <h5 className="text-sm font-bold text-gray-700 mb-3 flex items-center gap-2 uppercase tracking-wide">
                           <Warehouse className="w-4 h-4 text-[#FF6600]" />
-                          DÃ©pÃ´ts ({data.depots.length})
+                          Dépôts ({data.depots.length})
                         </h5>
                         <div className="grid md:grid-cols-2 gap-3">
                           {data.depots.map((depot) => (

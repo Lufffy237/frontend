@@ -1,4 +1,4 @@
-ï»¿'use client';
+'use client';
 
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
@@ -10,7 +10,7 @@ import { GalleryGrid } from '@/components/gallery/GalleryGrid';
 import { FloatingButtons } from '@/components/services/FloatingButtons';
 import { toast } from 'sonner';
 import { useAuth } from '@/hooks/useAuth';
-// âœ… IMPORT DU TYPE OFFICIEL
+// ? IMPORT DU TYPE OFFICIEL
 import type { GalleryItem } from '@/lib/gallery';
 
 export default function GalleryPage() {
@@ -22,7 +22,7 @@ export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
   const [selectedType, setSelectedType] = useState('ALL');
 
-  // 1. RÃ©cupÃ©rer les donnÃ©es depuis l'API backend
+  // 1. Récupérer les données depuis l'API backend
   useEffect(() => {
     const fetchGallery = async () => {
       setLoading(true);
@@ -37,12 +37,12 @@ export default function GalleryPage() {
         
         const data = await res.json();
         if (data.success) {
-          // âœ… Mappage pour transformer les donnÃ©es API en type GalleryItem officiel
+          // ? Mappage pour transformer les données API en type GalleryItem officiel
           const mappedItems: GalleryItem[] = data.data.map((item: any) => ({
             id: item.id,
             // Conversion 'IMAGE'/'VIDEO' -> 'image'/'video'
             type: item.type === 'IMAGE' ? 'image' : 'video',
-            // Conversion catÃ©gorie (ajustez selon les valeurs de votre lib/gallery.ts)
+            // Conversion catégorie (ajustez selon les valeurs de votre lib/gallery.ts)
             category: item.category || 'EVENEMENTS',
             title: item.title,
             url: item.url,
@@ -69,7 +69,7 @@ export default function GalleryPage() {
     fetchGallery();
   }, [selectedType, selectedCategory, token]);
 
-  // 2. Filtrer par recherche textuelle cÃ´tÃ© client
+  // 2. Filtrer par recherche textuelle côté client
   const filteredItems = useMemo(() => {
     if (!search) return items;
     
@@ -88,16 +88,16 @@ export default function GalleryPage() {
       setItems(prev => prev.map(item => 
         item.id === id ? { ...item, likes: item.likes + 1 } : item
       ));
-      toast.success('AjoutÃ© aux favoris â¤ï¸');
+      toast.success('Ajouté aux favoris ??');
     } catch (error) {
       toast.error('Erreur lors du like');
     }
   };
 
-  // 4. Gestion du TÃ©lÃ©chargement
+  // 4. Gestion du Téléchargement
   const handleDownload = (item: GalleryItem) => {
     if (item.type === 'video') {
-      toast.info('Redirection vers la vidÃ©o complÃ¨te...');
+      toast.info('Redirection vers la vidéo complète...');
       if (item.videoUrl) {
         window.open(item.videoUrl, '_blank', 'noopener,noreferrer');
       }
@@ -110,7 +110,7 @@ export default function GalleryPage() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      toast.success('TÃ©lÃ©chargement lancÃ© ðŸ“¥');
+      toast.success('Téléchargement lancé ??');
     }
   };
 
@@ -144,7 +144,7 @@ export default function GalleryPage() {
                     <span className="font-bold text-primary text-lg">
                       {loading ? '...' : filteredItems.length}
                     </span>{' '}
-                    rÃ©sultat{filteredItems.length > 1 ? 's' : ''} trouvÃ©{filteredItems.length > 1 ? 's' : ''}
+                    résultat{filteredItems.length > 1 ? 's' : ''} trouvé{filteredItems.length > 1 ? 's' : ''}
                   </p>
                 </div>
               </div>
@@ -171,7 +171,7 @@ export default function GalleryPage() {
               
               {!loading && filteredItems.length === 0 && (
                 <div className="text-center py-20">
-                  <p className="text-muted text-lg">Aucun mÃ©dia ne correspond Ã  votre recherche.</p>
+                  <p className="text-muted text-lg">Aucun média ne correspond à votre recherche.</p>
                 </div>
               )}
             </motion.div>
@@ -192,7 +192,7 @@ export default function GalleryPage() {
             className="inline-flex items-center gap-3 text-primary font-bold text-sm md:text-base tracking-wider hover:underline"
           >
             <Facebook className="w-5 h-5" />
-            DÃ‰COUVRIR PLUS SUR NOTRE PAGE FACEBOOK
+            DÉCOUVRIR PLUS SUR NOTRE PAGE FACEBOOK
           </motion.a>
         </div>
       </section>

@@ -1,4 +1,4 @@
-ï»¿'use client';
+'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -27,7 +27,7 @@ export default function AdminProfilePage() {
       return;
     }
     if (formData.password && formData.password.length < 6) {
-      toast.error('Le mot de passe doit contenir au moins 6 caractÃ¨res');
+      toast.error('Le mot de passe doit contenir au moins 6 caractères');
       return;
     }
 
@@ -48,12 +48,12 @@ export default function AdminProfilePage() {
 
       const data = await res.json();
       if (data.success) {
-        toast.success('Profil mis Ã  jour avec succÃ¨s');
-        // Mettre Ã  jour le store Zustand avec les nouvelles infos
+        toast.success('Profil mis à jour avec succès');
+        // Mettre à jour le store Zustand avec les nouvelles infos
         login(data.data, token!);
         setFormData({ ...formData, password: '', confirmPassword: '' });
       } else {
-        toast.error(data.message || 'Erreur lors de la mise Ã  jour');
+        toast.error(data.message || 'Erreur lors de la mise à jour');
       }
     } catch (error) {
       toast.error('Erreur de connexion au serveur');
@@ -66,7 +66,7 @@ export default function AdminProfilePage() {
     <div className="max-w-2xl mx-auto">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="text-3xl font-bold text-secondary mb-2">Mon Profil</h1>
-        <p className="text-muted mb-8">GÃ©rez vos informations personnelles et votre sÃ©curitÃ©.</p>
+        <p className="text-muted mb-8">Gérez vos informations personnelles et votre sécurité.</p>
       </motion.div>
 
       <motion.form 
@@ -76,10 +76,10 @@ export default function AdminProfilePage() {
         onSubmit={handleSubmit} 
         className="bg-white rounded-xl border border-border shadow-soft p-6 md:p-8 space-y-6"
       >
-        {/* Informations (Lecture seule pour le rÃ´le) */}
+        {/* Informations (Lecture seule pour le rôle) */}
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-secondary mb-2">RÃ´le</label>
+            <label className="block text-sm font-medium text-secondary mb-2">Rôle</label>
             <div className="flex items-center gap-2 px-4 py-2.5 bg-surface border border-border rounded-lg text-muted">
               <User className="w-4 h-4" />
               <span className="font-semibold capitalize">{user?.role?.toLowerCase()}</span>
@@ -132,7 +132,7 @@ export default function AdminProfilePage() {
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                  placeholder="••••••••"
                 />
               </div>
             </div>
@@ -145,7 +145,7 @@ export default function AdminProfilePage() {
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                   className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                  placeholder="••••••••"
                 />
               </div>
             </div>

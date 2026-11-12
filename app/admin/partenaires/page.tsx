@@ -1,4 +1,4 @@
-ï»¿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -43,11 +43,11 @@ export default function AdminPartnersPage() {
       });
       const data = await res.json();
       if (data.success) {
-        toast.success(editing ? 'Mis Ã  jour' : 'AjoutÃ©');
+        toast.success(editing ? 'Mis à jour' : 'Ajouté');
         setIsModalOpen(false); setEditing(null); setFormData({ name: '', logo: '', website: '', order: 0 });
         fetchData();
       }
-    } catch (e) { toast.error('Erreur rÃ©seau'); }
+    } catch (e) { toast.error('Erreur réseau'); }
     finally { setSubmitting(false); }
   };
 
@@ -58,7 +58,7 @@ export default function AdminPartnersPage() {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/partners/${deleteId}`, {
         method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` }
       });
-      if (res.ok) { toast.success('SupprimÃ©'); fetchData(); }
+      if (res.ok) { toast.success('Supprimé'); fetchData(); }
     } catch (e) { toast.error('Erreur'); }
     finally { setIsDeleting(false); setDeleteId(null); }
   };
@@ -68,7 +68,7 @@ export default function AdminPartnersPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
-        <div><h1 className="text-3xl font-bold text-secondary">Partenaires</h1><p className="text-muted mt-1">GÃ©rez les logos et liens de vos partenaires.</p></div>
+        <div><h1 className="text-3xl font-bold text-secondary">Partenaires</h1><p className="text-muted mt-1">Gérez les logos et liens de vos partenaires.</p></div>
         <button onClick={() => { setEditing(null); setFormData({ name: '', logo: '', website: '', order: 0 }); setIsModalOpen(true); }} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors shadow-soft">
           <Plus className="w-4 h-4" /> Ajouter
         </button>
@@ -111,7 +111,7 @@ export default function AdminPartnersPage() {
                 <div className="flex justify-end gap-3 pt-4">
                   <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-secondary hover:bg-surface rounded-lg">Annuler</button>
                   <button type="submit" disabled={submitting} className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover flex items-center gap-2 disabled:opacity-50">
-                    {submitting && <Loader2 className="w-4 h-4 animate-spin" />} {editing ? 'Mettre Ã  jour' : 'Ajouter'}
+                    {submitting && <Loader2 className="w-4 h-4 animate-spin" />} {editing ? 'Mettre à jour' : 'Ajouter'}
                   </button>
                 </div>
               </form>
@@ -120,7 +120,7 @@ export default function AdminPartnersPage() {
         )}
       </AnimatePresence>
 
-      <ConfirmDialog isOpen={!!deleteId} onClose={() => setDeleteId(null)} onConfirm={executeDelete} title="Supprimer ce partenaire ?" description="Cette action est irrÃ©versible." confirmText="Oui, supprimer" isLoading={isDeleting} />
+      <ConfirmDialog isOpen={!!deleteId} onClose={() => setDeleteId(null)} onConfirm={executeDelete} title="Supprimer ce partenaire ?" description="Cette action est irréversible." confirmText="Oui, supprimer" isLoading={isDeleting} />
     </div>
   );
 }

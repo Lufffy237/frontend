@@ -1,4 +1,4 @@
-ï»¿'use client';
+'use client';
 
 import { useState, useRef } from 'react';
 import { Upload, X, Loader2, Image as ImageIcon } from 'lucide-react';
@@ -22,10 +22,10 @@ export function ImageUploader({ value, onChange, label = 'Image', placeholder = 
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validation cÃ´tÃ© client
+    // Validation côté client
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
     if (!allowedTypes.includes(file.type)) {
-      toast.error('Format non supportÃ©. Utilisez JPEG, PNG, GIF ou WebP');
+      toast.error('Format non supporté. Utilisez JPEG, PNG, GIF ou WebP');
       return;
     }
 
@@ -53,15 +53,15 @@ export function ImageUploader({ value, onChange, label = 'Image', placeholder = 
       if (data.success) {
         onChange(data.data.url);
         setPreview(data.data.url);
-        toast.success('Image uploadÃ©e avec succÃ¨s');
+        toast.success('Image uploadée avec succès');
       } else {
         toast.error(data.message || 'Erreur lors de l\'upload');
       }
     } catch (error) {
-      toast.error('Erreur rÃ©seau lors de l\'upload');
+      toast.error('Erreur réseau lors de l\'upload');
     } finally {
       setUploading(false);
-      // Reset l'input pour permettre de rÃ©-uploader le mÃªme fichier
+      // Reset l'input pour permettre de ré-uploader le même fichier
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
@@ -92,7 +92,7 @@ export function ImageUploader({ value, onChange, label = 'Image', placeholder = 
             <X className="w-4 h-4" />
           </button>
           <div className="absolute bottom-2 left-2 px-2 py-1 bg-black/70 text-white text-xs rounded">
-            Image chargÃ©e
+            Image chargée
           </div>
         </div>
       ) : (

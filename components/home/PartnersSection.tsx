@@ -1,4 +1,4 @@
-﻿// Exemple pour la section Partenaires sur la homepage
+// Exemple pour la section Partenaires sur la homepage
 'use client';
 import { useState, useEffect } from 'react';
 
