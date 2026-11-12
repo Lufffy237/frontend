@@ -1,18 +1,18 @@
-'use client';
+ï»¿'use client';
 
-// ? Force le rendu dynamique pour empêcher Next.js de pré-générer cette page côté serveur
+// ? Force le rendu dynamique pour empï¿½cher Next.js de prï¿½-gï¿½nï¿½rer cette page cï¿½tï¿½ serveur
 export const dynamic = 'force-dynamic';
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-// ? Renommé en dynamicImport pour éviter le conflit de nom avec l'export 'dynamic' ci-dessus
+// ? Renommï¿½ en dynamicImport pour ï¿½viter le conflit de nom avec l'export 'dynamic' ci-dessus
 import dynamicImport from 'next/dynamic';
 
-// ? IMPORTS DYNAMIQUES AVEC SSR DÉSACTIVÉ
-// Cela garantit que ces composants ne seront chargés QUE dans le navigateur, 
-// éliminant à 100% les erreurs "window is not defined" lors du build.
+// ? IMPORTS DYNAMIQUES AVEC SSR Dï¿½SACTIVï¿½
+// Cela garantit que ces composants ne seront chargï¿½s QUE dans le navigateur, 
+// ï¿½liminant ï¿½ 100% les erreurs "window is not defined" lors du build.
 const AgencyHero = dynamicImport(() => import('@/components/agencies/AgencyHero').then(mod => ({ default: mod.AgencyHero })), { ssr: false, loading: () => <div className="h-64 bg-surface animate-pulse" /> });
 const AgencyFilters = dynamicImport(() => import('@/components/agencies/AgencyFilters').then(mod => ({ default: mod.AgencyFilters })), { ssr: false });
 const AgencyCard = dynamicImport(() => import('@/components/agencies/AgencyCard').then(mod => ({ default: mod.AgencyCard })), { ssr: false });
@@ -47,15 +47,13 @@ export default function AgenciesPage() {
   const [selectedType, setSelectedType] = useState<'ALL' | AgencyType>('ALL');
   const [selectedAgencyId, setSelectedAgencyId] = useState<string | null>(null);
 
-  // 1. Récupérer les agences depuis l'API au chargement
+  // 1. Rï¿½cupï¿½rer les agences depuis l'API au chargement
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        // ? CORRECTION : Fallback propre vers localhost si la variable d'environnement est absente
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || '${process.env.NEXT_PUBLIC_API_URL}';
-        
-        // On appelle la route de base du routeur agencyRoutes
-        const res = await fetch(`${apiUrl}/api/agencies`);
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        // âœ… On appelle la route publique qui ne demande pas de token
+        const res = await fetch(`${apiUrl}/api/agencies/public`);
         
         if (!res.ok) {
           throw new Error(`Erreur HTTP: ${res.status}`);
@@ -69,7 +67,7 @@ export default function AgenciesPage() {
         }
       } catch (error) {
         console.error('Erreur de chargement des agences:', error);
-        toast.error('Impossible de charger la liste des agences. Vérifiez votre connexion.');
+        toast.error('Impossible de charger la liste des agences. Vï¿½rifiez votre connexion.');
       } finally {
         setLoading(false);
       }
@@ -93,7 +91,7 @@ export default function AgenciesPage() {
     return cities.sort();
   }, [agencies, selectedCountry]);
 
-  // 3. Filtrage des agences (côté client pour rapidité et géolocalisation)
+  // 3. Filtrage des agences (cï¿½tï¿½ client pour rapiditï¿½ et gï¿½olocalisation)
   const filteredAgencies = useMemo(() => {
     return agencies.filter((agency) => {
       const matchesSearch =
@@ -121,7 +119,7 @@ export default function AgenciesPage() {
   // 5. Handlers
   const handleCountryChange = useCallback((country: string) => {
     setSelectedCountry(country);
-    setSelectedCity(''); // Réinitialiser la ville
+    setSelectedCity(''); // Rï¿½initialiser la ville
   }, []);
 
   const handleSelectAgency = useCallback((id: string) => {
@@ -131,7 +129,7 @@ export default function AgenciesPage() {
   const handleFindNearest = useCallback(() => {
     // ? Garde absolue : on ne fait rien si on n'est pas dans un navigateur
     if (typeof window === 'undefined' || typeof navigator === 'undefined' || !navigator.geolocation) {
-      toast.error('La géolocalisation n\'est pas supportée par votre navigateur');
+      toast.error('La gï¿½olocalisation n\'est pas supportï¿½e par votre navigateur');
       return;
     }
 
@@ -141,12 +139,12 @@ export default function AgenciesPage() {
       (position) => {
         const { latitude, longitude } = position.coords;
 
-        // Filtrer uniquement les agences ayant des coordonnées GPS
+        // Filtrer uniquement les agences ayant des coordonnï¿½es GPS
         const agenciesWithCoords = agencies.filter(a => a.latitude && a.longitude);
         
         if (agenciesWithCoords.length === 0) {
           toast.dismiss();
-          toast.error('Aucune agence avec des coordonnées GPS disponibles.');
+          toast.error('Aucune agence avec des coordonnï¿½es GPS disponibles.');
           return;
         }
 
@@ -174,7 +172,7 @@ export default function AgenciesPage() {
         toast.dismiss();
         toast.success(`Agence la plus proche : ${nearestAgency.name} (${minDistance.toFixed(1)} km)`);
 
-        // Sélectionner l'agence et appliquer les filtres
+        // Sï¿½lectionner l'agence et appliquer les filtres
         setSelectedCountry(nearestAgency.country);
         setSelectedCity(nearestAgency.city);
         setSelectedAgencyId(nearestAgency.id);
@@ -182,9 +180,9 @@ export default function AgenciesPage() {
       (error) => {
         toast.dismiss();
         if (error.code === error.PERMISSION_DENIED) {
-          toast.error('Géolocalisation refusée. Veuillez sélectionner manuellement un pays et une ville.');
+          toast.error('Gï¿½olocalisation refusï¿½e. Veuillez sï¿½lectionner manuellement un pays et une ville.');
         } else {
-          toast.error('Impossible de déterminer votre position. Recherche manuelle activée.');
+          toast.error('Impossible de dï¿½terminer votre position. Recherche manuelle activï¿½e.');
         }
       },
       { enableHighAccuracy: true, timeout: 10000 }
@@ -238,9 +236,9 @@ export default function AgenciesPage() {
           className="mb-6"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">
-            NOTRE RÉSEAU D'AGENCES
+            NOTRE Rï¿½SEAU D'AGENCES
           </h2>
-          <p className="text-muted italic">Où nous trouver en Afrique Centrale</p>
+          <p className="text-muted italic">Oï¿½ nous trouver en Afrique Centrale</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-6">
@@ -291,7 +289,7 @@ export default function AgenciesPage() {
                       className="p-8 text-center"
                     >
                       <p className="text-muted">
-                        Aucune agence ne correspond à votre recherche.
+                        Aucune agence ne correspond ï¿½ votre recherche.
                       </p>
                       <button
                         onClick={() => {
@@ -302,7 +300,7 @@ export default function AgenciesPage() {
                         }}
                         className="mt-4 text-primary font-semibold text-sm hover:underline"
                       >
-                        Réinitialiser les filtres
+                        Rï¿½initialiser les filtres
                       </button>
                     </motion.div>
                   )}
