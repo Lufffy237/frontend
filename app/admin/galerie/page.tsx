@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -66,7 +66,7 @@ export default function AdminGalleryPage() {
       if (filterType !== 'ALL') params.append('type', filterType);
       if (filterCategory !== 'ALL') params.append('category', filterCategory);
 
-      const res = await fetch(`http://localhost:5000/api/gallery?${params.toString()}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery?${params.toString()}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -89,7 +89,7 @@ export default function AdminGalleryPage() {
 
     setSubmitting(true);
     try {
-      const url = editingItem ? `http://localhost:5000/api/gallery/${editingItem.id}` : 'http://localhost:5000/api/gallery';
+      const url = editingItem ? `${process.env.NEXT_PUBLIC_API_URL}/api/gallery/${editingItem.id}` : process.env.NEXT_PUBLIC_API_URL + '/api/gallery';
       const method = editingItem ? 'PUT' : 'POST';
 
       const res = await fetch(url, {
@@ -121,7 +121,7 @@ export default function AdminGalleryPage() {
     if (!deleteId) return;
     setIsDeleting(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/gallery/${deleteId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery/${deleteId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

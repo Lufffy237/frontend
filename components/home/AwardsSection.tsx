@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -17,7 +17,7 @@ export function AwardsSection() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/awards')
+    fetch(process.env.NEXT_PUBLIC_API_URL + '/api/awards')
       .then((res) => res.json())
       .then((data) => {
         if (data.success) setAwards(data.data);

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -24,7 +24,8 @@ export function Footer() {
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/agencies/public');
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_URL + '';
+        const res = await fetch(`${apiUrl}/api/agencies/public`);
         const data = await res.json();
         if (data.success) {
           setAgencies(data.data);

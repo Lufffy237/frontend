@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -33,7 +33,7 @@ export default function AdminProfilePage() {
 
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/users/profile', {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/users/profile', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

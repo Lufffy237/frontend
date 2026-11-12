@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
@@ -47,7 +47,7 @@ export default function BlogPage() {
           params.append('category', selectedCategory);
         }
 
-        const res = await fetch(`http://localhost:5000/api/articles/public?${params.toString()}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/articles/public?${params.toString()}`);
         const data = await res.json();
 
         if (data.success) {

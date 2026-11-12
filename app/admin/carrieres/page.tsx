@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -30,7 +30,7 @@ export default function AdminJobOffersPage() {
 
   const fetchOffers = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/job-offers', {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/job-offers', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -55,7 +55,7 @@ export default function AdminJobOffersPage() {
     
     setIsDeleting(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/job-offers/${deleteId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/job-offers/${deleteId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

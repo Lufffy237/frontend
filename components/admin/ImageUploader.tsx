@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useRef } from 'react';
 import { Upload, X, Loader2, Image as ImageIcon } from 'lucide-react';
@@ -40,7 +40,7 @@ export function ImageUploader({ value, onChange, label = 'Image', placeholder = 
       const formData = new FormData();
       formData.append('image', file);
 
-      const res = await fetch('http://localhost:5000/api/upload/image', {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/upload/image', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

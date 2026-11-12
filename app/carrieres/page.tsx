@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -52,7 +52,7 @@ export default function CareersPage() {
           params.append('type', selectedCategory);
         }
 
-        const res = await fetch(`http://localhost:5000/api/job-offers/public?${params.toString()}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/job-offers/public?${params.toString()}`);
         const data = await res.json();
 
         if (data.success) {

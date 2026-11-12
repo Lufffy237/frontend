@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -22,7 +22,7 @@ export default function AdminAwardsPage() {
 
   const fetchData = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/awards', { headers: { 'Authorization': `Bearer ${token}` } });
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/awards', { headers: { 'Authorization': `Bearer ${token}` } });
       const data = await res.json();
       if (data.success) setAwards(data.data);
     } catch (e) { toast.error('Erreur de chargement'); }
@@ -35,7 +35,7 @@ export default function AdminAwardsPage() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const url = editing ? `http://localhost:5000/api/awards/${editing.id}` : 'http://localhost:5000/api/awards';
+      const url = editing ? `${process.env.NEXT_PUBLIC_API_URL}/api/awards/${editing.id}` : process.env.NEXT_PUBLIC_API_URL + '/api/awards';
       const res = await fetch(url, {
         method: editing ? 'PUT' : 'POST',
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
@@ -55,7 +55,7 @@ export default function AdminAwardsPage() {
     if (!deleteId) return;
     setIsDeleting(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/awards/${deleteId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/awards/${deleteId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
       if (res.ok) { toast.success('Supprimé'); fetchData(); }
     } catch (e) { toast.error('Erreur'); }
     finally { setIsDeleting(false); setDeleteId(null); }

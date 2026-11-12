@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -31,7 +31,7 @@ export default function AdminArticlesPage() {
 
   const fetchArticles = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/articles', {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/articles', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -56,7 +56,7 @@ export default function AdminArticlesPage() {
     
     setIsDeleting(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/articles/${deleteId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/articles/${deleteId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

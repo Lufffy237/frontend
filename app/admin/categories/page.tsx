@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -32,7 +32,7 @@ export default function AdminCategoriesPage() {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/categories', {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/categories', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -58,8 +58,8 @@ export default function AdminCategoriesPage() {
     setSubmitting(true);
     try {
       const url = editingCategory 
-        ? `http://localhost:5000/api/categories/${editingCategory.id}`
-        : 'http://localhost:5000/api/categories';
+        ? `${process.env.NEXT_PUBLIC_API_URL}/api/categories/${editingCategory.id}`
+        : process.env.NEXT_PUBLIC_API_URL + '/api/categories';
       
       const method = editingCategory ? 'PUT' : 'POST';
 
@@ -105,7 +105,7 @@ export default function AdminCategoriesPage() {
     
     setIsDeleting(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/categories/${deleteId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/categories/${deleteId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

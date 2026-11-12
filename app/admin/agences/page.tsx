@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -42,7 +42,7 @@ export default function AdminAgenciesPage() {
 
   const fetchAgencies = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/agencies', {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/agencies', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -62,8 +62,8 @@ export default function AdminAgenciesPage() {
 
     try {
       const url = editingAgency 
-        ? `http://localhost:5000/api/agencies/${editingAgency.id}`
-        : 'http://localhost:5000/api/agencies';
+        ? `${process.env.NEXT_PUBLIC_API_URL}/api/agencies/${editingAgency.id}`
+        : process.env.NEXT_PUBLIC_API_URL + '/api/agencies';
       
       const res = await fetch(url, {
         method: editingAgency ? 'PUT' : 'POST',
@@ -94,7 +94,7 @@ export default function AdminAgenciesPage() {
     if (!deleteId) return;
     setIsDeleting(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/agencies/${deleteId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/agencies/${deleteId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

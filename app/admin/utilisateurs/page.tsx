@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -33,7 +33,7 @@ export default function AdminUsersPage() {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/users', {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/users', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -57,8 +57,8 @@ export default function AdminUsersPage() {
     setSubmitting(true);
     try {
       const url = editingUser 
-        ? `http://localhost:5000/api/users/${editingUser.id}`
-        : 'http://localhost:5000/api/users';
+        ? `${process.env.NEXT_PUBLIC_API_URL}/api/users/${editingUser.id}`
+        : process.env.NEXT_PUBLIC_API_URL + '/api/users';
       
       const method = editingUser ? 'PUT' : 'POST';
       const payload = editingUser 
@@ -98,7 +98,7 @@ export default function AdminUsersPage() {
 
     setIsDeleting(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${deleteId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${deleteId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

@@ -1,4 +1,4 @@
-// Exemple pour la section Partenaires sur la homepage
+﻿// Exemple pour la section Partenaires sur la homepage
 'use client';
 import { useState, useEffect } from 'react';
 
@@ -6,7 +6,7 @@ export function PartnersSection() {
   const [partners, setPartners] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/partners')
+    fetch(process.env.NEXT_PUBLIC_API_URL + '/api/partners')
       .then(res => res.json())
       .then(data => { if (data.success) setPartners(data.data); });
   }, []);
