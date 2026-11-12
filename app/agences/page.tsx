@@ -52,7 +52,7 @@ export default function AgenciesPage() {
     const fetchAgencies = async () => {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
-        // ✅ On appelle la route publique qui ne demande pas de token
+// ✅ IMPORTANT : On utilise /public pour éviter l'erreur 401 Unauthorized
         const res = await fetch(`${apiUrl}/api/agencies/public`);
         
         if (!res.ok) {
