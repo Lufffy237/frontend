@@ -48,7 +48,7 @@ export default function AgenciesPage() {
     const fetchAgencies = async () => {
       try {
         // ✅ CORRECTION CRUCIALE : Utilisation de la variable d'environnement + appel de la route PUBLIQUE
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || '${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}';
         const res = await fetch(`${apiUrl}/api/agencies/public`);
         
         if (!res.ok) {
