@@ -32,7 +32,7 @@ export default function JobOfferEditorPage() {
     if (!isNew) {
       const fetchOffer = async () => {
         try {
-          const res = await fetch(`http://localhost:5000/api/job-offers/${id}`, {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/job-offers/${id}`, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
           const data = await res.json();
@@ -84,7 +84,7 @@ export default function JobOfferEditorPage() {
 
     setSubmitting(true);
     try {
-      const url = isNew ? 'http://localhost:5000/api/job-offers' : `http://localhost:5000/api/job-offers/${id}`;
+      const url = isNew ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/job-offers' : `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/job-offers/${id}`;
       const method = isNew ? 'POST' : 'PUT';
 
       // Filtrer les missions vides
