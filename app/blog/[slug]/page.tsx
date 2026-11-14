@@ -33,7 +33,7 @@ export default function BlogPostPage() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/articles/public/${slug}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/articles/public/${slug}`);
         const data = await res.json();
 
         if (data.success) {
@@ -41,7 +41,7 @@ export default function BlogPostPage() {
           
           // Récupérer les articles similaires (même catégorie)
           const catSlug = data.data.category?.slug || 'ALL';
-          const resRelated = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/articles/public?category=${catSlug}&limit=4`);
+          const resRelated = await fetch(`${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/articles/public?category=${catSlug}&limit=4`);
           const dataRelated = await resRelated.json();
           
           if (dataRelated.success) {

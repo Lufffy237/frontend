@@ -38,7 +38,7 @@ export default function ArticleEditorPage() {
     if (!isNew) {
       const fetchArticle = async () => {
         try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/articles/${id}`, {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/articles/${id}`, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
           const data = await res.json();
@@ -69,7 +69,7 @@ export default function ArticleEditorPage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/categories', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/categories', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
@@ -90,7 +90,7 @@ export default function ArticleEditorPage() {
 
     setSubmitting(true);
     try {
-      const url = isNew ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/articles' : `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/articles/${id}`;
+      const url = isNew ? `${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/articles' : `${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/articles/${id}`;
       const method = isNew ? 'POST' : 'PUT';
 
       const payload = {
