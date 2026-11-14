@@ -7,7 +7,6 @@ import { toast } from 'sonner';
 import { useAuth } from '@/hooks/useAuth';
 import { ConfirmDialog } from '@/components/admin/ConfirmDialog';
 
-// Interface alignée avec les données de l'API Admin
 interface Agency {
   id: string;
   name: string;
@@ -42,7 +41,8 @@ export default function AdminAgenciesPage() {
 
   const fetchAgencies = async () => {
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/agencies', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/api/agencies`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -61,9 +61,10 @@ export default function AdminAgenciesPage() {
     setSubmitting(true);
 
     try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
       const url = editingAgency 
-        ? `${process.env.NEXT_PUBLIC_API_URL}/api/agencies/${editingAgency.id}`
-        : process.env.NEXT_PUBLIC_API_URL + '/api/agencies';
+        ? `${apiUrl}/api/agencies/${editingAgency.id}`
+        : `${apiUrl}/api/agencies`;
       
       const res = await fetch(url, {
         method: editingAgency ? 'PUT' : 'POST',
@@ -73,7 +74,7 @@ export default function AdminAgenciesPage() {
 
       const data = await res.json();
       if (data.success) {
-        toast.success(editingAgency ? 'Agence mise à jour' : 'Agence créée');
+        toast.success(editingAgency ? 'Agence mise Ã  jour' : 'Agence crÃ©Ã©e');
         setIsModalOpen(false);
         setEditingAgency(null);
         resetForm();
@@ -82,7 +83,7 @@ export default function AdminAgenciesPage() {
         toast.error(data.message || 'Erreur');
       }
     } catch (error) {
-      toast.error('Erreur réseau');
+      toast.error('Erreur rÃ©seau');
     } finally {
       setSubmitting(false);
     }
@@ -94,19 +95,20 @@ export default function AdminAgenciesPage() {
     if (!deleteId) return;
     setIsDeleting(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/agencies/${deleteId}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/api/agencies/${deleteId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
       if (data.success) {
-        toast.success('Agence supprimée avec succès');
+        toast.success('Agence supprimÃ©e avec succÃ¨s');
         fetchAgencies();
       } else {
         toast.error(data.message || 'Erreur lors de la suppression');
       }
     } catch (error) {
-      toast.error('Erreur réseau lors de la suppression');
+      toast.error('Erreur rÃ©seau lors de la suppression');
     } finally {
       setIsDeleting(false);
       setDeleteId(null);
@@ -139,14 +141,18 @@ export default function AdminAgenciesPage() {
     });
   };
 
-  if (loading) return <div className="flex items-center justify-center h-64"><Loader2 className="w-8 h-8 animate-spin text-primary" /></div>;
+  if (loading) return (
+    <div className="flex items-center justify-center h-64">
+      <Loader2 className="w-8 h-8 animate-spin text-primary" />
+    </div>
+  );
 
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-secondary">Gestion des Agences</h1>
-          <p className="text-muted mt-1">Gérez les implantations, agences et dépôts.</p>
+          <p className="text-muted mt-1">GÃ©rez les implantations, agences et dÃ©pÃ´ts.</p>
         </div>
         <button
           onClick={() => { resetForm(); setEditingAgency(null); setIsModalOpen(true); }}
@@ -171,14 +177,14 @@ export default function AdminAgenciesPage() {
             </thead>
             <tbody className="divide-y divide-border">
               {agencies.length === 0 ? (
-                <tr><td colSpan={6} className="px-6 py-12 text-center text-muted">Aucune agence trouvée.</td></tr>
+                <tr><td colSpan={6} className="px-6 py-12 text-center text-muted">Aucune agence trouvÃ©e.</td></tr>
               ) : (
                 agencies.map((agency) => (
                   <tr key={agency.id} className="hover:bg-surface/50 transition-colors">
                     <td className="px-6 py-4 font-medium text-secondary">{agency.name}</td>
                     <td className="px-6 py-4">
                       <span className={`px-2 py-1 rounded-full text-xs font-bold ${agency.type === 'AGENCY' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'}`}>
-                        {agency.type === 'AGENCY' ? 'AGENCE' : 'DÉPÔT'}
+                        {agency.type === 'AGENCY' ? 'AGENCE' : 'DÃ‰PÃ”T'}
                       </span>
                     </td>
                     <td className="px-6 py-4 text-muted">
@@ -189,7 +195,7 @@ export default function AdminAgenciesPage() {
                     </td>
                     <td className="px-6 py-4">
                       <span className={`px-2 py-1 rounded-full text-xs font-bold ${agency.published ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
-                        {agency.published ? 'Publié' : 'Masqué'}
+                        {agency.published ? 'PubliÃ©' : 'MasquÃ©'}
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right">
@@ -229,7 +235,7 @@ export default function AdminAgenciesPage() {
                     <label className="block text-sm font-medium text-secondary mb-1">Type *</label>
                     <select value={formData.type} onChange={e => setFormData({...formData, type: e.target.value as any})} className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary">
                       <option value="AGENCY">Agence</option>
-                      <option value="DEPOT">Dépôt</option>
+                      <option value="DEPOT">DÃ©pÃ´t</option>
                     </select>
                   </div>
                   <div>
@@ -241,15 +247,15 @@ export default function AdminAgenciesPage() {
                     <input required type="text" value={formData.city} onChange={e => setFormData({...formData, city: e.target.value})} className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-1">Province/Région</label>
+                    <label className="block text-sm font-medium text-secondary mb-1">Province/RÃ©gion</label>
                     <input type="text" value={formData.province} onChange={e => setFormData({...formData, province: e.target.value})} className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary" />
                   </div>
                   <div className="col-span-2">
-                    <label className="block text-sm font-medium text-secondary mb-1">Adresse complète *</label>
+                    <label className="block text-sm font-medium text-secondary mb-1">Adresse complÃ¨te *</label>
                     <input required type="text" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-1">Téléphone</label>
+                    <label className="block text-sm font-medium text-secondary mb-1">TÃ©lÃ©phone</label>
                     <input type="text" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary" />
                   </div>
                   <div>
@@ -270,7 +276,7 @@ export default function AdminAgenciesPage() {
                   </div>
                   <div className="col-span-2 flex items-center gap-2 pt-2">
                     <input type="checkbox" id="published" checked={formData.published} onChange={e => setFormData({...formData, published: e.target.checked})} className="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary" />
-                    <label htmlFor="published" className="text-sm font-medium text-secondary">Publié sur le site public</label>
+                    <label htmlFor="published" className="text-sm font-medium text-secondary">PubliÃ© sur le site public</label>
                   </div>
                 </div>
 
@@ -278,7 +284,7 @@ export default function AdminAgenciesPage() {
                   <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-secondary hover:bg-surface rounded-lg transition-colors">Annuler</button>
                   <button type="submit" disabled={submitting} className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors flex items-center gap-2 disabled:opacity-50">
                     {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
-                    {editingAgency ? 'Mettre à jour' : 'Créer l\'agence'}
+                    {editingAgency ? 'Mettre Ã  jour' : 'CrÃ©er l\'agence'}
                   </button>
                 </div>
               </form>
@@ -292,7 +298,7 @@ export default function AdminAgenciesPage() {
         onClose={() => setDeleteId(null)}
         onConfirm={executeDelete}
         title="Supprimer cette implantation ?"
-        description="Cette action est irréversible. L'agence ou le dépôt sera retiré de la carte interactive et de la liste publique."
+        description="Cette action est irrÃ©versible. L'agence ou le dÃ©pÃ´t sera retirÃ© de la carte interactive et de la liste publique."
         confirmText="Oui, supprimer"
         cancelText="Annuler"
         isLoading={isDeleting}

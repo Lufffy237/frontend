@@ -14,7 +14,7 @@ export default function AdminLoginPage() {
   const router = useRouter();
   const { login, isAuthenticated } = useAuth();
 
-  // Rediriger si déjà connecté
+  // Rediriger si dÃ©jÃ  connectÃ©
   useEffect(() => {
     if (isAuthenticated) {
       router.push('/admin');
@@ -26,7 +26,8 @@ export default function AdminLoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/auth/login', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -37,7 +38,7 @@ export default function AdminLoginPage() {
       if (!res.ok) throw new Error(data.message || 'Email ou mot de passe incorrect');
 
       login(data.data.user, data.data.token);
-      toast.success('Connexion réussie !');
+      toast.success('Connexion rÃ©ussie !');
       router.push('/admin');
     } catch (error: any) {
       toast.error(error.message);
@@ -53,13 +54,13 @@ export default function AdminLoginPage() {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
       >
-        {/* En-tête de la carte */}
+        {/* En-tÃªte de la carte */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-4">
             <Shield className="w-8 h-8 text-primary" />
           </div>
           <h1 className="text-2xl font-bold text-secondary">Administration ELP</h1>
-          <p className="text-muted text-sm mt-2">Connectez-vous pour gérer la plateforme</p>
+          <p className="text-muted text-sm mt-2">Connectez-vous pour gÃ©rer la plateforme</p>
         </div>
 
         {/* Formulaire */}
@@ -90,7 +91,7 @@ export default function AdminLoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   className="w-full pl-10 pr-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="••••••••"
+                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                 />
               </div>
             </div>

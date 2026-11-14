@@ -20,7 +20,7 @@ export default function ArticleEditorPage() {
 
   const [loading, setLoading] = useState(!isNew);
   const [submitting, setSubmitting] = useState(false);
-  const [categories, setCategories] = useState<any[]>([]); // ✅ Déplacé au niveau supérieur
+  const [categories, setCategories] = useState<any[]>([]);
   
   const [formData, setFormData] = useState({
     title: '',
@@ -38,7 +38,8 @@ export default function ArticleEditorPage() {
     if (!isNew) {
       const fetchArticle = async () => {
         try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/articles/${id}`, {
+          const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+          const res = await fetch(`${apiUrl}/api/articles/${id}`, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
           const data = await res.json();
@@ -69,7 +70,8 @@ export default function ArticleEditorPage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/categories', {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        const res = await fetch(`${apiUrl}/api/categories`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
@@ -90,7 +92,8 @@ export default function ArticleEditorPage() {
 
     setSubmitting(true);
     try {
-      const url = isNew ? `${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/articles' : `${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/articles/${id}`;
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const url = isNew ? `${apiUrl}/api/articles` : `${apiUrl}/api/articles/${id}`;
       const method = isNew ? 'POST' : 'PUT';
 
       const payload = {
@@ -198,7 +201,6 @@ export default function ArticleEditorPage() {
               <h3 className="font-semibold text-secondary mb-4">Métadonnées</h3>
               
               <div className="space-y-4">
-                {/* ✅ Sélecteur de catégorie ajouté ici */}
                 <div>
                   <label className="block text-xs font-medium text-muted mb-1">Catégorie</label>
                   <select

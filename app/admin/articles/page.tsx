@@ -6,12 +6,12 @@ import { motion } from 'framer-motion';
 import { Plus, Edit2, Trash2, Eye, Loader2, FileText } from 'lucide-react';
 import { toast } from 'sonner';
 import { useAuth } from '@/hooks/useAuth';
-import { ConfirmDialog } from '@/components/admin/ConfirmDialog'; // ? AJOUTÉ
+import { ConfirmDialog } from '@/components/admin/ConfirmDialog';
 
 interface Article {
   id: string;
   title: string;
-  slug: string;       // ? AJOUTÉ
+  slug: string;
   excerpt: string;
   published: boolean;
   createdAt: string;
@@ -25,13 +25,13 @@ export default function AdminArticlesPage() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   
-  // ? États pour la modale de confirmation de suppression
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
   const fetchArticles = async () => {
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/articles', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/api/articles`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -45,33 +45,32 @@ export default function AdminArticlesPage() {
 
   useEffect(() => { fetchArticles(); }, [token]);
 
-  // ? Ouvre la modale de confirmation
   const promptDelete = (id: string) => {
     setDeleteId(id);
   };
 
-  // ? Exécute la suppression après confirmation
   const executeDelete = async () => {
     if (!deleteId) return;
     
     setIsDeleting(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/articles/${deleteId}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/api/articles/${deleteId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
       if (res.ok) {
-        toast.success('Article supprimé avec succès');
-        fetchArticles(); // Rafraîchir la liste
+        toast.success('Article supprimÃ© avec succÃ¨s');
+        fetchArticles();
       } else {
         toast.error('Erreur lors de la suppression');
       }
     } catch (error) {
-      toast.error('Erreur réseau lors de la suppression');
+      toast.error('Erreur rÃ©seau lors de la suppression');
     } finally {
       setIsDeleting(false);
-      setDeleteId(null); // Ferme la modale
+      setDeleteId(null);
     }
   };
 
@@ -82,7 +81,7 @@ export default function AdminArticlesPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-secondary">Articles & Blog</h1>
-          <p className="text-muted mt-1">Gérez le contenu de votre espace info.</p>
+          <p className="text-muted mt-1">GÃ©rez le contenu de votre espace info.</p>
         </div>
         <button
           onClick={() => router.push('/admin/articles/nouveau')}
@@ -98,7 +97,7 @@ export default function AdminArticlesPage() {
           <thead className="bg-surface border-b border-border">
             <tr>
               <th className="px-6 py-4 font-semibold text-secondary">Titre</th>
-              <th className="px-6 py-4 font-semibold text-secondary">Catégorie</th>
+              <th className="px-6 py-4 font-semibold text-secondary">CatÃ©gorie</th>
               <th className="px-6 py-4 font-semibold text-secondary">Auteur</th>
               <th className="px-6 py-4 font-semibold text-secondary">Statut</th>
               <th className="px-6 py-4 font-semibold text-secondary text-right">Actions</th>
@@ -106,7 +105,7 @@ export default function AdminArticlesPage() {
           </thead>
           <tbody className="divide-y divide-border">
             {articles.length === 0 ? (
-              <tr><td colSpan={5} className="px-6 py-12 text-center text-muted">Aucun article trouvé.</td></tr>
+              <tr><td colSpan={5} className="px-6 py-12 text-center text-muted">Aucun article trouvÃ©.</td></tr>
             ) : (
               articles.map((article) => (
                 <tr key={article.id} className="hover:bg-surface/50 transition-colors">
@@ -121,13 +120,13 @@ export default function AdminArticlesPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-muted">{article.category?.name || 'Non catégorisé'}</td>
+                  <td className="px-6 py-4 text-muted">{article.category?.name || 'Non catÃ©gorisÃ©'}</td>
                   <td className="px-6 py-4 text-muted">{article.author.name}</td>
                   <td className="px-6 py-4">
                     <span className={`px-2 py-1 rounded-full text-xs font-bold ${
                       article.published ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
                     }`}>
-                      {article.published ? 'Publié' : 'Brouillon'}
+                      {article.published ? 'PubliÃ©' : 'Brouillon'}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-right">
@@ -138,7 +137,6 @@ export default function AdminArticlesPage() {
                       <button onClick={() => router.push(`/admin/articles/${article.id}`)} className="p-2 text-secondary hover:bg-surface rounded-lg" title="Modifier">
                         <Edit2 className="w-4 h-4" />
                       </button>
-                      {/* ? Bouton modifié pour ouvrir la modale au lieu de confirm() */}
                       <button onClick={() => promptDelete(article.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-lg" title="Supprimer">
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -151,13 +149,12 @@ export default function AdminArticlesPage() {
         </table>
       </div>
 
-      {/* ? Modale de confirmation de suppression personnalisée */}
       <ConfirmDialog
         isOpen={!!deleteId}
         onClose={() => setDeleteId(null)}
         onConfirm={executeDelete}
         title="Supprimer cet article ?"
-        description="Cette action est irréversible. L'article sera définitivement retiré du site public et ne pourra pas être récupéré."
+        description="Cette action est irrÃ©versible. L'article sera dÃ©finitivement retirÃ© du site public et ne pourra pas Ãªtre rÃ©cupÃ©rÃ©."
         confirmText="Oui, supprimer"
         cancelText="Annuler"
         isLoading={isDeleting}

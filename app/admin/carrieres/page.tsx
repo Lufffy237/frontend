@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
 import { Plus, Edit2, Trash2, Eye, Loader2, Briefcase } from 'lucide-react';
 import { toast } from 'sonner';
 import { useAuth } from '@/hooks/useAuth';
-import { ConfirmDialog } from '@/components/admin/ConfirmDialog'; // ? AJOUTÉ
+import { ConfirmDialog } from '@/components/admin/ConfirmDialog';
 
 interface JobOffer {
   id: string;
@@ -24,13 +23,13 @@ export default function AdminJobOffersPage() {
   const [offers, setOffers] = useState<JobOffer[]>([]);
   const [loading, setLoading] = useState(true);
   
-  // ? États pour la modale de confirmation de suppression
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
   const fetchOffers = async () => {
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/job-offers', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/api/job-offers`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -44,44 +43,47 @@ export default function AdminJobOffersPage() {
 
   useEffect(() => { fetchOffers(); }, [token]);
 
-  // ? Ouvre la modale de confirmation
   const promptDelete = (id: string) => {
     setDeleteId(id);
   };
 
-  // ? Exécute la suppression après confirmation
   const executeDelete = async () => {
     if (!deleteId) return;
     
     setIsDeleting(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/job-offers/${deleteId}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/api/job-offers/${deleteId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
       if (res.ok) {
-        toast.success('Offre supprimée avec succès');
-        fetchOffers(); // Rafraîchir la liste
+        toast.success('Offre supprimÃ©e avec succÃ¨s');
+        fetchOffers();
       } else {
         toast.error('Erreur lors de la suppression');
       }
     } catch (error) {
-      toast.error('Erreur réseau lors de la suppression');
+      toast.error('Erreur rÃ©seau lors de la suppression');
     } finally {
       setIsDeleting(false);
-      setDeleteId(null); // Ferme la modale
+      setDeleteId(null);
     }
   };
 
-  if (loading) return <div className="flex justify-center p-10"><Loader2 className="w-8 h-8 animate-spin text-primary" /></div>;
+  if (loading) return (
+    <div className="flex justify-center p-10">
+      <Loader2 className="w-8 h-8 animate-spin text-primary" />
+    </div>
+  );
 
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-secondary">Offres d'Emploi & Stages</h1>
-          <p className="text-muted mt-1">Gérez les opportunités de carrière.</p>
+          <p className="text-muted mt-1">GÃ©rez les opportunitÃ©s de carriÃ¨re.</p>
         </div>
         <button
           onClick={() => router.push('/admin/carrieres/nouveau')}
@@ -105,7 +107,7 @@ export default function AdminJobOffersPage() {
           </thead>
           <tbody className="divide-y divide-border">
             {offers.length === 0 ? (
-              <tr><td colSpan={5} className="px-6 py-12 text-center text-muted">Aucune offre trouvée.</td></tr>
+              <tr><td colSpan={5} className="px-6 py-12 text-center text-muted">Aucune offre trouvÃ©e.</td></tr>
             ) : (
               offers.map((offer) => (
                 <tr key={offer.id} className="hover:bg-surface/50 transition-colors">
@@ -116,7 +118,7 @@ export default function AdminJobOffersPage() {
                       </div>
                       <div>
                         <p className="font-medium text-secondary">{offer.title}</p>
-                        <p className="text-xs text-muted">{offer.contract || 'Non spécifié'}</p>
+                        <p className="text-xs text-muted">{offer.contract || 'Non spÃ©cifiÃ©'}</p>
                       </div>
                     </div>
                   </td>
@@ -143,7 +145,6 @@ export default function AdminJobOffersPage() {
                       <button onClick={() => router.push(`/admin/carrieres/${offer.id}`)} className="p-2 text-secondary hover:bg-surface rounded-lg" title="Modifier">
                         <Edit2 className="w-4 h-4" />
                       </button>
-                      {/* ? Bouton modifié pour ouvrir la modale au lieu de confirm() */}
                       <button onClick={() => promptDelete(offer.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-lg" title="Supprimer">
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -156,13 +157,12 @@ export default function AdminJobOffersPage() {
         </table>
       </div>
 
-      {/* ? Modale de confirmation de suppression personnalisée */}
       <ConfirmDialog
         isOpen={!!deleteId}
         onClose={() => setDeleteId(null)}
         onConfirm={executeDelete}
         title="Retirer cette offre ?"
-        description="Cette action est irréversible. L'offre ne sera plus visible par les candidats sur le site public."
+        description="Cette action est irrÃ©versible. L'offre ne sera plus visible par les candidats sur le site public."
         confirmText="Oui, supprimer"
         cancelText="Annuler"
         isLoading={isDeleting}

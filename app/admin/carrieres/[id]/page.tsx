@@ -32,7 +32,8 @@ export default function JobOfferEditorPage() {
     if (!isNew) {
       const fetchOffer = async () => {
         try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/job-offers/${id}`, {
+          const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+          const res = await fetch(`${apiUrl}/api/job-offers/${id}`, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
           const data = await res.json();
@@ -84,10 +85,10 @@ export default function JobOfferEditorPage() {
 
     setSubmitting(true);
     try {
-      const url = isNew ? `${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/job-offers' : `${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}/api/job-offers/${id}`;
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const url = isNew ? `${apiUrl}/api/job-offers` : `${apiUrl}/api/job-offers/${id}`;
       const method = isNew ? 'POST' : 'PUT';
 
-      // Filtrer les missions vides
       const payload = {
         ...formData,
         missions: formData.missions.filter(m => m.trim() !== ''),
@@ -116,7 +117,11 @@ export default function JobOfferEditorPage() {
     }
   };
 
-  if (loading) return <div className="flex justify-center p-20"><Loader2 className="w-8 h-8 animate-spin text-primary" /></div>;
+  if (loading) return (
+    <div className="flex justify-center p-20">
+      <Loader2 className="w-8 h-8 animate-spin text-primary" />
+    </div>
+  );
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -130,7 +135,6 @@ export default function JobOfferEditorPage() {
         onSubmit={handleSubmit} 
         className="space-y-6"
       >
-        {/* En-tête */}
         <div className="bg-white p-6 rounded-xl border border-border shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-4">
           <input
             type="text"
@@ -161,7 +165,6 @@ export default function JobOfferEditorPage() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {/* Colonne principale */}
           <div className="md:col-span-2 space-y-6">
             <div className="bg-white p-6 rounded-xl border border-border shadow-soft space-y-4">
               <div className="grid grid-cols-2 gap-4">
@@ -242,7 +245,6 @@ export default function JobOfferEditorPage() {
             </div>
           </div>
 
-          {/* Colonne latérale */}
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-xl border border-border shadow-soft space-y-4">
               <h3 className="font-semibold text-secondary mb-2">Profil recherché</h3>

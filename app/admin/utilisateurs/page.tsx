@@ -33,7 +33,8 @@ export default function AdminUsersPage() {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/users', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/api/users`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -56,9 +57,10 @@ export default function AdminUsersPage() {
 
     setSubmitting(true);
     try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
       const url = editingUser 
-        ? `${process.env.NEXT_PUBLIC_API_URL}/api/users/${editingUser.id}`
-        : process.env.NEXT_PUBLIC_API_URL + '/api/users';
+        ? `${apiUrl}/api/users/${editingUser.id}`
+        : `${apiUrl}/api/users`;
       
       const method = editingUser ? 'PUT' : 'POST';
       const payload = editingUser 
@@ -73,7 +75,7 @@ export default function AdminUsersPage() {
 
       const data = await res.json();
       if (data.success) {
-        toast.success(editingUser ? 'Utilisateur mis à jour' : 'Utilisateur créé');
+        toast.success(editingUser ? 'Utilisateur mis Ã  jour' : 'Utilisateur crÃ©Ã©');
         setIsModalOpen(false);
         setEditingUser(null);
         setFormData({ name: '', email: '', password: '', role: 'EDITOR', isActive: true });
@@ -82,7 +84,7 @@ export default function AdminUsersPage() {
         toast.error(data.message || 'Erreur');
       }
     } catch (error) {
-      toast.error('Erreur réseau');
+      toast.error('Erreur rÃ©seau');
     } finally {
       setSubmitting(false);
     }
@@ -98,13 +100,14 @@ export default function AdminUsersPage() {
 
     setIsDeleting(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${deleteId}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/api/users/${deleteId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
       if (data.success) {
-        toast.success('Utilisateur supprimé');
+        toast.success('Utilisateur supprimÃ©');
         fetchUsers();
       } else {
         toast.error(data.message || 'Erreur');
@@ -143,7 +146,7 @@ export default function AdminUsersPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-secondary">Gestion des Utilisateurs</h1>
-          <p className="text-muted mt-1">Gérez les accès et les rôles du tableau de bord.</p>
+          <p className="text-muted mt-1">GÃ©rez les accÃ¨s et les rÃ´les du tableau de bord.</p>
         </div>
         <button
           onClick={() => { resetForm(); setIsModalOpen(true); }}
@@ -159,9 +162,9 @@ export default function AdminUsersPage() {
           <thead className="bg-surface border-b border-border">
             <tr>
               <th className="px-6 py-4 font-semibold text-secondary">Utilisateur</th>
-              <th className="px-6 py-4 font-semibold text-secondary">Rôle</th>
+              <th className="px-6 py-4 font-semibold text-secondary">RÃ´le</th>
               <th className="px-6 py-4 font-semibold text-secondary">Statut</th>
-              <th className="px-6 py-4 font-semibold text-secondary">Créé le</th>
+              <th className="px-6 py-4 font-semibold text-secondary">CrÃ©Ã© le</th>
               <th className="px-6 py-4 font-semibold text-secondary text-right">Actions</th>
             </tr>
           </thead>
@@ -242,9 +245,9 @@ export default function AdminUsersPage() {
                 )}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-1.5">Rôle *</label>
+                    <label className="block text-sm font-medium text-secondary mb-1.5">RÃ´le *</label>
                     <select value={formData.role} onChange={e => setFormData({...formData, role: e.target.value as any})} className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary bg-white">
-                      <option value="EDITOR">Éditeur</option>
+                      <option value="EDITOR">Ã‰diteur</option>
                       <option value="ADMIN">Administrateur</option>
                       <option value="SUPER_ADMIN">Super Admin</option>
                     </select>
@@ -261,7 +264,7 @@ export default function AdminUsersPage() {
                   <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-secondary hover:bg-surface rounded-lg transition-colors">Annuler</button>
                   <button type="submit" disabled={submitting} className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors flex items-center gap-2 disabled:opacity-50">
                     {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
-                    {editingUser ? 'Mettre à jour' : 'Créer'}
+                    {editingUser ? 'Mettre Ã  jour' : 'CrÃ©er'}
                   </button>
                 </div>
               </form>
@@ -275,7 +278,7 @@ export default function AdminUsersPage() {
         onClose={() => setDeleteId(null)} 
         onConfirm={executeDelete} 
         title="Supprimer cet utilisateur ?" 
-        description="Cette action est irréversible. L'utilisateur perdra immédiatement l'accès au tableau de bord." 
+        description="Cette action est irrÃ©versible. L'utilisateur perdra immÃ©diatement l'accÃ¨s au tableau de bord." 
         confirmText="Oui, supprimer" 
         isLoading={isDeleting} 
       />
