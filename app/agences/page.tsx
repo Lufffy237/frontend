@@ -1,6 +1,5 @@
 'use client';
 
-// ✅ Force le rendu dynamique pour empêcher Next.js de pré-générer cette page côté serveur
 export const dynamic = 'force-dynamic';
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
@@ -9,7 +8,6 @@ import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import dynamicImport from 'next/dynamic';
 
-// ✅ IMPORTS DYNAMIQUES AVEC SSR DÉSACTIVÉ
 const AgencyHero = dynamicImport(() => import('@/components/agencies/AgencyHero').then(mod => ({ default: mod.AgencyHero })), { ssr: false, loading: () => <div className="h-64 bg-surface animate-pulse" /> });
 const AgencyFilters = dynamicImport(() => import('@/components/agencies/AgencyFilters').then(mod => ({ default: mod.AgencyFilters })), { ssr: false });
 const AgencyCard = dynamicImport(() => import('@/components/agencies/AgencyCard').then(mod => ({ default: mod.AgencyCard })), { ssr: false });
@@ -47,8 +45,8 @@ export default function AgenciesPage() {
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || `${process.env.NEXT_PUBLIC_API_URL || `'${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}`}';
-        // ✅ IMPORTANT : On utilise /public pour éviter l'erreur 401 Unauthorized
+        // ✅ URL PROPRE ET CORRECTE
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
         const res = await fetch(`${apiUrl}/api/agencies/public`);
         
         if (!res.ok) {
@@ -63,7 +61,7 @@ export default function AgenciesPage() {
         }
       } catch (error) {
         console.error('Erreur de chargement des agences:', error);
-        toast.error('Impossible de charger la liste des agences. Vérifiez votre connexion.');
+        toast.error('Impossible de charger la liste des agences.');
       } finally {
         setLoading(false);
       }
@@ -231,10 +229,8 @@ export default function AgenciesPage() {
                     })
                   ) : (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-8 text-center">
-                      <p className="text-muted">Aucune agence ne correspond à votre recherche.</p>
-                      <button onClick={() => { setSearch(''); setSelectedCountry(''); setSelectedCity(''); setSelectedType('ALL'); }} className="mt-4 text-primary font-semibold text-sm hover:underline">
-                        Réinitialiser les filtres
-                      </button>
+                      <p className="text-muted">Aucune agence publiée pour le moment.</p>
+                      <p className="text-sm text-muted mt-2">Connectez-vous au panneau d'administration pour en ajouter une.</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
