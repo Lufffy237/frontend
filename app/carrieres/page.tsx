@@ -27,7 +27,7 @@ interface JobOffer {
 
 const ITEMS_PER_PAGE = 6;
 const JOB_CATEGORIES = [
-  { value: 'ALL', label: 'Toutes les cat�gories' },
+  { value: 'ALL', label: 'Toutes les catégories' }, // ✅ Accent corrigé
   { value: 'EMPLOI', label: 'Offres d\'emploi' },
   { value: 'STAGE', label: 'Stages' },
 ];
@@ -52,14 +52,24 @@ export default function CareersPage() {
           params.append('type', selectedCategory);
         }
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/job-offers/public?${params.toString()}`);
+        // ✅ SÉCURISATION DE L'URL API (Fallback vers localhost si la variable d'env est manquante)
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        const res = await fetch(`${apiUrl}/api/job-offers/public?${params.toString()}`);
+        
+        if (!res.ok) {
+          throw new Error(`Erreur HTTP: ${res.status}`);
+        }
+
         const data = await res.json();
 
         if (data.success) {
           setJobs(data.data);
           setTotalPages(data.totalPages || 1);
+        } else {
+          throw new Error(data.message || 'Erreur inconnue');
         }
       } catch (error) {
+        console.error('Erreur de chargement des offres:', error);
         toast.error('Erreur de chargement des offres');
       } finally {
         setLoading(false);
@@ -98,7 +108,7 @@ export default function CareersPage() {
             </div>
           ) : jobs.length > 0 ? (
             <>
-              <div>
+              <div className="space-y-6"> {/* ✅ Ajout d'espacement entre les cartes */}
                 {jobs.map((job, index) => (
                   <JobCard 
                     key={job.id} 
@@ -107,8 +117,8 @@ export default function CareersPage() {
                       image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop',
                       shortDescription: job.description.substring(0, 150) + '...',
                       publishedAt: job.createdAt,
-                      // ? CORRECTION : On force le type 'string' en fournissant une valeur par d�faut si null
-                      contract: job.contract || 'Non sp�cifi�',
+                      // ✅ CORRECTION : On force le type 'string' en fournissant une valeur par défaut si null
+                      contract: job.contract || 'Non spécifié',
                       profile: job.profile || '',
                       howToApply: job.howToApply || ''
                     }} 
@@ -118,12 +128,14 @@ export default function CareersPage() {
               </div>
 
               {totalPages > 1 && (
-                <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+                <div className="mt-12 flex justify-center">
+                  <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+                </div>
               )}
             </>
           ) : (
             <div className="text-center py-20">
-              <p className="text-muted text-lg">Aucune offre ne correspond � cette cat�gorie pour le moment.</p>
+              <p className="text-muted text-lg">Aucune offre ne correspond à cette catégorie pour le moment.</p> {/* ✅ Accent corrigé */}
             </div>
           )}
         </div>
@@ -133,10 +145,10 @@ export default function CareersPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/agences" className="inline-flex items-center justify-center px-8 py-3 rounded-lg border-2 border-secondary text-secondary font-semibold hover:bg-secondary hover:text-white transition-all duration-300">
-              D�couvrir Nos Agences
+              Découvrir Nos Agences {/* ✅ Accent corrigé */}
             </Link>
             <Link href="/contact" className="inline-flex items-center justify-center px-8 py-3 rounded-lg bg-primary text-white font-semibold shadow-soft hover:bg-primary-hover hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300">
-              Contact-Nous
+              Contactez-Nous
             </Link>
           </div>
         </div>
