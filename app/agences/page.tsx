@@ -45,22 +45,30 @@ export default function AgenciesPage() {
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        // ✅ URL PROPRE ET CORRECTE
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
-        const res = await fetch(`${apiUrl}/api/agencies/public`);
+        const targetUrl = `${apiUrl}/api/agencies/public`;
+        
+        // 🕵️‍♂️ PREUVE : On affiche l'URL exacte qui va être appelée dans la console du navigateur
+        console.log("🔍 URL appelée par le frontend :", targetUrl);
+
+        const res = await fetch(targetUrl);
         
         if (!res.ok) {
           throw new Error(`Erreur HTTP: ${res.status}`);
         }
         
         const data = await res.json();
+        
+        // 🕵️‍♂️ PREUVE : On affiche la réponse du backend
+        console.log("✅ Réponse du backend :", data);
+
         if (data.success) {
           setAgencies(data.data);
         } else {
           throw new Error(data.message || 'Erreur inconnue');
         }
       } catch (error) {
-        console.error('Erreur de chargement des agences:', error);
+        console.error('❌ Erreur de chargement des agences:', error);
         toast.error('Impossible de charger la liste des agences.');
       } finally {
         setLoading(false);
