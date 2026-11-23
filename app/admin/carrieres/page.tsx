@@ -43,13 +43,10 @@ export default function AdminJobOffersPage() {
 
   useEffect(() => { fetchOffers(); }, [token]);
 
-  const promptDelete = (id: string) => {
-    setDeleteId(id);
-  };
+  const promptDelete = (id: string) => setDeleteId(id);
 
   const executeDelete = async () => {
     if (!deleteId) return;
-    
     setIsDeleting(true);
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
@@ -89,8 +86,7 @@ export default function AdminJobOffersPage() {
           onClick={() => router.push('/admin/carrieres/nouveau')}
           className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors shadow-soft"
         >
-          <Plus className="w-4 h-4" />
-          Nouvelle offre
+          <Plus className="w-4 h-4" /> Nouvelle offre
         </button>
       </div>
 
@@ -123,17 +119,13 @@ export default function AdminJobOffersPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`px-2 py-1 rounded-full text-xs font-bold ${
-                      offer.type === 'EMPLOI' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'
-                    }`}>
+                    <span className={`px-2 py-1 rounded-full text-xs font-bold ${offer.type === 'EMPLOI' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'}`}>
                       {offer.type === 'EMPLOI' ? 'EMPLOI' : 'STAGE'}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-muted">{offer.location}</td>
                   <td className="px-6 py-4">
-                    <span className={`px-2 py-1 rounded-full text-xs font-bold ${
-                      offer.active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                    }`}>
+                    <span className={`px-2 py-1 rounded-full text-xs font-bold ${offer.active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
                       {offer.active ? 'Active' : 'Inactive'}
                     </span>
                   </td>

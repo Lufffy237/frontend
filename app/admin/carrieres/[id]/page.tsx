@@ -89,6 +89,9 @@ export default function JobOfferEditorPage() {
       const url = isNew ? `${apiUrl}/api/job-offers` : `${apiUrl}/api/job-offers/${id}`;
       const method = isNew ? 'POST' : 'PUT';
 
+      // 🕵️‍♂️ DÉBOGAGE : Vérifie dans la console (F12) quelle URL est appelée
+      console.log("🚀 Tentative d'enregistrement vers :", url);
+
       const payload = {
         ...formData,
         missions: formData.missions.filter(m => m.trim() !== ''),
@@ -108,10 +111,11 @@ export default function JobOfferEditorPage() {
         toast.success(isNew ? 'Offre créée avec succès' : 'Offre mise à jour');
         router.push('/admin/carrieres');
       } else {
-        toast.error(data.message || 'Erreur');
+        toast.error(data.message || 'Erreur lors de l\'enregistrement');
       }
     } catch (error) {
-      toast.error('Erreur réseau');
+      console.error("Erreur réseau détaillée:", error);
+      toast.error('Erreur réseau : Vérifiez que NEXT_PUBLIC_API_URL est bien configuré sur Vercel');
     } finally {
       setSubmitting(false);
     }

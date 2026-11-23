@@ -7,7 +7,6 @@ export interface NavItem {
   export const NAV_ITEMS: NavItem[] = [
     { label: 'Accueil', href: '/' },
     { label: 'Services', href: '/services' },
-    { label: 'Nos étapes', href: '/etapes' },
     { label: 'À propos', href: '/a-propos' },
     { label: 'Blog / Info', href: '/blog' },
     { label: 'Carrières', href: '/carrieres' },
@@ -43,7 +42,7 @@ export interface NavItem {
   ];
   
   export const SOCIAL_LINKS = [
-    { name: 'Facebook', href: 'https://facebook.com/elegancepressing', icon: 'facebook' },
+    { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61596974751335', icon: 'facebook' },
     { name: 'Instagram', href: 'https://instagram.com/elegancepressing', icon: 'instagram' },
     { name: 'LinkedIn', href: 'https://linkedin.com/company/elegancepressing', icon: 'linkedin' },
     { name: 'WhatsApp', href: 'https://wa.me/237000000000', icon: 'whatsapp' },
