@@ -34,7 +34,7 @@ export default function ContactPage() {
             <a href="mailto:contact@elegancepressing.com" className="text-primary font-semibold hover:underline">
               contact@elegancepressing.com
             </a>
-            . Un membre de notre équipe s'engage à vous répondre dans les plus brefs délais.
+            . Un membre de notre Ã©quipe s'engage Ã  vous rÃ©pondre dans les plus brefs dÃ©lais.
           </motion.p>
         </div>
       </section>
@@ -52,14 +52,14 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Coordonnées */}
+      {/* CoordonnÃ©es */}
       <section className="py-12 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-6">
             {[
               {
                 icon: Phone,
-                title: 'Téléphone',
+                title: 'TÃ©lÃ©phone',
                 content: '+237 233 42 42 42',
                 link: 'tel:+237233424242',
               },

@@ -9,11 +9,11 @@ interface LogoProps {
 export function Logo({ variant = 'full', className = '' }: LogoProps) {
   if (variant === 'icon') {
     return (
-      <Link href="/" className={`flex items-center ${className}`} aria-label="Élégance Pressing - Accueil">
+      <Link href="/" className={`flex items-center ${className}`} aria-label="Ã‰lÃ©gance Pressing - Accueil">
         <div className="relative w-10 h-10">
           <Image
             src="/images/logo.png"
-            alt="Élégance Pressing"
+            alt="Ã‰lÃ©gance Pressing"
             fill
             className="object-contain"
             priority
@@ -25,11 +25,11 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
 
   if (variant === 'compact') {
     return (
-      <Link href="/" className={`flex items-center gap-3 ${className}`} aria-label="Élégance Pressing - Accueil">
+      <Link href="/" className={`flex items-center gap-3 ${className}`} aria-label="Ã‰lÃ©gance Pressing - Accueil">
         <div className="relative w-10 h-10 flex-shrink-0">
           <Image
             src="/images/logo.png"
-            alt="Élégance Pressing"
+            alt="Ã‰lÃ©gance Pressing"
             fill
             className="object-contain"
             priority
@@ -37,7 +37,7 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
         </div>
         <div className="flex flex-col leading-tight">
           <span className="text-xl font-bold text-secondary">
-            Elégance <span className="text-primary">PRESSING</span>
+            ElÃ©gance <span className="text-primary">PRESSING</span>
           </span>
         </div>
       </Link>
@@ -45,11 +45,11 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
   }
 
   return (
-    <Link href="/" className={`flex flex-col items-start ${className}`} aria-label="Élégance Pressing - Accueil">
+    <Link href="/" className={`flex flex-col items-start ${className}`} aria-label="Ã‰lÃ©gance Pressing - Accueil">
       <div className="relative w-48 h-20 flex-shrink-0">
         <Image
           src="/images/logo.png"
-          alt="Élégance Pressing - Propre c'est élégant"
+          alt="Ã‰lÃ©gance Pressing - Propre c'est Ã©lÃ©gant"
           fill
           className="object-contain"
           priority

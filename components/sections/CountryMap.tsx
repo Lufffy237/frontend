@@ -17,21 +17,21 @@ export function CountryMap({ country, onClose }: CountryMapProps) {
   useEffect(() => {
     if (!country) return;
     
-    // ✅ CORRECTION : On capture la référence dans une variable locale pour que TypeScript 
-    // sache qu'elle n'est pas null à l'intérieur de la fonction asynchrone initMap
+    // âœ… CORRECTION : On capture la rÃ©fÃ©rence dans une variable locale pour que TypeScript 
+    // sache qu'elle n'est pas null Ã  l'intÃ©rieur de la fonction asynchrone initMap
     const container = mapRef.current;
     if (!container) return;
 
-    // Import dynamique de Leaflet (côté client uniquement)
+    // Import dynamique de Leaflet (cÃ´tÃ© client uniquement)
     const initMap = async () => {
       const L = await import('leaflet');
       
-      // Nettoyer l'instance précédente
+      // Nettoyer l'instance prÃ©cÃ©dente
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
       }
 
-      // Créer la carte en utilisant la variable locale 'container'
+      // CrÃ©er la carte en utilisant la variable locale 'container'
       const map = L.map(container, {
         center: [country.coordinates.lat, country.coordinates.lng],
         zoom: country.zoom,
@@ -41,19 +41,19 @@ export function CountryMap({ country, onClose }: CountryMapProps) {
 
       // Ajouter les tuiles OpenStreetMap
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors',
+        attribution: 'Â© OpenStreetMap contributors',
         maxZoom: 19,
       }).addTo(map);
 
       // Ajouter un marqueur
       L.marker([country.coordinates.lat, country.coordinates.lng])
         .addTo(map)
-        .bindPopup(`<b>Élégance Pressing</b><br/>${country.name}`)
+        .bindPopup(`<b>Ã‰lÃ©gance Pressing</b><br/>${country.name}`)
         .openPopup();
 
       mapInstanceRef.current = map;
 
-      // Forcer le recalcul de la taille après l'animation de la modale
+      // Forcer le recalcul de la taille aprÃ¨s l'animation de la modale
       setTimeout(() => {
         map.invalidateSize();
       }, 300);
@@ -91,7 +91,7 @@ export function CountryMap({ country, onClose }: CountryMapProps) {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-2xl font-bold mb-1">{country.name}</h3>
-                <p className="text-gray-300 text-sm">Réseau Élégance Pressing</p>
+                <p className="text-gray-300 text-sm">RÃ©seau Ã‰lÃ©gance Pressing</p>
               </div>
               <button
                 onClick={onClose}
@@ -124,7 +124,7 @@ export function CountryMap({ country, onClose }: CountryMapProps) {
                 <Store className="w-5 h-5 text-primary" />
                 <div>
                   <div className="text-2xl font-bold">{country.depots}</div>
-                  <div className="text-xs text-gray-300">Dépôts</div>
+                  <div className="text-xs text-gray-300">DÃ©pÃ´ts</div>
                 </div>
               </div>
             </div>
@@ -136,7 +136,7 @@ export function CountryMap({ country, onClose }: CountryMapProps) {
           {/* Footer */}
           <div className="p-4 bg-surface border-t border-border">
             <p className="text-sm text-muted text-center">
-              Cliquez sur un marqueur pour voir les détails de l'implantation
+              Cliquez sur un marqueur pour voir les dÃ©tails de l'implantation
             </p>
           </div>
         </motion.div>

@@ -56,13 +56,13 @@ export default function AdminJobOffersPage() {
       });
       
       if (res.ok) {
-        toast.success('Offre supprimée avec succès');
+        toast.success('Offre supprimÃ©e avec succÃ¨s');
         fetchOffers();
       } else {
         toast.error('Erreur lors de la suppression');
       }
     } catch (error) {
-      toast.error('Erreur réseau lors de la suppression');
+      toast.error('Erreur rÃ©seau lors de la suppression');
     } finally {
       setIsDeleting(false);
       setDeleteId(null);
@@ -80,7 +80,7 @@ export default function AdminJobOffersPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-secondary">Offres d'Emploi & Stages</h1>
-          <p className="text-muted mt-1">Gérez les opportunités de carrière.</p>
+          <p className="text-muted mt-1">GÃ©rez les opportunitÃ©s de carriÃ¨re.</p>
         </div>
         <button
           onClick={() => router.push('/admin/carrieres/nouveau')}
@@ -103,7 +103,7 @@ export default function AdminJobOffersPage() {
           </thead>
           <tbody className="divide-y divide-border">
             {offers.length === 0 ? (
-              <tr><td colSpan={5} className="px-6 py-12 text-center text-muted">Aucune offre trouvée.</td></tr>
+              <tr><td colSpan={5} className="px-6 py-12 text-center text-muted">Aucune offre trouvÃ©e.</td></tr>
             ) : (
               offers.map((offer) => (
                 <tr key={offer.id} className="hover:bg-surface/50 transition-colors">
@@ -114,7 +114,7 @@ export default function AdminJobOffersPage() {
                       </div>
                       <div>
                         <p className="font-medium text-secondary">{offer.title}</p>
-                        <p className="text-xs text-muted">{offer.contract || 'Non spécifié'}</p>
+                        <p className="text-xs text-muted">{offer.contract || 'Non spÃ©cifiÃ©'}</p>
                       </div>
                     </div>
                   </td>
@@ -154,7 +154,7 @@ export default function AdminJobOffersPage() {
         onClose={() => setDeleteId(null)}
         onConfirm={executeDelete}
         title="Retirer cette offre ?"
-        description="Cette action est irréversible. L'offre ne sera plus visible par les candidats sur le site public."
+        description="Cette action est irrÃ©versible. L'offre ne sera plus visible par les candidats sur le site public."
         confirmText="Oui, supprimer"
         cancelText="Annuler"
         isLoading={isDeleting}

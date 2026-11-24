@@ -18,7 +18,7 @@ export function AfricaGlobe() {
           className="w-full h-auto"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Cercle de base (océan) */}
+          {/* Cercle de base (ocÃ©an) */}
           <circle
             cx="200"
             cy="200"
@@ -27,11 +27,11 @@ export function AfricaGlobe() {
             opacity="0.3"
           />
 
-          {/* Continents simplifiés (gris clair) */}
+          {/* Continents simplifiÃ©s (gris clair) */}
           <g fill="#D1D5DB" opacity="0.5">
-            {/* Amérique du Nord */}
+            {/* AmÃ©rique du Nord */}
             <path d="M 80 120 Q 100 100, 130 110 Q 150 120, 140 140 Q 130 160, 110 150 Q 90 140, 80 120 Z" />
-            {/* Amérique du Sud */}
+            {/* AmÃ©rique du Sud */}
             <path d="M 120 180 Q 140 170, 150 190 Q 160 220, 140 250 Q 120 270, 110 240 Q 100 210, 120 180 Z" />
             {/* Europe */}
             <path d="M 180 100 Q 200 90, 220 100 Q 230 110, 220 120 Q 200 130, 180 120 Q 170 110, 180 100 Z" />
@@ -51,7 +51,7 @@ export function AfricaGlobe() {
             transition={{ duration: 1.5, delay: 0.5, ease: 'easeOut' }}
           />
 
-          {/* Lignes de latitude/longitude décoratives */}
+          {/* Lignes de latitude/longitude dÃ©coratives */}
           <g stroke="#D1D5DB" strokeWidth="1" opacity="0.3" fill="none">
             <ellipse cx="200" cy="200" rx="180" ry="60" />
             <ellipse cx="200" cy="200" rx="180" ry="120" />

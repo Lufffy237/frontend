@@ -6,16 +6,16 @@ export function CareersHero() {
   return (
     <section className="relative bg-secondary text-white overflow-hidden min-h-[500px] md:min-h-[600px]">
       {/* ============================================
-          ÉLÉMENTS DÉCORATIFS D'ARRIÈRE-PLAN
+          Ã‰LÃ‰MENTS DÃ‰CORATIFS D'ARRIÃˆRE-PLAN
           ============================================ */}
       
-      {/* Grand cercle fin en haut à droite */}
+      {/* Grand cercle fin en haut Ã  droite */}
       <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full border border-white/10 pointer-events-none" />
       
-      {/* Petit cercle fin en bas à gauche */}
+      {/* Petit cercle fin en bas Ã  gauche */}
       <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full border border-white/10 pointer-events-none" />
       
-      {/* Points décoratifs */}
+      {/* Points dÃ©coratifs */}
       <div className="absolute top-1/3 right-1/4 w-3 h-3 rounded-full bg-primary pointer-events-none" />
       <div className="absolute bottom-1/4 left-1/5 w-2 h-2 rounded-full bg-white/40 pointer-events-none" />
       <div className="absolute top-1/4 left-1/3 w-1.5 h-1.5 rounded-full bg-white/20 pointer-events-none" />
@@ -38,15 +38,15 @@ export function CareersHero() {
             </h1>
             
             <p className="text-gray-300 leading-relaxed mb-4 text-base md:text-lg">
-              Sous l'impulsion de la vision stratégique de l'Honorable Manfouo David, 
-              notre équipe dirigeante place l'intégrité, le dynamisme et la transmission 
-              des gestes de l'art au cœur de son management.
+              Sous l'impulsion de la vision stratÃ©gique de l'Honorable Manfouo David, 
+              notre Ã©quipe dirigeante place l'intÃ©gritÃ©, le dynamisme et la transmission 
+              des gestes de l'art au cÅ“ur de son management.
             </p>
             
             <p className="text-gray-300 leading-relaxed text-base md:text-lg">
               Nous ne recherchons pas de simples collaborateurs, mais les futurs gardiens 
-              de notre standard de prestige. Que ce soit au sein de nos pôles administratifs, 
-              logistiques ou au cœur de nos ateliers techniques, chaque profil est accompagné 
+              de notre standard de prestige. Que ce soit au sein de nos pÃ´les administratifs, 
+              logistiques ou au cÅ“ur de nos ateliers techniques, chaque profil est accompagnÃ© 
               pour exprimer son plein potentiel.
             </p>
           </motion.div>
@@ -100,7 +100,7 @@ export function CareersHero() {
               />
             </motion.div>
 
-            {/* Point orange décoratif en bas à droite */}
+            {/* Point orange dÃ©coratif en bas Ã  droite */}
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}

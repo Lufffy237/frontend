@@ -27,7 +27,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
-        {/* Badge catégorie */}
+        {/* Badge catÃ©gorie */}
         <div className="absolute top-3 left-3">
           <span className="px-3 py-1 rounded-full bg-primary text-white text-xs font-bold">
             {post.categoryLabel}
@@ -47,7 +47,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
           {post.excerpt}
         </p>
 
-        {/* Métadonnées */}
+        {/* MÃ©tadonnÃ©es */}
         <div className="flex items-center justify-between text-xs text-muted mb-4">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">

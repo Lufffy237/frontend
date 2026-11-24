@@ -9,10 +9,10 @@ interface KeyFigure {
 }
 
 const figures: KeyFigure[] = [
-  { value: '35+', label: "Années d'expérience" },
-  { value: '5', label: 'Pays présents' },
+  { value: '35+', label: "AnnÃ©es d'expÃ©rience" },
+  { value: '5', label: 'Pays prÃ©sents' },
   { value: '15+', label: 'Agences' },
-  { value: '10+', label: 'Dépôts' },
+  { value: '10+', label: 'DÃ©pÃ´ts' },
   { value: '10M+', label: 'Clients satisfaits' },
 ];
 

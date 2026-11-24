@@ -48,8 +48,8 @@ export default function AgenciesPage() {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
         const targetUrl = `${apiUrl}/api/agencies/public`;
         
-        // 🕵️‍♂️ PREUVE : On affiche l'URL exacte qui va être appelée dans la console du navigateur
-        console.log("🔍 URL appelée par le frontend :", targetUrl);
+        // ðŸ•µï¸â€â™‚ï¸ PREUVE : On affiche l'URL exacte qui va Ãªtre appelÃ©e dans la console du navigateur
+        console.log("ðŸ” URL appelÃ©e par le frontend :", targetUrl);
 
         const res = await fetch(targetUrl);
         
@@ -59,8 +59,8 @@ export default function AgenciesPage() {
         
         const data = await res.json();
         
-        // 🕵️‍♂️ PREUVE : On affiche la réponse du backend
-        console.log("✅ Réponse du backend :", data);
+        // ðŸ•µï¸â€â™‚ï¸ PREUVE : On affiche la rÃ©ponse du backend
+        console.log("âœ… RÃ©ponse du backend :", data);
 
         if (data.success) {
           setAgencies(data.data);
@@ -68,7 +68,7 @@ export default function AgenciesPage() {
           throw new Error(data.message || 'Erreur inconnue');
         }
       } catch (error) {
-        console.error('❌ Erreur de chargement des agences:', error);
+        console.error('âŒ Erreur de chargement des agences:', error);
         toast.error('Impossible de charger la liste des agences.');
       } finally {
         setLoading(false);
@@ -126,7 +126,7 @@ export default function AgenciesPage() {
 
   const handleFindNearest = useCallback(() => {
     if (typeof window === 'undefined' || typeof navigator === 'undefined' || !navigator.geolocation) {
-      toast.error('La géolocalisation n\'est pas supportée par votre navigateur');
+      toast.error('La gÃ©olocalisation n\'est pas supportÃ©e par votre navigateur');
       return;
     }
 
@@ -139,7 +139,7 @@ export default function AgenciesPage() {
         
         if (agenciesWithCoords.length === 0) {
           toast.dismiss();
-          toast.error('Aucune agence avec des coordonnées GPS disponibles.');
+          toast.error('Aucune agence avec des coordonnÃ©es GPS disponibles.');
           return;
         }
 
@@ -169,9 +169,9 @@ export default function AgenciesPage() {
       (error) => {
         toast.dismiss();
         if (error.code === error.PERMISSION_DENIED) {
-          toast.error('Géolocalisation refusée. Veuillez sélectionner manuellement un pays et une ville.');
+          toast.error('GÃ©olocalisation refusÃ©e. Veuillez sÃ©lectionner manuellement un pays et une ville.');
         } else {
-          toast.error('Impossible de déterminer votre position. Recherche manuelle activée.');
+          toast.error('Impossible de dÃ©terminer votre position. Recherche manuelle activÃ©e.');
         }
       },
       { enableHighAccuracy: true, timeout: 10000 }
@@ -215,8 +215,8 @@ export default function AgenciesPage() {
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">NOTRE RÉSEAU D'AGENCES</h2>
-          <p className="text-muted italic">Où nous trouver en Afrique Centrale</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">NOTRE RÃ‰SEAU D'AGENCES</h2>
+          <p className="text-muted italic">OÃ¹ nous trouver en Afrique Centrale</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-6">
@@ -237,7 +237,7 @@ export default function AgenciesPage() {
                     })
                   ) : (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-8 text-center">
-                      <p className="text-muted">Aucune agence publiée pour le moment.</p>
+                      <p className="text-muted">Aucune agence publiÃ©e pour le moment.</p>
                       <p className="text-sm text-muted mt-2">Connectez-vous au panneau d'administration pour en ajouter une.</p>
                     </motion.div>
                   )}

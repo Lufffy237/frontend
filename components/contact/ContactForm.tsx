@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, User, Mail, Phone, FileText, X, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
-// --- TYPES DÉFINIS LOCALEMENT POUR ÉVITER LES ERREURS D'IMPORT ---
+// --- TYPES DÃ‰FINIS LOCALEMENT POUR Ã‰VITER LES ERREURS D'IMPORT ---
 export interface ContactFormData {
   title: string;
   firstName: string;
@@ -22,8 +22,8 @@ export interface JobApplicationData {
   lastName: string;
   email: string;
   phone: string;
-  cv: File | null;            // <-- Défini explicitement ici
-  coverLetter: File | null;   // <-- Défini explicitement ici
+  cv: File | null;            // <-- DÃ©fini explicitement ici
+  coverLetter: File | null;   // <-- DÃ©fini explicitement ici
   message: string;
 }
 // ------------------------------------------------------------------
@@ -35,7 +35,7 @@ export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  // État formulaire contact
+  // Ã‰tat formulaire contact
   const [contactData, setContactData] = useState<ContactFormData>({
     title: '',
     firstName: '',
@@ -46,7 +46,7 @@ export function ContactForm() {
     message: '',
   });
 
-  // État formulaire candidature
+  // Ã‰tat formulaire candidature
   const [applicationData, setApplicationData] = useState<JobApplicationData>({
     offerId: '',
     firstName: '',
@@ -61,18 +61,18 @@ export function ContactForm() {
   // Erreurs
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  // Fichiers uploadés
+  // Fichiers uploadÃ©s
   const [cvFileName, setCvFileName] = useState<string>('');
   const [coverLetterFileName, setCoverLetterFileName] = useState<string>('');
   const [attachmentFileName, setAttachmentFileName] = useState<string>('');
 
-  // --- NOUVEAU : État du Captcha fonctionnel ---
+  // --- NOUVEAU : Ã‰tat du Captcha fonctionnel ---
   const [captchaNum1, setCaptchaNum1] = useState(0);
   const [captchaNum2, setCaptchaNum2] = useState(0);
   const [captchaInput, setCaptchaInput] = useState('');
   const [captchaError, setCaptchaError] = useState('');
 
-  // Générer de nouveaux nombres pour le captcha
+  // GÃ©nÃ©rer de nouveaux nombres pour le captcha
   const generateCaptcha = () => {
     setCaptchaNum1(Math.floor(Math.random() * 9) + 1);
     setCaptchaNum2(Math.floor(Math.random() * 9) + 1);
@@ -94,7 +94,7 @@ export function ContactForm() {
   // Validation du captcha
   const validateCaptcha = () => {
     if (parseInt(captchaInput) !== captchaNum1 + captchaNum2) {
-      setCaptchaError('Vérification échouée. Veuillez résoudre l\'opération.');
+      setCaptchaError('VÃ©rification Ã©chouÃ©e. Veuillez rÃ©soudre l\'opÃ©ration.');
       return false;
     }
     setCaptchaError('');
@@ -114,12 +114,12 @@ export function ContactForm() {
     if (!contactData.message.trim()) newErrors.message = 'Le message est requis';
 
     if (contactData.phone && !validatePhone(contactData.phone)) {
-      newErrors.phone = 'Téléphone invalide';
+      newErrors.phone = 'TÃ©lÃ©phone invalide';
     }
 
     // Validation captcha
     if (!validateCaptcha()) {
-      newErrors.captcha = 'Vérification anti-robot échouée';
+      newErrors.captcha = 'VÃ©rification anti-robot Ã©chouÃ©e';
     }
 
     setErrors(newErrors);
@@ -130,16 +130,16 @@ export function ContactForm() {
     const newErrors: Record<string, string> = {};
 
     if (!applicationData.firstName.trim()) newErrors.firstName = 'Le nom est requis';
-    if (!applicationData.lastName.trim()) newErrors.lastName = 'Le prénom est requis';
+    if (!applicationData.lastName.trim()) newErrors.lastName = 'Le prÃ©nom est requis';
     if (!applicationData.email.trim()) {
       newErrors.email = 'L\'email est requis';
     } else if (!validateEmail(applicationData.email)) {
       newErrors.email = 'Email invalide';
     }
     if (!applicationData.phone.trim()) {
-      newErrors.phone = 'Le téléphone est requis';
+      newErrors.phone = 'Le tÃ©lÃ©phone est requis';
     } else if (!validatePhone(applicationData.phone)) {
-      newErrors.phone = 'Téléphone invalide';
+      newErrors.phone = 'TÃ©lÃ©phone invalide';
     }
     if (!applicationData.cv) {
       newErrors.cv = 'Le CV est requis';
@@ -147,7 +147,7 @@ export function ContactForm() {
 
     // Validation captcha
     if (!validateCaptcha()) {
-      newErrors.captcha = 'Vérification anti-robot échouée';
+      newErrors.captcha = 'VÃ©rification anti-robot Ã©chouÃ©e';
     }
 
     setErrors(newErrors);
@@ -162,13 +162,13 @@ export function ContactForm() {
     if (!file) return;
 
     if (file.size > MAX_FILE_SIZE) {
-      toast.error('Le fichier dépasse la taille maximale de 10 Mo');
+      toast.error('Le fichier dÃ©passe la taille maximale de 10 Mo');
       e.target.value = '';
       return;
     }
 
     if (!ALLOWED_TYPES.includes(file.type)) {
-      toast.error('Format non autorisé. Utilisez PDF, JPEG ou PNG');
+      toast.error('Format non autorisÃ©. Utilisez PDF, JPEG ou PNG');
       e.target.value = '';
       return;
     }
@@ -207,14 +207,14 @@ export function ContactForm() {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       console.log('Contact form data:', contactData);
       setSuccess(true);
-      toast.success('Message envoyé avec succès ! Nous vous répondrons rapidement.');
+      toast.success('Message envoyÃ© avec succÃ¨s ! Nous vous rÃ©pondrons rapidement.');
       
       // Reset
       setContactData({ title: '', firstName: '', lastName: '', email: '', phone: '', subject: '', message: '' });
       setAttachmentFileName('');
       generateCaptcha(); // Nouveau captcha pour le prochain envoi
     } catch (error) {
-      toast.error('Erreur lors de l\'envoi. Veuillez réessayer.');
+      toast.error('Erreur lors de l\'envoi. Veuillez rÃ©essayer.');
     } finally {
       setLoading(false);
     }
@@ -229,7 +229,7 @@ export function ContactForm() {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       console.log('Application form data:', applicationData);
       setSuccess(true);
-      toast.success('Candidature envoyée avec succès ! Nous étudierons votre dossier.');
+      toast.success('Candidature envoyÃ©e avec succÃ¨s ! Nous Ã©tudierons votre dossier.');
       
       // Reset
       setApplicationData({ 
@@ -246,7 +246,7 @@ export function ContactForm() {
       setCoverLetterFileName('');
       generateCaptcha(); // Nouveau captcha pour le prochain envoi
     } catch (error) {
-      toast.error('Erreur lors de l\'envoi. Veuillez réessayer.');
+      toast.error('Erreur lors de l\'envoi. Veuillez rÃ©essayer.');
     } finally {
       setLoading(false);
     }
@@ -259,7 +259,7 @@ export function ContactForm() {
     generateCaptcha();
   };
 
-  // Calcul pour savoir si le captcha est visuellement validé (pour la coche verte)
+  // Calcul pour savoir si le captcha est visuellement validÃ© (pour la coche verte)
   const isCaptchaValid = parseInt(captchaInput) === captchaNum1 + captchaNum2;
 
   if (success) {
@@ -273,12 +273,12 @@ export function ContactForm() {
           <CheckCircle className="w-12 h-12 text-green-600" />
         </div>
         <h3 className="text-2xl font-bold text-secondary mb-3">
-          {mode === 'contact' ? 'Message envoyé !' : 'Candidature reçue !'}
+          {mode === 'contact' ? 'Message envoyÃ© !' : 'Candidature reÃ§ue !'}
         </h3>
         <p className="text-muted mb-8">
           {mode === 'contact'
-            ? 'Nous vous répondrons dans les plus brefs délais.'
-            : 'Notre équipe RH étudiera votre dossier et vous contactera rapidement.'}
+            ? 'Nous vous rÃ©pondrons dans les plus brefs dÃ©lais.'
+            : 'Notre Ã©quipe RH Ã©tudiera votre dossier et vous contactera rapidement.'}
         </p>
         <button
           onClick={() => setSuccess(false)}
@@ -339,7 +339,7 @@ export function ContactForm() {
               />
             </div>
 
-            {/* Nom et Prénom */}
+            {/* Nom et PrÃ©nom */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
@@ -361,18 +361,18 @@ export function ContactForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2">Prénom</label>
+                <label className="block text-sm font-medium text-secondary mb-2">PrÃ©nom</label>
                 <input
                   type="text"
                   value={contactData.lastName}
                   onChange={(e) => setContactData({ ...contactData, lastName: e.target.value })}
-                  placeholder="Prénom"
+                  placeholder="PrÃ©nom"
                   className="w-full px-4 py-3 rounded-lg border border-border bg-white text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                 />
               </div>
             </div>
 
-            {/* Email et Téléphone */}
+            {/* Email et TÃ©lÃ©phone */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
@@ -394,7 +394,7 @@ export function ContactForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2">Téléphone</label>
+                <label className="block text-sm font-medium text-secondary mb-2">TÃ©lÃ©phone</label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
                   <input
@@ -540,21 +540,21 @@ export function ContactForm() {
           >
             {/* Offre d'emploi */}
             <div>
-              <label className="block text-sm font-medium text-secondary mb-2">Offre concernée</label>
+              <label className="block text-sm font-medium text-secondary mb-2">Offre concernÃ©e</label>
               <select
                 value={applicationData.offerId}
                 onChange={(e) => setApplicationData({ ...applicationData, offerId: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg border border-border bg-white text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
               >
-                <option value="">Sélectionnez une offre...</option>
-                <option value="1">Superviseur de Réseau & Relation Client</option>
+                <option value="">SÃ©lectionnez une offre...</option>
+                <option value="1">Superviseur de RÃ©seau & Relation Client</option>
                 <option value="2">Responsable de la Logistique & du Parc Automobile</option>
-                <option value="3">Gestionnaire des Systèmes d'Information</option>
+                <option value="3">Gestionnaire des SystÃ¨mes d'Information</option>
                 <option value="4">Assistant(e) Communication Digitale</option>
               </select>
             </div>
 
-            {/* Nom et Prénom */}
+            {/* Nom et PrÃ©nom */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
@@ -574,13 +574,13 @@ export function ContactForm() {
 
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
-                  Prénom<span className="text-primary ml-1">*</span>
+                  PrÃ©nom<span className="text-primary ml-1">*</span>
                 </label>
                 <input
                   type="text"
                   value={applicationData.lastName}
                   onChange={(e) => setApplicationData({ ...applicationData, lastName: e.target.value })}
-                  placeholder="Prénom"
+                  placeholder="PrÃ©nom"
                   className={`w-full px-4 py-3 rounded-lg border bg-white text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all ${
                     errors.lastName ? 'border-red-500' : 'border-border'
                   }`}
@@ -589,7 +589,7 @@ export function ContactForm() {
               </div>
             </div>
 
-            {/* Email et Téléphone */}
+            {/* Email et TÃ©lÃ©phone */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
@@ -612,7 +612,7 @@ export function ContactForm() {
 
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
-                  Téléphone<span className="text-primary ml-1">*</span>
+                  TÃ©lÃ©phone<span className="text-primary ml-1">*</span>
                 </label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
@@ -711,7 +711,7 @@ export function ContactForm() {
 
             {/* Message */}
             <div>
-              <label className="block text-sm font-medium text-secondary mb-2">Message complémentaire</label>
+              <label className="block text-sm font-medium text-secondary mb-2">Message complÃ©mentaire</label>
               <textarea
                 value={applicationData.message}
                 onChange={(e) => setApplicationData({ ...applicationData, message: e.target.value })}

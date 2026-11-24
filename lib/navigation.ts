@@ -7,9 +7,9 @@ export interface NavItem {
   export const NAV_ITEMS: NavItem[] = [
     { label: 'Accueil', href: '/' },
     { label: 'Services', href: '/services' },
-    { label: 'À propos', href: '/a-propos' },
+    { label: 'Ã€ propos', href: '/a-propos' },
     { label: 'Blog / Info', href: '/blog' },
-    { label: 'Carrières', href: '/carrieres' },
+    { label: 'CarriÃ¨res', href: '/carrieres' },
     { label: 'Galerie', href: '/galerie' },
   ];
   
@@ -20,21 +20,21 @@ export interface NavItem {
   
   export const FOOTER_SERVICES = [
     { label: 'Blanchisserie', href: '/services#blanchisserie' },
-    { label: 'Nettoyage à sec', href: '/services#nettoyage-sec' },
+    { label: 'Nettoyage Ã  sec', href: '/services#nettoyage-sec' },
     { label: 'Nettoyage industriel', href: '/services#nettoyage-industriel' },
-    { label: 'Hygiène & assainissement', href: '/services#hygiene' },
+    { label: 'HygiÃ¨ne & assainissement', href: '/services#hygiene' },
     { label: 'Raccommodage & stoppage', href: '/services#raccommodage' },
   ];
   
   export const FOOTER_COMPANY = [
     { label: 'Notre histoire', href: '/a-propos#histoire' },
     { label: 'Mot du fondateur', href: '/a-propos#fondateur' },
-    { label: 'Équipe dirigeante', href: '/a-propos#equipe' },
+    { label: 'Ã‰quipe dirigeante', href: '/a-propos#equipe' },
     { label: 'Savoir-faire', href: '/a-propos#savoir-faire' },
   ];
   
   export const FOOTER_RESOURCES = [
-    { label: 'Blog & actualités', href: '/blog' },
+    { label: 'Blog & actualitÃ©s', href: '/blog' },
     { label: 'Conseils entretien', href: '/blog?category=conseils' },
     { label: 'Offres d\'emploi', href: '/carrieres' },
     { label: 'Stages', href: '/carrieres?type=INTERNSHIP' },

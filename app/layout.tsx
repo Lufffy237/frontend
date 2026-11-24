@@ -13,10 +13,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Élégance Pressing | Blanchisserie haut de gamme en Afrique centrale',
-    template: '%s | Élégance Pressing',
+    default: 'Ã‰lÃ©gance Pressing | Blanchisserie haut de gamme en Afrique centrale',
+    template: '%s | Ã‰lÃ©gance Pressing',
   },
-  description: 'Élégance Pressing offre des services de blanchisserie, nettoyage à sec et hygiène de haute qualité. Propre c\'est élégant.',
+  description: 'Ã‰lÃ©gance Pressing offre des services de blanchisserie, nettoyage Ã  sec et hygiÃ¨ne de haute qualitÃ©. Propre c\'est Ã©lÃ©gant.',
 };
 
 export default function RootLayout({

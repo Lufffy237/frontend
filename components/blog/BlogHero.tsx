@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export function BlogHero() {
   return (
     <section className="relative bg-white py-16 md:py-20 overflow-hidden">
-      {/* Carte du monde en arrière-plan */}
+      {/* Carte du monde en arriÃ¨re-plan */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <svg viewBox="0 0 1000 500" className="w-full h-full">
           <path
@@ -36,7 +36,7 @@ export function BlogHero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-muted text-lg max-w-3xl mx-auto"
         >
-          Découvrez l'actualité vie à travers notre espace dédié aux opportunités de carrière, aux grands faits de société et aux conseils de nos experts.
+          DÃ©couvrez l'actualitÃ© vie Ã  travers notre espace dÃ©diÃ© aux opportunitÃ©s de carriÃ¨re, aux grands faits de sociÃ©tÃ© et aux conseils de nos experts.
         </motion.p>
       </div>
     </section>

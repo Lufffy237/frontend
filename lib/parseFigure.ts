@@ -14,7 +14,7 @@ interface ParsedFigure {
   
     const [, numStr, suffix] = match;
     
-    // Gérer les décimales
+    // GÃ©rer les dÃ©cimales
     const hasDecimals = numStr.includes(',') || numStr.includes('.');
     const normalizedNum = numStr.replace(',', '.');
     const number = parseFloat(normalizedNum);

@@ -103,7 +103,7 @@ export function AgencyFilters({
                   : 'bg-white border border-border text-secondary hover:bg-surface'
               }`}
             >
-              Dépôt
+              DÃ©pÃ´t
             </button>
           </div>
         </div>

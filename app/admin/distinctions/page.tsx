@@ -77,7 +77,7 @@ export default function AdminAwardsPage() {
       
       const data = await res.json();
       if (data.success) {
-        toast.success(editing ? 'Distinction mise à jour' : 'Distinction ajoutée');
+        toast.success(editing ? 'Distinction mise Ã  jour' : 'Distinction ajoutÃ©e');
         setIsModalOpen(false); 
         setEditing(null); 
         setFormData({ title: '', year: new Date().getFullYear(), issuer: '', image: '', order: 0 });
@@ -86,7 +86,7 @@ export default function AdminAwardsPage() {
         toast.error(data.message || 'Erreur');
       }
     } catch (e) { 
-      toast.error('Erreur réseau'); 
+      toast.error('Erreur rÃ©seau'); 
     } finally { 
       setSubmitting(false); 
     }
@@ -103,13 +103,13 @@ export default function AdminAwardsPage() {
       });
       
       if (res.ok) { 
-        toast.success('Distinction supprimée'); 
+        toast.success('Distinction supprimÃ©e'); 
         fetchData(); 
       } else {
         toast.error('Erreur lors de la suppression');
       }
     } catch (e) { 
-      toast.error('Erreur réseau'); 
+      toast.error('Erreur rÃ©seau'); 
     } finally { 
       setIsDeleting(false); 
       setDeleteId(null); 
@@ -129,7 +129,7 @@ export default function AdminAwardsPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-secondary">Distinctions</h1>
-          <p className="text-muted mt-1">Gérez les prix et certifications de l'entreprise.</p>
+          <p className="text-muted mt-1">GÃ©rez les prix et certifications de l'entreprise.</p>
         </div>
         <button 
           onClick={() => { 
@@ -149,8 +149,8 @@ export default function AdminAwardsPage() {
             <tr>
               <th className="px-6 py-4 font-semibold text-secondary">Image</th>
               <th className="px-6 py-4 font-semibold text-secondary">Titre</th>
-              <th className="px-6 py-4 font-semibold text-secondary">Année</th>
-              <th className="px-6 py-4 font-semibold text-secondary">Délivré par</th>
+              <th className="px-6 py-4 font-semibold text-secondary">AnnÃ©e</th>
+              <th className="px-6 py-4 font-semibold text-secondary">DÃ©livrÃ© par</th>
               <th className="px-6 py-4 font-semibold text-secondary text-right">Actions</th>
             </tr>
           </thead>
@@ -231,7 +231,7 @@ export default function AdminAwardsPage() {
                   <input 
                     required 
                     type="number" 
-                    placeholder="Année *" 
+                    placeholder="AnnÃ©e *" 
                     value={formData.year} 
                     onChange={e => setFormData({ ...formData, year: parseInt(e.target.value, 10) })} 
                     className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary" 
@@ -247,7 +247,7 @@ export default function AdminAwardsPage() {
                 
                 <input 
                   type="text" 
-                  placeholder="Délivré par (ex: ISO, Ministère...)" 
+                  placeholder="DÃ©livrÃ© par (ex: ISO, MinistÃ¨re...)" 
                   value={formData.issuer} 
                   onChange={e => setFormData({ ...formData, issuer: e.target.value })} 
                   className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary" 
@@ -267,7 +267,7 @@ export default function AdminAwardsPage() {
                     className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover flex items-center gap-2 disabled:opacity-50"
                   >
                     {submitting && <Loader2 className="w-4 h-4 animate-spin" />} 
-                    {editing ? 'Mettre à jour' : 'Ajouter'}
+                    {editing ? 'Mettre Ã  jour' : 'Ajouter'}
                   </button>
                 </div>
               </form>
@@ -281,7 +281,7 @@ export default function AdminAwardsPage() {
         onClose={() => setDeleteId(null)} 
         onConfirm={executeDelete} 
         title="Supprimer cette distinction ?" 
-        description="Cette action est irréversible." 
+        description="Cette action est irrÃ©versible." 
         confirmText="Oui, supprimer" 
         isLoading={isDeleting} 
       />

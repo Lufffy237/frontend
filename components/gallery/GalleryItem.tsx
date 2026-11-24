@@ -25,7 +25,7 @@ export function GalleryItemCard({ item, index, onLike, onDownload }: GalleryItem
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    // Pour les vidéos, démarrer l'aperçu après 500ms
+    // Pour les vidÃ©os, dÃ©marrer l'aperÃ§u aprÃ¨s 500ms
     if (item.type === 'video') {
       hoverTimerRef.current = setTimeout(() => {
         if (videoRef.current) {
@@ -52,7 +52,7 @@ export function GalleryItemCard({ item, index, onLike, onDownload }: GalleryItem
     setIsLiked(!isLiked);
     setLikeCount((prev) => (isLiked ? prev - 1 : prev + 1));
     onLike(item.id);
-    toast.success(isLiked ? 'Like retiré' : 'Ajouté aux favoris ❤️');
+    toast.success(isLiked ? 'Like retirÃ©' : 'AjoutÃ© aux favoris â¤ï¸');
   };
 
   const handleDownload = (e: React.MouseEvent) => {
@@ -67,9 +67,9 @@ export function GalleryItemCard({ item, index, onLike, onDownload }: GalleryItem
     }
   };
 
-  // Incrémenter fictivement les vues au montage
+  // IncrÃ©menter fictivement les vues au montage
   useEffect(() => {
-    // Simule une vue supplémentaire à chaque chargement
+    // Simule une vue supplÃ©mentaire Ã  chaque chargement
   }, []);
 
   return (
@@ -82,7 +82,7 @@ export function GalleryItemCard({ item, index, onLike, onDownload }: GalleryItem
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Conteneur image/vidéo */}
+      {/* Conteneur image/vidÃ©o */}
       <div className={`relative w-full ${heightClass} overflow-hidden bg-surface`}>
         {item.type === 'video' ? (
           <>
@@ -96,7 +96,7 @@ export function GalleryItemCard({ item, index, onLike, onDownload }: GalleryItem
               loading="lazy"
             />
 
-            {/* Vidéo aperçu au survol */}
+            {/* VidÃ©o aperÃ§u au survol */}
             <video
               ref={videoRef}
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
@@ -110,11 +110,11 @@ export function GalleryItemCard({ item, index, onLike, onDownload }: GalleryItem
               <source src={item.thumbnail} type="video/mp4" />
             </video>
 
-            {/* Badge Vidéo */}
+            {/* Badge VidÃ©o */}
             <div className="absolute top-3 left-3 flex items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary text-white text-xs font-bold shadow-medium">
                 <Play className="w-3 h-3 fill-white" />
-                VIDÉO
+                VIDÃ‰O
               </span>
               {item.duration && (
                 <span className="px-2 py-1 rounded-full bg-black/70 text-white text-xs font-medium">
@@ -138,7 +138,7 @@ export function GalleryItemCard({ item, index, onLike, onDownload }: GalleryItem
               <button
                 onClick={handleVideoClick}
                 className="w-16 h-16 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center hover:bg-primary hover:scale-110 transition-all duration-300 shadow-elevated"
-                aria-label="Lire la vidéo"
+                aria-label="Lire la vidÃ©o"
               >
                 <Play className="w-7 h-7 text-white fill-white ml-1" />
               </button>
@@ -162,11 +162,11 @@ export function GalleryItemCard({ item, index, onLike, onDownload }: GalleryItem
               loading="lazy"
             />
 
-            {/* Badge type si nécessaire */}
+            {/* Badge type si nÃ©cessaire */}
             {item.category === 'distinctions' && (
               <div className="absolute top-3 left-3">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary text-white text-xs font-bold shadow-medium">
-                  ★ DISTINCTION
+                  â˜… DISTINCTION
                 </span>
               </div>
             )}
@@ -215,7 +215,7 @@ export function GalleryItemCard({ item, index, onLike, onDownload }: GalleryItem
           <button
             onClick={handleDownload}
             className="w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm text-secondary flex items-center justify-center shadow-medium hover:bg-primary hover:text-white hover:scale-110 transition-all duration-300"
-            aria-label="Télécharger"
+            aria-label="TÃ©lÃ©charger"
           >
             <Download className="w-4 h-4" />
           </button>

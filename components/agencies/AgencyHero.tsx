@@ -56,7 +56,7 @@ export function AgencyHero({ onFindNearest, stats }: AgencyHeroProps) {
                   {stats.depots}
                 </div>
                 <div className="text-xs md:text-sm text-muted font-medium">
-                  Dépôts
+                  DÃ©pÃ´ts
                 </div>
               </div>
               <div className="w-px h-10 bg-border" />
@@ -74,7 +74,7 @@ export function AgencyHero({ onFindNearest, stats }: AgencyHeroProps) {
                   {stats.regions}
                 </div>
                 <div className="text-xs md:text-sm text-muted font-medium">
-                  Régions
+                  RÃ©gions
                 </div>
               </div>
             </div>
@@ -91,16 +91,16 @@ export function AgencyHero({ onFindNearest, stats }: AgencyHeroProps) {
           className="bg-primary text-white p-6 md:p-8 rounded-lg shadow-elevated"
         >
           <p className="text-sm md:text-base leading-relaxed">
-            Fort d'un maillage stratégique s'étendant sur cinq pays clés : le Cameroun, le Tchad, 
-            la Guinée Équatoriale, le Congo et le Gabon, le réseau d'Élégance Pressing orchestré 
-            par ELP s'impose comme le leader incontesté du soin textile en Afrique Centrale.
+            Fort d'un maillage stratÃ©gique s'Ã©tendant sur cinq pays clÃ©s : le Cameroun, le Tchad, 
+            la GuinÃ©e Ã‰quatoriale, le Congo et le Gabon, le rÃ©seau d'Ã‰lÃ©gance Pressing orchestrÃ© 
+            par ELP s'impose comme le leader incontestÃ© du soin textile en Afrique Centrale.
           </p>
           <p className="text-sm md:text-base leading-relaxed mt-4">
-            Pour assurer la fluidité absolue de nos services, notre important parc automobile de 
-            relais rapide déploie une logistique de pointe, connectant quotidiennement nos agences, 
-            nos ateliers et nos centres de dépôts. Cette flotte moderne garantit un acheminement 
-            sécurisé et ultra-réactif du linge, offrant une rigueur opérationnelle zéro défaut aussi 
-            bien à nos clients particuliers qu'à nos hôtels et institutions partenaires de confiance.
+            Pour assurer la fluiditÃ© absolue de nos services, notre important parc automobile de 
+            relais rapide dÃ©ploie une logistique de pointe, connectant quotidiennement nos agences, 
+            nos ateliers et nos centres de dÃ©pÃ´ts. Cette flotte moderne garantit un acheminement 
+            sÃ©curisÃ© et ultra-rÃ©actif du linge, offrant une rigueur opÃ©rationnelle zÃ©ro dÃ©faut aussi 
+            bien Ã  nos clients particuliers qu'Ã  nos hÃ´tels et institutions partenaires de confiance.
           </p>
         </motion.div>
       </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react'; // ✅ IMPORTS AJOUTÉS ICI
+import { useState, useEffect } from 'react'; // âœ… IMPORTS AJOUTÃ‰S ICI
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 
@@ -15,8 +15,8 @@ import { AdminTopbar } from '@/components/admin/AdminTopbar';
 
 const navItems = [
   { href: '/admin', label: 'Tableau de bord', icon: LayoutDashboard },
-  { href: '/admin/agences', label: 'Agences & Dépôts', icon: Building2 },
-  { href: '/admin/categories', label: 'Catégories', icon: FolderOpen }, 
+  { href: '/admin/agences', label: 'Agences & DÃ©pÃ´ts', icon: Building2 },
+  { href: '/admin/categories', label: 'CatÃ©gories', icon: FolderOpen }, 
   { href: '/admin/articles', label: 'Articles & Blog', icon: FileText },
   { href: '/admin/carrieres', label: 'Offres d\'emploi', icon: Briefcase },
   { href: '/admin/galerie', label: 'Galerie', icon: ImageIcon },
@@ -31,7 +31,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Redirection si non connecté (sauf sur la page login)
+  // Redirection si non connectÃ© (sauf sur la page login)
   if (!isAuthenticated && pathname !== '/admin/login') {
     router.push('/admin/login');
     return null;
@@ -122,14 +122,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white transition-all duration-200 text-sm font-medium"
           >
             <LogOut className="w-4 h-4" />
-            Déconnexion
+            DÃ©connexion
           </button>
         </div>
       </aside>
 
       {/* Contenu Principal avec Topbar */}
       <main className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
-        {/* Topbar Admin personnalisée */}
+        {/* Topbar Admin personnalisÃ©e */}
         <AdminTopbar />
 
         {/* Zone de contenu scrollable */}

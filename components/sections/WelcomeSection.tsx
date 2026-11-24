@@ -7,7 +7,7 @@ import { AfricaGlobe } from './AfricaGlobe';
 export function WelcomeSection() {
   return (
     <section className="relative py-20 bg-surface overflow-hidden">
-      {/* Motif décoratif en arrière-plan */}
+      {/* Motif dÃ©coratif en arriÃ¨re-plan */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `repeating-linear-gradient(
@@ -42,7 +42,7 @@ export function WelcomeSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-4 tracking-wide"
         >
-          BIENVENUE CHEZ ÉLÉGANCE PRESSING
+          BIENVENUE CHEZ Ã‰LÃ‰GANCE PRESSING
         </motion.h2>
 
         {/* Sous-titre */}
@@ -64,11 +64,11 @@ export function WelcomeSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-sm md:text-base text-muted leading-relaxed max-w-3xl mx-auto mb-12"
         >
-          Fondé il y a plus de 35 ans, Élégance Pressing est reconnu pour ses standards d'exception 
-          en matière de nettoyage à sec, de blanchisserie, de retouches et de restauration de vêtements. 
-          Notre réputation repose sur un savoir-faire méticuleux, un service personnalisé et un engagement 
-          continu à préserver la qualité de vos pièces les plus précieuses. Cette quête permanente de 
-          perfection fait d'Élégance Pressing la référence absolue du soin du linge haut de gamme.
+          FondÃ© il y a plus de 35 ans, Ã‰lÃ©gance Pressing est reconnu pour ses standards d'exception 
+          en matiÃ¨re de nettoyage Ã  sec, de blanchisserie, de retouches et de restauration de vÃªtements. 
+          Notre rÃ©putation repose sur un savoir-faire mÃ©ticuleux, un service personnalisÃ© et un engagement 
+          continu Ã  prÃ©server la qualitÃ© de vos piÃ¨ces les plus prÃ©cieuses. Cette quÃªte permanente de 
+          perfection fait d'Ã‰lÃ©gance Pressing la rÃ©fÃ©rence absolue du soin du linge haut de gamme.
         </motion.p>
 
         {/* Globe avec Afrique */}

@@ -8,7 +8,7 @@ export interface GalleryItem {
   title: string;
   url: string;
   thumbnail: string;
-  // Pour les vidéos
+  // Pour les vidÃ©os
   videoUrl?: string;
   videoPlatform?: 'youtube' | 'facebook';
   videoId?: string;
@@ -17,19 +17,19 @@ export interface GalleryItem {
   // Stats
   likes: number;
   downloads: number;
-  // Métadonnées
+  // MÃ©tadonnÃ©es
   date: string;
   location?: string;
 }
 
-// 🔧 Données fictives - À remplacer par l'API backend plus tard
+// ðŸ”§ DonnÃ©es fictives - Ã€ remplacer par l'API backend plus tard
 export const GALLERY_ITEMS: GalleryItem[] = [
   // IMAGES
   {
     id: '1',
     type: 'image',
     category: 'evenements',
-    title: 'Spectacle de feu - Événement corporate',
+    title: 'Spectacle de feu - Ã‰vÃ©nement corporate',
     url: 'https://images.unsplash.com/photo-1496337589254-7e19d01cec44?w=800&h=1000&fit=crop',
     thumbnail: 'https://images.unsplash.com/photo-1496337589254-7e19d01cec44?w=800&h=1000&fit=crop',
     likes: 245,
@@ -41,19 +41,19 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: '2',
     type: 'image',
     category: 'equipes',
-    title: 'Journée sportive des équipes',
+    title: 'JournÃ©e sportive des Ã©quipes',
     url: 'https://images.unsplash.com/photo-1526676037777-05a232554f77?w=800&h=800&fit=crop',
     thumbnail: 'https://images.unsplash.com/photo-1526676037777-05a232554f77?w=800&h=800&fit=crop',
     likes: 189,
     downloads: 21,
     date: '2026-08-22',
-    location: 'Yaoundé, Cameroun',
+    location: 'YaoundÃ©, Cameroun',
   },
   {
     id: '3',
     type: 'image',
     category: 'agences',
-    title: 'Vue aérienne de notre agence principale',
+    title: 'Vue aÃ©rienne de notre agence principale',
     url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
     thumbnail: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
     likes: 412,
@@ -65,7 +65,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: '4',
     type: 'image',
     category: 'evenements',
-    title: 'Cérémonie de remise de prix',
+    title: 'CÃ©rÃ©monie de remise de prix',
     url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=1000&fit=crop',
     thumbnail: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=1000&fit=crop',
     likes: 567,
@@ -76,7 +76,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: '5',
     type: 'image',
     category: 'equipes',
-    title: 'Équipe technique au travail',
+    title: 'Ã‰quipe technique au travail',
     url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=800&fit=crop',
     thumbnail: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=800&fit=crop',
     likes: 234,
@@ -98,7 +98,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: '7',
     type: 'image',
     category: 'agences',
-    title: 'Notre siège social',
+    title: 'Notre siÃ¨ge social',
     url: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=800&h=1000&fit=crop',
     thumbnail: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=800&h=1000&fit=crop',
     likes: 892,
@@ -132,7 +132,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: '10',
     type: 'image',
     category: 'distinctions',
-    title: 'Réception du prix d\'excellence 2025',
+    title: 'RÃ©ception du prix d\'excellence 2025',
     url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=1000&fit=crop',
     thumbnail: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=1000&fit=crop',
     likes: 1203,
@@ -163,7 +163,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     location: 'Libreville, Gabon',
   },
 
-  // VIDÉOS
+  // VIDÃ‰OS
   {
     id: '13',
     type: 'video',
@@ -184,7 +184,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: '14',
     type: 'video',
     category: 'evenements',
-    title: 'Cérémonie d\'inauguration agence N\'Djamena',
+    title: 'CÃ©rÃ©monie d\'inauguration agence N\'Djamena',
     url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=800&fit=crop',
     thumbnail: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=800&fit=crop',
     videoUrl: 'https://www.facebook.com/watch/?v=123456789',
@@ -201,7 +201,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: '15',
     type: 'video',
     category: 'equipes',
-    title: 'Témoignages de nos collaborateurs',
+    title: 'TÃ©moignages de nos collaborateurs',
     url: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop',
     thumbnail: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop',
     videoUrl: 'https://www.youtube.com/watch?v=abc123xyz',
@@ -232,9 +232,9 @@ export const GALLERY_ITEMS: GalleryItem[] = [
 ];
 
 export const GALLERY_CATEGORIES = [
-  { value: 'ALL', label: 'Toutes les catégories' },
-  { value: 'evenements', label: 'Événements' },
-  { value: 'equipes', label: 'Équipes' },
+  { value: 'ALL', label: 'Toutes les catÃ©gories' },
+  { value: 'evenements', label: 'Ã‰vÃ©nements' },
+  { value: 'equipes', label: 'Ã‰quipes' },
   { value: 'prestations', label: 'Prestations' },
   { value: 'agences', label: 'Agences' },
   { value: 'distinctions', label: 'Distinctions' },
@@ -243,5 +243,5 @@ export const GALLERY_CATEGORIES = [
 export const GALLERY_TYPES = [
   { value: 'ALL', label: 'Tous les types' },
   { value: 'image', label: 'Images' },
-  { value: 'video', label: 'Vidéos' },
+  { value: 'video', label: 'VidÃ©os' },
 ];

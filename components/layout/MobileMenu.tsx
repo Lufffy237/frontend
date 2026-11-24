@@ -89,7 +89,7 @@ export function MobileMenu({ isOpen, onClose, navItems, ctaItems, isActive }: Mo
                 })}
               </ul>
 
-              {/* Séparateur */}
+              {/* SÃ©parateur */}
               <div className="my-4 border-t border-border" />
 
               {/* CTA */}
@@ -124,10 +124,10 @@ export function MobileMenu({ isOpen, onClose, navItems, ctaItems, isActive }: Mo
             {/* Footer du menu */}
             <div className="p-5 border-t border-border bg-surface">
               <p className="text-xs text-muted text-center">
-                © {new Date().getFullYear()} Élégance Pressing
+                Â© {new Date().getFullYear()} Ã‰lÃ©gance Pressing
               </p>
               <p className="text-xs text-primary text-center italic mt-1">
-                Propre c'est élégant
+                Propre c'est Ã©lÃ©gant
               </p>
             </div>
           </motion.div>

@@ -16,7 +16,7 @@ export interface Agency {
   published: boolean;
 }
 
-// 🔧 Données fictives - À remplacer par l'API backend plus tard
+// ðŸ”§ DonnÃ©es fictives - Ã€ remplacer par l'API backend plus tard
 export const AGENCIES: Agency[] = [
   // CAMEROUN - Douala
   {
@@ -54,7 +54,7 @@ export const AGENCIES: Agency[] = [
     country: 'Cameroun',
     city: 'Douala',
     province: 'Province du Littoral',
-    address: 'Face Hôpital Genico',
+    address: 'Face HÃ´pital Genico',
     phone: '698 880 063',
     hours: 'Lundi - Samedi, 7h30 - 18h00\nDimanche, 7h30 - 16h00',
     latitude: 4.0411,
@@ -63,12 +63,12 @@ export const AGENCIES: Agency[] = [
   },
   {
     id: '4',
-    name: 'Agence de Bonabéri',
+    name: 'Agence de BonabÃ©ri',
     type: 'AGENCY',
     country: 'Cameroun',
     city: 'Douala',
     province: 'Province du Littoral',
-    address: 'Carrefour Total Bonabéri',
+    address: 'Carrefour Total BonabÃ©ri',
     phone: '677 123 456',
     hours: 'Lundi - Samedi, 7h30 - 18h00\nDimanche, 7h30 - 16h00',
     latitude: 4.0733,
@@ -77,12 +77,12 @@ export const AGENCIES: Agency[] = [
   },
   {
     id: '5',
-    name: 'Dépôt de Ndokoti',
+    name: 'DÃ©pÃ´t de Ndokoti',
     type: 'DEPOT',
     country: 'Cameroun',
     city: 'Douala',
     province: 'Province du Littoral',
-    address: 'Marché de Ndokoti',
+    address: 'MarchÃ© de Ndokoti',
     phone: '690 111 222',
     hours: 'Lundi - Samedi, 8h00 - 17h00',
     latitude: 4.0300,
@@ -96,20 +96,20 @@ export const AGENCIES: Agency[] = [
     country: 'Cameroun',
     city: 'Douala',
     province: 'Province du Littoral',
-    address: 'Rue Joffre, face Hôtel Sawa',
+    address: 'Rue Joffre, face HÃ´tel Sawa',
     phone: '699 333 444',
     hours: 'Lundi - Samedi, 7h30 - 18h00\nDimanche, 7h30 - 16h00',
     latitude: 4.0500,
     longitude: 9.7000,
     published: true,
   },
-  // CAMEROUN - Yaoundé
+  // CAMEROUN - YaoundÃ©
   {
     id: '7',
     name: 'Agence du Centre-ville',
     type: 'AGENCY',
     country: 'Cameroun',
-    city: 'Yaoundé',
+    city: 'YaoundÃ©',
     province: 'Province du Centre',
     address: 'Avenue Kennedy, face Poste Centrale',
     phone: '699 555 666',
@@ -123,7 +123,7 @@ export const AGENCIES: Agency[] = [
     name: 'Agence de Bastos',
     type: 'AGENCY',
     country: 'Cameroun',
-    city: 'Yaoundé',
+    city: 'YaoundÃ©',
     province: 'Province du Centre',
     address: 'Quartier Bastos, Rue 1.750',
     phone: '699 777 888',
@@ -134,10 +134,10 @@ export const AGENCIES: Agency[] = [
   },
   {
     id: '9',
-    name: 'Dépôt de Mvan',
+    name: 'DÃ©pÃ´t de Mvan',
     type: 'DEPOT',
     country: 'Cameroun',
-    city: 'Yaoundé',
+    city: 'YaoundÃ©',
     province: 'Province du Centre',
     address: 'Carrefour Mvan',
     phone: '690 999 000',
@@ -154,7 +154,7 @@ export const AGENCIES: Agency[] = [
     country: 'Cameroun',
     city: 'Bafoussam',
     province: 'Province de l\'Ouest',
-    address: 'Marché A, face Banque Atlantique',
+    address: 'MarchÃ© A, face Banque Atlantique',
     phone: '699 222 333',
     hours: 'Lundi - Samedi, 7h30 - 18h00\nDimanche, 7h30 - 16h00',
     latitude: 5.4781,
@@ -192,7 +192,7 @@ export const AGENCIES: Agency[] = [
   },
   {
     id: '13',
-    name: 'Dépôt de Owendo',
+    name: 'DÃ©pÃ´t de Owendo',
     type: 'DEPOT',
     country: 'Gabon',
     city: 'Libreville',
@@ -241,7 +241,7 @@ export const AGENCIES: Agency[] = [
     country: 'Congo',
     city: 'Brazzaville',
     province: 'Brazzaville',
-    address: 'Avenue Félix Eboué',
+    address: 'Avenue FÃ©lix EbouÃ©',
     phone: '+242 06 123 4567',
     hours: 'Lundi - Samedi, 7h30 - 18h00\nDimanche, 7h30 - 16h00',
     latitude: -4.2634,
@@ -279,7 +279,7 @@ export const AGENCIES: Agency[] = [
   },
   {
     id: '19',
-    name: 'Dépôt de Matonge',
+    name: 'DÃ©pÃ´t de Matonge',
     type: 'DEPOT',
     country: 'RDC',
     city: 'Kinshasa',
@@ -291,12 +291,12 @@ export const AGENCIES: Agency[] = [
     longitude: 15.3000,
     published: true,
   },
-  // GUINÉE ÉQUATORIALE - Malabo
+  // GUINÃ‰E Ã‰QUATORIALE - Malabo
   {
     id: '20',
     name: 'Agence du Centre',
     type: 'AGENCY',
-    country: 'Guinée Équatoriale',
+    country: 'GuinÃ©e Ã‰quatoriale',
     city: 'Malabo',
     province: 'Bioko Norte',
     address: 'Avenue de la Libertad',
@@ -310,7 +310,7 @@ export const AGENCIES: Agency[] = [
     id: '21',
     name: 'Agence de Bata',
     type: 'AGENCY',
-    country: 'Guinée Équatoriale',
+    country: 'GuinÃ©e Ã‰quatoriale',
     city: 'Bata',
     province: 'Litoral',
     address: 'Avenue de la Independence',
@@ -328,10 +328,10 @@ export const COUNTRIES_LIST = [
   'Tchad',
   'Congo',
   'RDC',
-  'Guinée Équatoriale',
+  'GuinÃ©e Ã‰quatoriale',
 ];
 
 export const AGENCY_TYPE_LABELS: Record<AgencyType, string> = {
   AGENCY: 'Agence',
-  DEPOT: 'Dépôt',
+  DEPOT: 'DÃ©pÃ´t',
 };

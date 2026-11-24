@@ -26,7 +26,7 @@ export function FAQSection() {
             Foire Aux Questions (FAQs)
           </h2>
           <p className="text-muted italic">
-            Toutes Les Réponses À Vos Questions Pour Un Service Sans Ambaiges
+            Toutes Les RÃ©ponses Ã€ Vos Questions Pour Un Service Sans Ambaiges
           </p>
         </motion.div>
 

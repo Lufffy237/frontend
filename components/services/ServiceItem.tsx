@@ -49,7 +49,7 @@ export function ServiceItem({ service, index }: ServiceItemProps) {
             className={`relative ${isReversed ? 'md:order-1' : 'md:order-2'}`}
           >
             <div className="relative">
-              {/* Cadre orange décoratif */}
+              {/* Cadre orange dÃ©coratif */}
               <div
                 className={`absolute w-full h-full bg-primary ${
                   isReversed ? '-top-4 -left-4' : '-bottom-4 -right-4'

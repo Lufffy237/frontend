@@ -12,7 +12,7 @@ export interface TeamMember {
     image: string;
   }
   
-  // 🔧 À REMPLACER par vos vraies photos plus tard
+  // ðŸ”§ Ã€ REMPLACER par vos vraies photos plus tard
   // Exemple : { id: '1', name: '...', role: '...', image: '/images/team/kenfack.jpg' }
   export const TEAM_MEMBERS: TeamMember[] = [
     {
@@ -30,7 +30,7 @@ export interface TeamMember {
     {
       id: '3',
       name: 'M. MATOMBA Charles',
-      role: 'DIRECTEUR ELP Guinée Équatoriale',
+      role: 'DIRECTEUR ELP GuinÃ©e Ã‰quatoriale',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
     },
     {
@@ -54,7 +54,7 @@ export interface TeamMember {
     {
       id: '7',
       name: 'M. MATOMBA Charles',
-      role: 'DIRECTEUR ELP Guinée Équatoriale',
+      role: 'DIRECTEUR ELP GuinÃ©e Ã‰quatoriale',
       image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&h=400&fit=crop&crop=face',
     },
     {
@@ -78,7 +78,7 @@ export interface TeamMember {
     {
       id: '11',
       name: 'M. MATOMBA Charles',
-      role: 'DIRECTEUR ELP Guinée Équatoriale',
+      role: 'DIRECTEUR ELP GuinÃ©e Ã‰quatoriale',
       image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face',
     },
     {
@@ -94,23 +94,23 @@ export interface TeamMember {
       id: '1',
       name: 'M. KAMDEM Napoleon',
       description:
-        'Expert reconnu dans le domaine du traitement textile, M. Kamdem apporte plus de 20 ans d\'expérience dans la gestion des processus de nettoyage industriel. Sa maîtrise des technologies de pointe et son engagement pour la qualité font de lui un pilier essentiel de notre équipe technique.',
+        'Expert reconnu dans le domaine du traitement textile, M. Kamdem apporte plus de 20 ans d\'expÃ©rience dans la gestion des processus de nettoyage industriel. Sa maÃ®trise des technologies de pointe et son engagement pour la qualitÃ© font de lui un pilier essentiel de notre Ã©quipe technique.',
       image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&h=700&fit=crop&crop=face',
     },
     {
       id: '2',
       name: 'M. KAMDEM Napoleon',
       description:
-        'Spécialiste de l\'hygiène et de l\'assainissement, il supervise nos protocoles de désinfection et de contrôle qualité. Son expertise garantit que chaque pièce traitée par Élégance Pressing respecte les standards internationaux les plus stricts.',
+        'SpÃ©cialiste de l\'hygiÃ¨ne et de l\'assainissement, il supervise nos protocoles de dÃ©sinfection et de contrÃ´le qualitÃ©. Son expertise garantit que chaque piÃ¨ce traitÃ©e par Ã‰lÃ©gance Pressing respecte les standards internationaux les plus stricts.',
       image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=600&h=700&fit=crop&crop=face',
     },
   ];
   
   export const FOUNDER = {
     name: 'L\'Honorable Manfouo David',
-    role: 'Fondateur & Président Directeur Général de la Maison ELP',
+    role: 'Fondateur & PrÃ©sident Directeur GÃ©nÃ©ral de la Maison ELP',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=700&fit=crop&crop=face',
-    quote: `Lorsque j'ai posé les fondations d'Élégance Pressing en 1990, mon ambition n'était pas seulement de créer une blanchisserie, mais de bâtir une signature de confiance et de rigueur pour l'Afrique Centrale. Nous avons commencé avec une promesse simple : celle de ne jamais transiger sur la qualité.
+    quote: `Lorsque j'ai posÃ© les fondations d'Ã‰lÃ©gance Pressing en 1990, mon ambition n'Ã©tait pas seulement de crÃ©er une blanchisserie, mais de bÃ¢tir une signature de confiance et de rigueur pour l'Afrique Centrale. Nous avons commencÃ© avec une promesse simple : celle de ne jamais transiger sur la qualitÃ©.
   
-  En 35 ans d'histoire, notre continent a évolué, et ELP a grandi avec lui, tissant un réseau de près d'une centaine d'agences. Mais au-delà des machines modernes et de notre déploiement, notre véritable fierté réside dans la préservation du geste artisanal et de la confiance que nous accordent au quotidien les familles, les institutions et les grands acteurs économiques. Pour nous, chaque vêtement confié est une responsabilité, et chaque fibre traitée doit refléter notre credo ultime : Propre, c'est élégant.`,
+  En 35 ans d'histoire, notre continent a Ã©voluÃ©, et ELP a grandi avec lui, tissant un rÃ©seau de prÃ¨s d'une centaine d'agences. Mais au-delÃ  des machines modernes et de notre dÃ©ploiement, notre vÃ©ritable fiertÃ© rÃ©side dans la prÃ©servation du geste artisanal et de la confiance que nous accordent au quotidien les familles, les institutions et les grands acteurs Ã©conomiques. Pour nous, chaque vÃªtement confiÃ© est une responsabilitÃ©, et chaque fibre traitÃ©e doit reflÃ©ter notre credo ultime : Propre, c'est Ã©lÃ©gant.`,
   };

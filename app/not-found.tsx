@@ -17,7 +17,7 @@ export default function NotFound() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            {/* Halo décoratif */}
+            {/* Halo dÃ©coratif */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
                 className="w-64 h-64 rounded-full bg-primary/5"
@@ -33,10 +33,10 @@ export default function NotFound() {
               />
             </div>
 
-            {/* Colombe animée */}
+            {/* Colombe animÃ©e */}
             <AnimatedDove size={280} className="relative z-10" />
 
-            {/* Chiffre 404 en arrière-plan */}
+            {/* Chiffre 404 en arriÃ¨re-plan */}
             <motion.div
               className="absolute -z-10 select-none pointer-events-none"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -75,7 +75,7 @@ export default function NotFound() {
               Oups ! <br />
               <span className="text-primary">Cette page</span>
               <br />
-              s'est envolée
+              s'est envolÃ©e
             </motion.h1>
 
             <motion.p
@@ -84,7 +84,7 @@ export default function NotFound() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              La page que vous cherchez n'existe pas ou a été déplacée. 
+              La page que vous cherchez n'existe pas ou a Ã©tÃ© dÃ©placÃ©e. 
               Pas de panique, notre colombe va vous ramener sur le bon chemin.
             </motion.p>
 
@@ -100,7 +100,7 @@ export default function NotFound() {
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-semibold shadow-soft hover:bg-primary-hover hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 active:translate-y-0"
               >
                 <Home className="w-4 h-4" />
-                Retour à l'accueil
+                Retour Ã  l'accueil
               </Link>
               <Link
                 href="/agences"
@@ -123,7 +123,7 @@ export default function NotFound() {
                 className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary transition-colors duration-200 group"
               >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                Revenir à la page précédente
+                Revenir Ã  la page prÃ©cÃ©dente
               </button>
             </motion.div>
           </motion.div>
@@ -137,12 +137,12 @@ export default function NotFound() {
           transition={{ duration: 0.6, delay: 1.2 }}
         >
           <p className="text-center text-sm text-muted mb-6">
-            Peut-être cherchiez-vous l'une de ces pages ?
+            Peut-Ãªtre cherchiez-vous l'une de ces pages ?
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { label: 'Services', href: '/services', icon: Search },
-              { label: 'À propos', href: '/a-propos', icon: Search },
+              { label: 'Ã€ propos', href: '/a-propos', icon: Search },
               { label: 'Blog', href: '/blog', icon: Search },
               { label: 'Contact', href: '/contact', icon: Search },
             ].map((item, index) => (

@@ -14,7 +14,7 @@ export function GalleryGrid({ items, onLike, onDownload }: GalleryGridProps) {
     return (
       <div className="text-center py-20">
         <p className="text-muted text-lg">
-          Aucun résultat ne correspond à votre recherche.
+          Aucun rÃ©sultat ne correspond Ã  votre recherche.
         </p>
       </div>
     );
