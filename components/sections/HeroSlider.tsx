@@ -18,7 +18,7 @@ interface Slide {
 const slides: Slide[] = [
   {
     image: '/images/hero-1.jpg',
-    title: "L'EXCELLENCE DU PRESSING DEPUIS 1990",
+    title: "LE TEMPLE DU CONFORT DEPUIS 1990",
     cta: {
       label: 'DÉCOUVRIR',
       href: '/services',
@@ -36,7 +36,7 @@ const slides: Slide[] = [
   {
     image: '/images/hero-3.jpg',
     title: 'VOTRE LINGE MÉRITE LE MEILLEUR TRAITEMENT',
-    subtitle: 'Blanchisserie, nettoyage à sec, hygiène',
+    subtitle: 'Blanchisserie, nettoyage à sec, nettoyage industriel ',
     cta: {
       label: 'TROUVER UNE AGENCE',
       href: '/agences',
