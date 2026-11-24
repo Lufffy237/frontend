@@ -9,11 +9,10 @@ interface AwardItem {
   year: string;
   issuer: string;
   image: string;
-  // Pour remplacer plus tard :
+  // 🔧 À REMPLACER par vos certificats locaux quand vous les aurez
   // image: '/images/awards/certificat-1.png'
 }
 
-// ðŸ”§ € REMPLACER par vos certificats locaux quand vous les aurez
 const awards: AwardItem[] = [
   {
     id: '1',
@@ -24,7 +23,7 @@ const awards: AwardItem[] = [
   },
   {
     id: '2',
-    title: 'Prix d\'Excellence',
+    title: "Prix d'Excellence",
     year: '2019',
     issuer: 'Chambre de Commerce',
     image: 'https://placehold.co/300x400/1A1A1A/FFFFFF?text=PRIX+2019&font=playfair-display',
@@ -60,7 +59,7 @@ export function AwardsSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
-            UN SAVOIR-FAIRE COURONNÃ‰ D'EXCELLENCE
+            UN SAVOIR-FAIRE COURONNÉ D'EXCELLENCE
           </h2>
           <p className="text-primary font-semibold text-sm tracking-wider mb-6">
             NOS DISTINCTIONS & PRIX HONORIFIQUES DEPUIS 1990
@@ -69,7 +68,7 @@ export function AwardsSection() {
             Au cours de plus de 35 ans d'histoire, la constance, la qualité de service et la rigueur 
             opérationnelle de la Maison ELP ont été régulièrement saluées au plus haut niveau. 
             Plus que de simples récompenses, ces distinctions honorifiques décernées par des institutions 
-            majeures célèbrent notre engagement inéfectible pour l'excellence et confirment notre statut 
+            majeures célèbrent notre engagement indéfectible pour l'excellence et confirment notre statut 
             de leader du pressing haut de gamme.
           </p>
         </motion.div>
