@@ -215,7 +215,7 @@ export default function AgenciesPage() {
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">NOTRE RÃ‰SEAU D'AGENCES</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">NOTRE RÉSEAU D'AGENCES</h2>
           <p className="text-muted italic">Où nous trouver en Afrique Centrale</p>
         </motion.div>
 

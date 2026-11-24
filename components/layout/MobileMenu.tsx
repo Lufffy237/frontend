@@ -124,7 +124,7 @@ export function MobileMenu({ isOpen, onClose, navItems, ctaItems, isActive }: Mo
             {/* Footer du menu */}
             <div className="p-5 border-t border-border bg-surface">
               <p className="text-xs text-muted text-center">
-                Â© {new Date().getFullYear()} Ã‰légance Pressing
+                Â© {new Date().getFullYear()} Élégance Pressing
               </p>
               <p className="text-xs text-primary text-center italic mt-1">
                 Propre c'est élégant

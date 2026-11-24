@@ -9,11 +9,11 @@ interface LogoProps {
 export function Logo({ variant = 'full', className = '' }: LogoProps) {
   if (variant === 'icon') {
     return (
-      <Link href="/" className={`flex items-center ${className}`} aria-label="Ã‰légance Pressing - Accueil">
+      <Link href="/" className={`flex items-center ${className}`} aria-label="Élégance Pressing - Accueil">
         <div className="relative w-10 h-10">
           <Image
             src="/images/logo.png"
-            alt="Ã‰légance Pressing"
+            alt="Élégance Pressing"
             fill
             className="object-contain"
             priority
@@ -25,11 +25,11 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
 
   if (variant === 'compact') {
     return (
-      <Link href="/" className={`flex items-center gap-3 ${className}`} aria-label="Ã‰légance Pressing - Accueil">
+      <Link href="/" className={`flex items-center gap-3 ${className}`} aria-label="Élégance Pressing - Accueil">
         <div className="relative w-10 h-10 flex-shrink-0">
           <Image
             src="/images/logo.png"
-            alt="Ã‰légance Pressing"
+            alt="Élégance Pressing"
             fill
             className="object-contain"
             priority
@@ -45,11 +45,11 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
   }
 
   return (
-    <Link href="/" className={`flex flex-col items-start ${className}`} aria-label="Ã‰légance Pressing - Accueil">
+    <Link href="/" className={`flex flex-col items-start ${className}`} aria-label="Élégance Pressing - Accueil">
       <div className="relative w-48 h-20 flex-shrink-0">
         <Image
           src="/images/logo.png"
-          alt="Ã‰légance Pressing - Propre c'est élégant"
+          alt="Élégance Pressing - Propre c'est élégant"
           fill
           className="object-contain"
           priority

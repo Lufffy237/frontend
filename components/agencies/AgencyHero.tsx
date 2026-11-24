@@ -92,7 +92,7 @@ export function AgencyHero({ onFindNearest, stats }: AgencyHeroProps) {
         >
           <p className="text-sm md:text-base leading-relaxed">
             Fort d'un maillage stratégique s'étendant sur cinq pays clés : le Cameroun, le Tchad, 
-            la Guinée Ã‰quatoriale, le Congo et le Gabon, le réseau d'Ã‰légance Pressing orchestré 
+            la Guinée Équatoriale, le Congo et le Gabon, le réseau d'Élégance Pressing orchestré 
             par ELP s'impose comme le leader incontesté du soin textile en Afrique Centrale.
           </p>
           <p className="text-sm md:text-base leading-relaxed mt-4">

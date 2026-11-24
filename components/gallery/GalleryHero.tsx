@@ -53,7 +53,7 @@ export function GalleryHero() {
             <div className="col-span-1 row-span-2 rounded-2xl overflow-hidden h-64">
               <img
                 src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=600&fit=crop"
-                alt="Ã‰vénement ELP"
+                alt="Événement ELP"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -69,7 +69,7 @@ export function GalleryHero() {
             <div className="rounded-2xl overflow-hidden h-32">
               <img
                 src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=300&fit=crop"
-                alt="Ã‰quipe"
+                alt="Équipe"
                 className="w-full h-full object-cover grayscale"
               />
             </div>

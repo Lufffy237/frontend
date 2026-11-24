@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react'; // âœ… IMPORTS AJOUTÃ‰S ICI
+import { useState, useEffect } from 'react'; // âœ… IMPORTS AJOUTÉS ICI
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, User, Mail, Phone, FileText, X, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
-// --- TYPES DÃ‰FINIS LOCALEMENT POUR Ã‰VITER LES ERREURS D'IMPORT ---
+// --- TYPES DÉFINIS LOCALEMENT POUR ÉVITER LES ERREURS D'IMPORT ---
 export interface ContactFormData {
   title: string;
   firstName: string;
@@ -35,7 +35,7 @@ export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  // Ã‰tat formulaire contact
+  // État formulaire contact
   const [contactData, setContactData] = useState<ContactFormData>({
     title: '',
     firstName: '',
@@ -46,7 +46,7 @@ export function ContactForm() {
     message: '',
   });
 
-  // Ã‰tat formulaire candidature
+  // État formulaire candidature
   const [applicationData, setApplicationData] = useState<JobApplicationData>({
     offerId: '',
     firstName: '',
@@ -66,7 +66,7 @@ export function ContactForm() {
   const [coverLetterFileName, setCoverLetterFileName] = useState<string>('');
   const [attachmentFileName, setAttachmentFileName] = useState<string>('');
 
-  // --- NOUVEAU : Ã‰tat du Captcha fonctionnel ---
+  // --- NOUVEAU : État du Captcha fonctionnel ---
   const [captchaNum1, setCaptchaNum1] = useState(0);
   const [captchaNum2, setCaptchaNum2] = useState(0);
   const [captchaInput, setCaptchaInput] = useState('');

@@ -26,7 +26,7 @@ export function ExcellenceSection() {
               {/* Overlay décoratif */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
-            {/* Ã‰lément décoratif orange */}
+            {/* Élément décoratif orange */}
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-lg -z-10" />
           </motion.div>
 
@@ -47,7 +47,7 @@ export function ExcellenceSection() {
             </h2>
 
             <p className="text-muted leading-relaxed mb-4">
-              Ã‰légance Pressing met son expertise au service des particuliers, des entreprises 
+              Élégance Pressing met son expertise au service des particuliers, des entreprises 
               et des institutions en proposant des solutions professionnelles dédiées à l'entretien 
               et au soin des textiles.
             </p>

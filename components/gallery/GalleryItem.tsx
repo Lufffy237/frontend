@@ -114,7 +114,7 @@ export function GalleryItemCard({ item, index, onLike, onDownload }: GalleryItem
             <div className="absolute top-3 left-3 flex items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary text-white text-xs font-bold shadow-medium">
                 <Play className="w-3 h-3 fill-white" />
-                VIDÃ‰O
+                VIDÉO
               </span>
               {item.duration && (
                 <span className="px-2 py-1 rounded-full bg-black/70 text-white text-xs font-medium">

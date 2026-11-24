@@ -184,7 +184,7 @@ export default function AdminAgenciesPage() {
                     <td className="px-6 py-4 font-medium text-secondary">{agency.name}</td>
                     <td className="px-6 py-4">
                       <span className={`px-2 py-1 rounded-full text-xs font-bold ${agency.type === 'AGENCY' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'}`}>
-                        {agency.type === 'AGENCY' ? 'AGENCE' : 'DÃ‰PÃ”T'}
+                        {agency.type === 'AGENCY' ? 'AGENCE' : 'DÉPÔT'}
                       </span>
                     </td>
                     <td className="px-6 py-4 text-muted">

@@ -20,7 +20,7 @@ const slides: Slide[] = [
     image: '/images/hero-1.jpg',
     title: "LE TEMPLE DU CONFORT DEPUIS 1990",
     cta: {
-      label: 'DÃ‰COUVRIR',
+      label: 'DÉCOUVRIR',
       href: '/services',
     },
   },
@@ -35,7 +35,7 @@ const slides: Slide[] = [
   },
   {
     image: '/images/hero-3.jpg',
-    title: 'VOTRE LINGE MÃ‰RITE LE MEILLEUR TRAITEMENT',
+    title: 'VOTRE LINGE MÉRITE LE MEILLEUR TRAITEMENT',
     subtitle: 'Blanchisserie, nettoyage à sec, nettoyage industriel ',
     cta: {
       label: 'TROUVER UNE AGENCE',

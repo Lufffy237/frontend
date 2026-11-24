@@ -43,7 +43,7 @@ export default function ServicesPage() {
             transition={{ duration: 0.6 }}
             className="text-muted leading-relaxed text-base md:text-lg"
           >
-            Depuis sa fondation en 1990, Ã‰légance Pressing (ELP) met son savoir-faire historique au service du soin du linge et de l'entretien de l'habitat au Cameroun ainsi que dans toute la sous-région CEMAC. Notre maison s'appuie sur des infrastructures de pointe, un personnel hautement qualifié et une logistique intégrée grÃ¢ce à un important parc automobile de relais rapide. Fort d'un réseau de près d'une centaine d'agences et de dépôts en Afrique Centrale (Cameroun, Tchad, Guinée Ã‰quatoriale, Congo et Gabon), ELP est aujourd'hui reconnu comme un label de prestige et le leader incontournable de son secteur.
+            Depuis sa fondation en 1990, Élégance Pressing (ELP) met son savoir-faire historique au service du soin du linge et de l'entretien de l'habitat au Cameroun ainsi que dans toute la sous-région CEMAC. Notre maison s'appuie sur des infrastructures de pointe, un personnel hautement qualifié et une logistique intégrée grÃ¢ce à un important parc automobile de relais rapide. Fort d'un réseau de près d'une centaine d'agences et de dépôts en Afrique Centrale (Cameroun, Tchad, Guinée Équatoriale, Congo et Gabon), ELP est aujourd'hui reconnu comme un label de prestige et le leader incontournable de son secteur.
           </motion.p>
         </div>
       </section>

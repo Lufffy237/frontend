@@ -23,7 +23,7 @@ export default function AdminCategoriesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
   
-  // Ã‰tats pour la modale de confirmation de suppression
+  // États pour la modale de confirmation de suppression
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
   
@@ -219,7 +219,7 @@ export default function AdminCategoriesPage() {
         )}
       </div>
 
-      {/* Modale de Formulaire (Création / Ã‰dition) */}
+      {/* Modale de Formulaire (Création / Édition) */}
       <AnimatePresence>
         {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">

@@ -48,7 +48,7 @@ export function CountryMap({ country, onClose }: CountryMapProps) {
       // Ajouter un marqueur
       L.marker([country.coordinates.lat, country.coordinates.lng])
         .addTo(map)
-        .bindPopup(`<b>Ã‰légance Pressing</b><br/>${country.name}`)
+        .bindPopup(`<b>Élégance Pressing</b><br/>${country.name}`)
         .openPopup();
 
       mapInstanceRef.current = map;
@@ -91,7 +91,7 @@ export function CountryMap({ country, onClose }: CountryMapProps) {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-2xl font-bold mb-1">{country.name}</h3>
-                <p className="text-gray-300 text-sm">Réseau Ã‰légance Pressing</p>
+                <p className="text-gray-300 text-sm">Réseau Élégance Pressing</p>
               </div>
               <button
                 onClick={onClose}

@@ -102,7 +102,7 @@ export default function AdminGalleryPage() {
 
       const data = await res.json();
       if (data.success) {
-        toast.success(editingItem ? 'Ã‰lément mis à jour' : 'Ã‰lément ajouté');
+        toast.success(editingItem ? 'Élément mis à jour' : 'Élément ajouté');
         setIsModalOpen(false);
         setEditingItem(null);
         resetForm();
@@ -129,7 +129,7 @@ export default function AdminGalleryPage() {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
-        toast.success('Ã‰lément supprimé');
+        toast.success('Élément supprimé');
         fetchItems();
       } else {
         toast.error('Erreur lors de la suppression');

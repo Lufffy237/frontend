@@ -10,7 +10,7 @@ interface Partner {
   // logo: '/images/partners/nom-du-logo.png'
 }
 
-// ðŸ”§ € REMPLACER par vos logos locaux quand vous les aurez
+// 🔧 € REMPLACER par vos logos locaux quand vous les aurez
 // Exemple : { id: '1', name: 'Tulip', logo: '/images/partners/tulip.png' }
 const partners: Partner[] = [
   { id: '1', name: 'Tulip', logo: 'https://placehold.co/120x60/FF6600/FFFFFF?text=TULIP&font=playfair-display' },

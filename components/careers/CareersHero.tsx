@@ -6,7 +6,7 @@ export function CareersHero() {
   return (
     <section className="relative bg-secondary text-white overflow-hidden min-h-[500px] md:min-h-[600px]">
       {/* ============================================
-          Ã‰LÃ‰MENTS DÃ‰CORATIFS D'ARRIÃˆRE-PLAN
+          ÉLÉMENTS DÉCORATIFS D'ARRIÃˆRE-PLAN
           ============================================ */}
       
       {/* Grand cercle fin en haut à droite */}

@@ -52,7 +52,7 @@ export default function CareersPage() {
           params.append('type', selectedCategory);
         }
 
-        // âœ… SÃ‰CURISATION DE L'URL API (Fallback vers localhost si la variable d'env est manquante)
+        // âœ… SÉCURISATION DE L'URL API (Fallback vers localhost si la variable d'env est manquante)
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
         const res = await fetch(`${apiUrl}/api/job-offers/public?${params.toString()}`);
         

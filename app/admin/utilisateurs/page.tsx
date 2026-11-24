@@ -247,7 +247,7 @@ export default function AdminUsersPage() {
                   <div>
                     <label className="block text-sm font-medium text-secondary mb-1.5">Rôle *</label>
                     <select value={formData.role} onChange={e => setFormData({...formData, role: e.target.value as any})} className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary bg-white">
-                      <option value="EDITOR">Ã‰diteur</option>
+                      <option value="EDITOR">Éditeur</option>
                       <option value="ADMIN">Administrateur</option>
                       <option value="SUPER_ADMIN">Super Admin</option>
                     </select>

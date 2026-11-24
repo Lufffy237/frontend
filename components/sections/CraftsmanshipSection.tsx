@@ -17,7 +17,7 @@ export function CraftsmanshipSection() {
           <div className="relative overflow-hidden rounded-lg shadow-elevated">
             <img
               src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=800&fit=crop"
-              alt="Costume sur mannequin - Ã‰légance Pressing"
+              alt="Costume sur mannequin - Élégance Pressing"
               className="w-full h-[500px] md:h-[600px] object-cover grayscale"
             />
             
@@ -39,7 +39,7 @@ export function CraftsmanshipSection() {
             </div>
           </div>
 
-          {/* Ã‰lément décoratif */}
+          {/* Élément décoratif */}
           <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-primary/20 rounded-lg -z-10" />
           <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-primary/20 rounded-lg -z-10" />
         </motion.div>

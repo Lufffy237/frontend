@@ -61,7 +61,7 @@ export default function AboutPage() {
                 Tout commence en 1990, dans l'atmosphère feutrée d'un petit atelier né d'une obsession :
               </h2>
               <p className="text-muted leading-relaxed mb-4">
-                Redonner aux vêtements leur éclat originel et leur mouvement parfait. Convaincu que le vêtement est le reflet de l'Ã¢me et du statut, le fondateur d'Ã‰légance Pressing a passé des années à étudier la réaction des tissus les plus rares face aux eaux les plus pures et aux essences de nettoyage les plus nobles.
+                Redonner aux vêtements leur éclat originel et leur mouvement parfait. Convaincu que le vêtement est le reflet de l'Ã¢me et du statut, le fondateur d'Élégance Pressing a passé des années à étudier la réaction des tissus les plus rares face aux eaux les plus pures et aux essences de nettoyage les plus nobles.
               </p>
               <p className="text-muted leading-relaxed">
                 Ce laboratoire de passion est né un savoir-faire unique, mêlant les secrets des maîtres tailleurs traditionnels aux technologies de pointe.
@@ -87,7 +87,7 @@ export default function AboutPage() {
               <div className="overflow-hidden rounded-lg shadow-medium mt-8">
                 <img
                   src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=400&h=500&fit=crop"
-                  alt="Ã‰quipement de pressing"
+                  alt="Équipement de pressing"
                   className="w-full h-64 object-cover"
                   loading="lazy"
                 />
@@ -114,7 +114,7 @@ export default function AboutPage() {
               <div className="overflow-hidden rounded-lg shadow-elevated">
                 <img
                   src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop"
-                  alt="Ã‰quipe Ã‰légance Pressing au travail"
+                  alt="Équipe Élégance Pressing au travail"
                   className="w-full h-[400px] object-cover"
                   loading="lazy"
                 />
@@ -308,7 +308,7 @@ export default function AboutPage() {
       </section>
 
       {/* ============================================
-          Ã‰QUIPE DIRIGEANTE
+          ÉQUIPE DIRIGEANTE
           ============================================ */}
       <section className="py-16 md:py-24 bg-surface">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -321,7 +321,7 @@ export default function AboutPage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
-              Les Visages de l'Excellence : Notre Ã‰quipe Dirigeante
+              Les Visages de l'Excellence : Notre Équipe Dirigeante
             </h2>
             <p className="text-muted max-w-4xl mx-auto leading-relaxed">
               Derrière le rayonnement panafricain du Label ELP se cache un collectif de leaders chevronnés, animés par la vision stratégique de l'Honorable Manfouo David. Alliant rigueur de gestion, expertise sectorielle et dévouement, nos responsables de pôles orchestrent au quotidien la synergie entre nos infrastructures modernes et le savoir-faire artisanal de nos ateliers. Ensemble, ils veillent au respect de nos standards de prestige pour maintenir ELP au sommet du soin textile en Afrique Centrale.
