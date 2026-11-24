@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // âœ… INDISPENSABLE pour cPanel : gÃ©nÃ¨re un serveur Node.js lÃ©ger et autonome
+  // âœ… INDISPENSABLE pour cPanel : génère un serveur Node.js léger et autonome
   output: 'standalone',
   
-  // âœ… VOTRE configuration d'images (conservÃ©e intacte)
+  // âœ… VOTRE configuration d'images (conservée intacte)
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -14,7 +14,7 @@ const nextConfig = {
     ],
   },
   
-  // âœ… VOTRE configuration ESLint (conservÃ©e intacte)
+  // âœ… VOTRE configuration ESLint (conservée intacte)
   eslint: {
     ignoreDuringBuilds: true,
   },

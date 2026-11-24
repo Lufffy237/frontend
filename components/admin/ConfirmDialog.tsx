@@ -35,7 +35,7 @@ export function ConfirmDialog({
             transition={{ duration: 0.2, ease: 'easeOut' }}
             className="bg-white rounded-xl shadow-elevated w-full max-w-md overflow-hidden border border-border"
           >
-            {/* En-tÃªte avec icÃ´ne (AdaptÃ© aux couleurs du projet : Orange/Primary) */}
+            {/* En-tête avec icône (Adapté aux couleurs du projet : Orange/Primary) */}
             <div className="p-6 flex items-start gap-4">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 border border-primary/20">
                 <AlertTriangle className="w-6 h-6 text-primary" />
@@ -63,7 +63,7 @@ export function ConfirmDialog({
                 {cancelText}
               </button>
               
-              {/* Bouton principal alignÃ© avec le design systÃ¨me du projet (bg-primary, shadow-soft, etc.) */}
+              {/* Bouton principal aligné avec le design système du projet (bg-primary, shadow-soft, etc.) */}
               <button
                 onClick={onConfirm}
                 disabled={isLoading}

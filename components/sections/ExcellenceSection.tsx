@@ -20,13 +20,13 @@ export function ExcellenceSection() {
             <div className="relative overflow-hidden rounded-lg">
               <img
                 src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&h=600&fit=crop"
-                alt="Femme tenant du linge propre devant des machines Ã  laver"
+                alt="Femme tenant du linge propre devant des machines à laver"
                 className="w-full h-[400px] md:h-[500px] object-cover"
               />
-              {/* Overlay dÃ©coratif */}
+              {/* Overlay décoratif */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
-            {/* Ã‰lÃ©ment dÃ©coratif orange */}
+            {/* Ã‰lément décoratif orange */}
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-lg -z-10" />
           </motion.div>
 
@@ -47,14 +47,14 @@ export function ExcellenceSection() {
             </h2>
 
             <p className="text-muted leading-relaxed mb-4">
-              Ã‰lÃ©gance Pressing met son expertise au service des particuliers, des entreprises 
-              et des institutions en proposant des solutions professionnelles dÃ©diÃ©es Ã  l'entretien 
+              Ã‰légance Pressing met son expertise au service des particuliers, des entreprises 
+              et des institutions en proposant des solutions professionnelles dédiées à l'entretien 
               et au soin des textiles.
             </p>
 
             <p className="text-muted leading-relaxed mb-8">
-              Notre approche repose sur une exigence constante de qualitÃ©, une organisation rigoureuse 
-              et une attention particuliÃ¨re portÃ©e Ã  chaque vÃªtement qui nous est confiÃ©.
+              Notre approche repose sur une exigence constante de qualité, une organisation rigoureuse 
+              et une attention particulière portée à chaque vêtement qui nous est confié.
             </p>
 
             <Link

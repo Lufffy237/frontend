@@ -64,7 +64,7 @@ export default function AdminPartnersPage() {
       
       const data = await res.json();
       if (data.success) {
-        toast.success(editing ? 'Partenaire mis Ã  jour' : 'Partenaire ajoutÃ©');
+        toast.success(editing ? 'Partenaire mis à jour' : 'Partenaire ajouté');
         setIsModalOpen(false); 
         setEditing(null); 
         setFormData({ name: '', logo: '', website: '', order: 0 });
@@ -73,7 +73,7 @@ export default function AdminPartnersPage() {
         toast.error(data.message || 'Erreur');
       }
     } catch (e) { 
-      toast.error('Erreur rÃ©seau'); 
+      toast.error('Erreur réseau'); 
     } finally { 
       setSubmitting(false); 
     }
@@ -90,13 +90,13 @@ export default function AdminPartnersPage() {
       });
       
       if (res.ok) { 
-        toast.success('Partenaire supprimÃ©'); 
+        toast.success('Partenaire supprimé'); 
         fetchData(); 
       } else {
         toast.error('Erreur lors de la suppression');
       }
     } catch (e) { 
-      toast.error('Erreur rÃ©seau'); 
+      toast.error('Erreur réseau'); 
     } finally { 
       setIsDeleting(false); 
       setDeleteId(null); 
@@ -116,7 +116,7 @@ export default function AdminPartnersPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-secondary">Partenaires</h1>
-          <p className="text-muted mt-1">GÃ©rez les logos et liens de vos partenaires.</p>
+          <p className="text-muted mt-1">Gérez les logos et liens de vos partenaires.</p>
         </div>
         <button 
           onClick={() => { 
@@ -250,7 +250,7 @@ export default function AdminPartnersPage() {
                     className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover flex items-center gap-2 disabled:opacity-50"
                   >
                     {submitting && <Loader2 className="w-4 h-4 animate-spin" />} 
-                    {editing ? 'Mettre Ã  jour' : 'Ajouter'}
+                    {editing ? 'Mettre à jour' : 'Ajouter'}
                   </button>
                 </div>
               </form>
@@ -264,7 +264,7 @@ export default function AdminPartnersPage() {
         onClose={() => setDeleteId(null)} 
         onConfirm={executeDelete} 
         title="Supprimer ce partenaire ?" 
-        description="Cette action est irrÃ©versible." 
+        description="Cette action est irréversible." 
         confirmText="Oui, supprimer" 
         isLoading={isDeleting} 
       />

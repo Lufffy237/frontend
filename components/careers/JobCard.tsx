@@ -55,7 +55,7 @@ export function JobCard({ job, index }: JobCardProps) {
             {job.title}
           </h3>
 
-          {/* MÃ©tadonnÃ©es */}
+          {/* Métadonnées */}
           <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted">
             <span className="inline-flex items-center gap-1.5">
               <MapPin className="w-4 h-4 text-primary" />

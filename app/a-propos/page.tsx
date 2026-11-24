@@ -39,7 +39,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg md:text-xl text-white/90 italic max-w-3xl"
           >
-            L'art de la perfection, le secret de l'Ã©lÃ©gance depuis 1990
+            L'art de la perfection, le secret de l'élégance depuis 1990
           </motion.p>
         </div>
       </section>
@@ -58,13 +58,13 @@ export default function AboutPage() {
               transition={{ duration: 0.7 }}
             >
               <h2 className="text-2xl md:text-3xl font-bold text-secondary mb-6 leading-tight">
-                Tout commence en 1990, dans l'atmosphÃ¨re feutrÃ©e d'un petit atelier nÃ© d'une obsession :
+                Tout commence en 1990, dans l'atmosphère feutrée d'un petit atelier né d'une obsession :
               </h2>
               <p className="text-muted leading-relaxed mb-4">
-                Redonner aux vÃªtements leur Ã©clat originel et leur mouvement parfait. Convaincu que le vÃªtement est le reflet de l'Ã¢me et du statut, le fondateur d'Ã‰lÃ©gance Pressing a passÃ© des annÃ©es Ã  Ã©tudier la rÃ©action des tissus les plus rares face aux eaux les plus pures et aux essences de nettoyage les plus nobles.
+                Redonner aux vêtements leur éclat originel et leur mouvement parfait. Convaincu que le vêtement est le reflet de l'Ã¢me et du statut, le fondateur d'Ã‰légance Pressing a passé des années à étudier la réaction des tissus les plus rares face aux eaux les plus pures et aux essences de nettoyage les plus nobles.
               </p>
               <p className="text-muted leading-relaxed">
-                Ce laboratoire de passion est nÃ© un savoir-faire unique, mÃªlant les secrets des maÃ®tres tailleurs traditionnels aux technologies de pointe.
+                Ce laboratoire de passion est né un savoir-faire unique, mêlant les secrets des maîtres tailleurs traditionnels aux technologies de pointe.
               </p>
             </motion.div>
 
@@ -79,7 +79,7 @@ export default function AboutPage() {
               <div className="overflow-hidden rounded-lg shadow-medium">
                 <img
                   src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400&h=500&fit=crop"
-                  alt="Machines Ã  laver industrielles"
+                  alt="Machines à laver industrielles"
                   className="w-full h-64 object-cover"
                   loading="lazy"
                 />
@@ -114,7 +114,7 @@ export default function AboutPage() {
               <div className="overflow-hidden rounded-lg shadow-elevated">
                 <img
                   src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop"
-                  alt="Ã‰quipe Ã‰lÃ©gance Pressing au travail"
+                  alt="Ã‰quipe Ã‰légance Pressing au travail"
                   className="w-full h-[400px] object-cover"
                   loading="lazy"
                 />
@@ -130,19 +130,19 @@ export default function AboutPage() {
               className="order-1 md:order-2"
             >
               <h2 className="text-2xl md:text-3xl font-bold text-secondary mb-6 leading-tight">
-                PortÃ©e par son succÃ¨s historique, la Maison a entrepris de faire voyager sa philosophie au-delÃ  des frontiÃ¨res.
+                Portée par son succès historique, la Maison a entrepris de faire voyager sa philosophie au-delà des frontières.
               </h2>
               <p className="text-muted leading-relaxed mb-8">
-                Traversant les fleuves et les forÃªts d'Afrique Centrale, l'esprit ELP s'est dÃ©ployÃ© comme un symbole de prestige. De Douala Ã  N'Djamena, des avenues de Malabo et Bata jusqu'aux cÅ“urs battants de Brazzaville et Libreville, un rÃ©seau d'une centaine de points de vente modernes â€” notre flotte de relais rapide â€” sillonne les capitales chaque matin pour cueillir le linge au rÃ©veil des leaders de ce monde et le leur restituer mÃ©tamorphosÃ©.
+                Traversant les fleuves et les forêts d'Afrique Centrale, l'esprit ELP s'est déployé comme un symbole de prestige. De Douala à N'Djamena, des avenues de Malabo et Bata jusqu'aux cÅ“urs battants de Brazzaville et Libreville, un réseau d'une centaine de points de vente modernes — notre flotte de relais rapide — sillonne les capitales chaque matin pour cueillir le linge au réveil des leaders de ce monde et le leur restituer métamorphosé.
               </p>
 
-              {/* Chiffres clÃ©s */}
+              {/* Chiffres clés */}
               <div className="grid grid-cols-5 gap-4 mb-8">
                 {[
-                  { value: '35+', label: 'AnnÃ©es d\'expÃ©rience' },
+                  { value: '35+', label: 'Années d\'expérience' },
                   { value: '5', label: 'Pays' },
                   { value: '15+', label: 'Agences' },
-                  { value: '40+', label: 'DÃ©pÃ´ts' },
+                  { value: '40+', label: 'Dépôts' },
                   { value: '10Mille+', label: 'Clients satisfaits' },
                 ].map((item, index) => (
                   <motion.div
@@ -169,7 +169,7 @@ export default function AboutPage() {
                   href="/agences"
                   className="inline-flex items-center px-6 py-3 rounded-lg border-2 border-secondary text-secondary text-sm font-semibold hover:bg-secondary hover:text-white transition-all duration-300"
                 >
-                  DÃ©couvrir Nos Agences
+                  Découvrir Nos Agences
                 </Link>
                 <Link
                   href="/contact"
@@ -187,7 +187,7 @@ export default function AboutPage() {
           SECTION DEPUIS 1990 - FOND NOIR
           ============================================ */}
       <section className="py-16 md:py-24 bg-secondary text-white relative overflow-hidden">
-        {/* Motif dÃ©coratif */}
+        {/* Motif décoratif */}
         <div className="absolute inset-0 opacity-5">
           <div className="h-full" style={{
             backgroundImage: `repeating-linear-gradient(
@@ -217,7 +217,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-gray-300 leading-relaxed mb-12"
           >
-            En 35 ans d'existence, nos signatures ont Ã©voluÃ© mais notre Ã¢me reste intacte. Du Â« Temple du Confort Â» au Â« Partenaire de l'Excellence Â», nous marchons vers un seul horizon :
+            En 35 ans d'existence, nos signatures ont évolué mais notre Ã¢me reste intacte. Du Â« Temple du Confort Â» au Â« Partenaire de l'Excellence Â», nous marchons vers un seul horizon :
           </motion.p>
 
           <motion.p
@@ -227,7 +227,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-3xl md:text-4xl font-bold italic text-primary"
           >
-            Â« Propre, c'est Ã©lÃ©gant Â»
+            Â« Propre, c'est élégant Â»
           </motion.p>
 
           {/* Image machine */}
@@ -324,11 +324,11 @@ export default function AboutPage() {
               Les Visages de l'Excellence : Notre Ã‰quipe Dirigeante
             </h2>
             <p className="text-muted max-w-4xl mx-auto leading-relaxed">
-              DerriÃ¨re le rayonnement panafricain du Label ELP se cache un collectif de leaders chevronnÃ©s, animÃ©s par la vision stratÃ©gique de l'Honorable Manfouo David. Alliant rigueur de gestion, expertise sectorielle et dÃ©vouement, nos responsables de pÃ´les orchestrent au quotidien la synergie entre nos infrastructures modernes et le savoir-faire artisanal de nos ateliers. Ensemble, ils veillent au respect de nos standards de prestige pour maintenir ELP au sommet du soin textile en Afrique Centrale.
+              Derrière le rayonnement panafricain du Label ELP se cache un collectif de leaders chevronnés, animés par la vision stratégique de l'Honorable Manfouo David. Alliant rigueur de gestion, expertise sectorielle et dévouement, nos responsables de pôles orchestrent au quotidien la synergie entre nos infrastructures modernes et le savoir-faire artisanal de nos ateliers. Ensemble, ils veillent au respect de nos standards de prestige pour maintenir ELP au sommet du soin textile en Afrique Centrale.
             </p>
           </motion.div>
 
-          {/* Grille Ã©quipe */}
+          {/* Grille équipe */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {TEAM_MEMBERS.map((member, index) => (
               <TeamMemberCard key={member.id} member={member} index={index} />
@@ -341,7 +341,7 @@ export default function AboutPage() {
           RENCONTREZ LES EXPERTS
           ============================================ */}
       <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-        {/* Motif dÃ©coratif */}
+        {/* Motif décoratif */}
         <div className="absolute left-0 top-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
           <svg width="300" height="300" viewBox="0 0 300 300" fill="none">
             <path

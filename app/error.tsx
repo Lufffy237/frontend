@@ -12,14 +12,14 @@ interface ErrorProps {
 
 export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
-    // Logger l'erreur en console pour le dÃ©veloppement
-    console.error('Erreur capturÃ©e:', error);
+    // Logger l'erreur en console pour le développement
+    console.error('Erreur capturée:', error);
   }, [error]);
 
   return (
     <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4 py-16 bg-gradient-to-b from-surface to-background">
       <div className="max-w-2xl w-full text-center">
-        {/* IcÃ´ne d'erreur animÃ©e */}
+        {/* Icône d'erreur animée */}
         <motion.div
           className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-red-100 mb-6"
           initial={{ opacity: 0, scale: 0.5 }}
@@ -57,11 +57,11 @@ export default function Error({ error, reset }: ErrorProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          Nous nous excusons pour la gÃªne occasionnÃ©e. 
-          Notre Ã©quipe technique a Ã©tÃ© notifiÃ©e et travaille Ã  rÃ©soudre ce problÃ¨me.
+          Nous nous excusons pour la gêne occasionnée. 
+          Notre équipe technique a été notifiée et travaille à résoudre ce problème.
         </motion.p>
 
-        {/* Code d'erreur (dÃ©veloppement uniquement) */}
+        {/* Code d'erreur (développement uniquement) */}
         {process.env.NODE_ENV === 'development' && (
           <motion.div
             className="mb-8 p-4 rounded-lg bg-red-50 border border-red-200 text-left"
@@ -88,26 +88,26 @@ export default function Error({ error, reset }: ErrorProps) {
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-semibold shadow-soft hover:bg-primary-hover hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 active:translate-y-0"
           >
             <RefreshCcw className="w-4 h-4" />
-            RÃ©essayer
+            Réessayer
           </button>
           <Link
             href="/"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white border-2 border-border text-secondary font-semibold hover:border-primary hover:text-primary transition-all duration-300"
           >
             <Home className="w-4 h-4" />
-            Retour Ã  l'accueil
+            Retour à l'accueil
           </Link>
         </motion.div>
 
-        {/* Message de rÃ©assurance */}
+        {/* Message de réassurance */}
         <motion.p
           className="mt-10 text-sm text-muted italic"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          "Propre c'est Ã©lÃ©gant" â€” et nous faisons de notre mieux pour que tout le soit, 
-          mÃªme nos pages d'erreur.
+          "Propre c'est élégant" — et nous faisons de notre mieux pour que tout le soit, 
+          même nos pages d'erreur.
         </motion.p>
       </div>
     </div>

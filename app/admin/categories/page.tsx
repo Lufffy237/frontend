@@ -39,7 +39,7 @@ export default function AdminCategoriesPage() {
       const data = await res.json();
       if (data.success) setCategories(data.data);
     } catch (error) {
-      toast.error('Erreur lors du chargement des catÃ©gories');
+      toast.error('Erreur lors du chargement des catégories');
     } finally {
       setLoading(false);
     }
@@ -52,7 +52,7 @@ export default function AdminCategoriesPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim()) {
-      toast.error('Le nom de la catÃ©gorie est requis');
+      toast.error('Le nom de la catégorie est requis');
       return;
     }
 
@@ -76,7 +76,7 @@ export default function AdminCategoriesPage() {
 
       const data = await res.json();
       if (data.success) {
-        toast.success(editingCategory ? 'CatÃ©gorie mise Ã  jour' : 'CatÃ©gorie crÃ©Ã©e');
+        toast.success(editingCategory ? 'Catégorie mise à jour' : 'Catégorie créée');
         setIsModalOpen(false);
         setEditingCategory(null);
         setFormData({ name: '', slug: '' });
@@ -85,23 +85,23 @@ export default function AdminCategoriesPage() {
         toast.error(data.message || 'Erreur');
       }
     } catch (error) {
-      toast.error('Erreur rÃ©seau');
+      toast.error('Erreur réseau');
     } finally {
       setSubmitting(false);
     }
   };
 
-  // Ouvre la modale (avec vÃ©rification prÃ©alable des articles liÃ©s)
+  // Ouvre la modale (avec vérification préalable des articles liés)
   const promptDelete = (id: string) => {
     const category = categories.find(c => c.id === id);
     if (category && category._count.articles > 0) {
-      toast.error(`Impossible de supprimer "${category.name}" car elle contient ${category._count.articles} article(s). DÃ©placez ou supprimez d'abord les articles.`);
+      toast.error(`Impossible de supprimer "${category.name}" car elle contient ${category._count.articles} article(s). Déplacez ou supprimez d'abord les articles.`);
       return;
     }
     setDeleteId(id);
   };
 
-  // ExÃ©cute la suppression aprÃ¨s confirmation
+  // Exécute la suppression après confirmation
   const executeDelete = async () => {
     if (!deleteId) return;
     
@@ -115,13 +115,13 @@ export default function AdminCategoriesPage() {
       const data = await res.json();
       
       if (data.success) {
-        toast.success('CatÃ©gorie supprimÃ©e avec succÃ¨s');
+        toast.success('Catégorie supprimée avec succès');
         fetchCategories();
       } else {
         toast.error(data.message || 'Erreur lors de la suppression');
       }
     } catch (error) {
-      toast.error('Erreur rÃ©seau lors de la suppression');
+      toast.error('Erreur réseau lors de la suppression');
     } finally {
       setIsDeleting(false);
       setDeleteId(null); // Ferme la modale
@@ -151,24 +151,24 @@ export default function AdminCategoriesPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-secondary">CatÃ©gories</h1>
-          <p className="text-muted mt-1">GÃ©rez les catÃ©gories de votre blog.</p>
+          <h1 className="text-3xl font-bold text-secondary">Catégories</h1>
+          <p className="text-muted mt-1">Gérez les catégories de votre blog.</p>
         </div>
         <button
           onClick={() => { resetForm(); setIsModalOpen(true); }}
           className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors shadow-soft"
         >
           <Plus className="w-4 h-4" />
-          Nouvelle catÃ©gorie
+          Nouvelle catégorie
         </button>
       </div>
 
-      {/* Grille de catÃ©gories */}
+      {/* Grille de catégories */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {categories.length === 0 ? (
           <div className="col-span-full bg-white rounded-xl border border-border p-12 text-center">
             <FolderOpen className="w-12 h-12 text-muted mx-auto mb-4" />
-            <p className="text-muted">Aucune catÃ©gorie trouvÃ©e.</p>
+            <p className="text-muted">Aucune catégorie trouvée.</p>
           </div>
         ) : (
           categories.map((category, index) => (
@@ -219,7 +219,7 @@ export default function AdminCategoriesPage() {
         )}
       </div>
 
-      {/* Modale de Formulaire (CrÃ©ation / Ã‰dition) */}
+      {/* Modale de Formulaire (Création / Ã‰dition) */}
       <AnimatePresence>
         {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
@@ -231,7 +231,7 @@ export default function AdminCategoriesPage() {
             >
               <div className="flex items-center justify-between p-6 border-b border-border">
                 <h2 className="text-xl font-bold text-secondary">
-                  {editingCategory ? 'Modifier la catÃ©gorie' : 'Nouvelle catÃ©gorie'}
+                  {editingCategory ? 'Modifier la catégorie' : 'Nouvelle catégorie'}
                 </h2>
                 <button onClick={() => setIsModalOpen(false)} className="p-2 hover:bg-surface rounded-lg">
                   <X className="w-5 h-5" />
@@ -241,14 +241,14 @@ export default function AdminCategoriesPage() {
               <form onSubmit={handleSubmit} className="p-6 space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-secondary mb-2">
-                    Nom de la catÃ©gorie *
+                    Nom de la catégorie *
                   </label>
                   <input
                     required
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="ex: ActualitÃ©s, Conseils d'Experts..."
+                    placeholder="ex: Actualités, Conseils d'Experts..."
                     className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                   />
                 </div>
@@ -261,11 +261,11 @@ export default function AdminCategoriesPage() {
                     type="text"
                     value={formData.slug}
                     onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                    placeholder="actualites (auto-gÃ©nÃ©rÃ© si vide)"
+                    placeholder="actualites (auto-généré si vide)"
                     className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono text-sm"
                   />
                   <p className="text-xs text-muted mt-1">
-                    Laissez vide pour gÃ©nÃ©rer automatiquement depuis le nom
+                    Laissez vide pour générer automatiquement depuis le nom
                   </p>
                 </div>
 
@@ -283,7 +283,7 @@ export default function AdminCategoriesPage() {
                     className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors flex items-center gap-2 disabled:opacity-50"
                   >
                     {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
-                    {editingCategory ? 'Mettre Ã  jour' : 'CrÃ©er'}
+                    {editingCategory ? 'Mettre à jour' : 'Créer'}
                   </button>
                 </div>
               </form>
@@ -292,13 +292,13 @@ export default function AdminCategoriesPage() {
         )}
       </AnimatePresence>
 
-      {/* Modale de confirmation de suppression personnalisÃ©e */}
+      {/* Modale de confirmation de suppression personnalisée */}
       <ConfirmDialog
         isOpen={!!deleteId}
         onClose={() => setDeleteId(null)}
         onConfirm={executeDelete}
-        title="Supprimer cette catÃ©gorie ?"
-        description="Cette action est irrÃ©versible. Assurez-vous qu'aucun article n'est encore associÃ© Ã  cette catÃ©gorie."
+        title="Supprimer cette catégorie ?"
+        description="Cette action est irréversible. Assurez-vous qu'aucun article n'est encore associé à cette catégorie."
         confirmText="Oui, supprimer"
         cancelText="Annuler"
         isLoading={isDeleting}

@@ -35,7 +35,7 @@ export default function AdminCategoriesPage() {
       const data = await res.json();
       if (data.success) setCategories(data.data);
     } catch (error) {
-      toast.error('Erreur lors du chargement des catÃ©gories');
+      toast.error('Erreur lors du chargement des catégories');
     } finally {
       setLoading(false);
     }
@@ -46,7 +46,7 @@ export default function AdminCategoriesPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim()) {
-      toast.error('Le nom de la catÃ©gorie est requis');
+      toast.error('Le nom de la catégorie est requis');
       return;
     }
     setSubmitting(true);
@@ -63,7 +63,7 @@ export default function AdminCategoriesPage() {
 
       const data = await res.json();
       if (data.success) {
-        toast.success(editingCategory ? 'CatÃ©gorie mise Ã  jour' : 'CatÃ©gorie crÃ©Ã©e');
+        toast.success(editingCategory ? 'Catégorie mise à jour' : 'Catégorie créée');
         setIsModalOpen(false);
         setEditingCategory(null);
         setFormData({ name: '', slug: '' });
@@ -72,7 +72,7 @@ export default function AdminCategoriesPage() {
         toast.error(data.message || 'Erreur');
       }
     } catch (error) {
-      toast.error('Erreur rÃ©seau');
+      toast.error('Erreur réseau');
     } finally {
       setSubmitting(false);
     }
@@ -99,13 +99,13 @@ export default function AdminCategoriesPage() {
       });
       const data = await res.json();
       if (data.success) {
-        toast.success('CatÃ©gorie supprimÃ©e avec succÃ¨s');
+        toast.success('Catégorie supprimée avec succès');
         fetchCategories();
       } else {
         toast.error(data.message || 'Erreur lors de la suppression');
       }
     } catch (error) {
-      toast.error('Erreur rÃ©seau lors de la suppression');
+      toast.error('Erreur réseau lors de la suppression');
     } finally {
       setIsDeleting(false);
       setDeleteId(null);
@@ -124,11 +124,11 @@ export default function AdminCategoriesPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-secondary">CatÃ©gories</h1>
-          <p className="text-muted mt-1">GÃ©rez les catÃ©gories de votre blog.</p>
+          <h1 className="text-3xl font-bold text-secondary">Catégories</h1>
+          <p className="text-muted mt-1">Gérez les catégories de votre blog.</p>
         </div>
         <button onClick={() => { setEditingCategory(null); setFormData({ name: '', slug: '' }); setIsModalOpen(true); }} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors shadow-soft">
-          <Plus className="w-4 h-4" /> Nouvelle catÃ©gorie
+          <Plus className="w-4 h-4" /> Nouvelle catégorie
         </button>
       </div>
 
@@ -136,7 +136,7 @@ export default function AdminCategoriesPage() {
         {categories.length === 0 ? (
           <div className="col-span-full bg-white rounded-xl border border-border p-12 text-center">
             <FolderOpen className="w-12 h-12 text-muted mx-auto mb-4" />
-            <p className="text-muted">Aucune catÃ©gorie trouvÃ©e.</p>
+            <p className="text-muted">Aucune catégorie trouvée.</p>
           </div>
         ) : (
           categories.map((category, index) => (
@@ -172,12 +172,12 @@ export default function AdminCategoriesPage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="bg-white rounded-xl shadow-elevated w-full max-w-md">
               <div className="flex items-center justify-between p-6 border-b border-border">
-                <h2 className="text-xl font-bold text-secondary">{editingCategory ? 'Modifier la catÃ©gorie' : 'Nouvelle catÃ©gorie'}</h2>
+                <h2 className="text-xl font-bold text-secondary">{editingCategory ? 'Modifier la catégorie' : 'Nouvelle catégorie'}</h2>
                 <button onClick={() => setIsModalOpen(false)} className="p-2 hover:bg-surface rounded-lg"><X className="w-5 h-5" /></button>
               </div>
               <form onSubmit={handleSubmit} className="p-6 space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-secondary mb-2">Nom de la catÃ©gorie *</label>
+                  <label className="block text-sm font-medium text-secondary mb-2">Nom de la catégorie *</label>
                   <input required type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full px-3 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" />
                 </div>
                 <div>
@@ -188,7 +188,7 @@ export default function AdminCategoriesPage() {
                   <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-secondary hover:bg-surface rounded-lg transition-colors">Annuler</button>
                   <button type="submit" disabled={submitting} className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors flex items-center gap-2 disabled:opacity-50">
                     {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
-                    {editingCategory ? 'Mettre Ã  jour' : 'CrÃ©er'}
+                    {editingCategory ? 'Mettre à jour' : 'Créer'}
                   </button>
                 </div>
               </form>
@@ -197,7 +197,7 @@ export default function AdminCategoriesPage() {
         )}
       </AnimatePresence>
 
-      <ConfirmDialog isOpen={!!deleteId} onClose={() => setDeleteId(null)} onConfirm={executeDelete} title="Supprimer cette catÃ©gorie ?" description="Cette action est irrÃ©versible." confirmText="Oui, supprimer" cancelText="Annuler" isLoading={isDeleting} />
+      <ConfirmDialog isOpen={!!deleteId} onClose={() => setDeleteId(null)} onConfirm={executeDelete} title="Supprimer cette catégorie ?" description="Cette action est irréversible." confirmText="Oui, supprimer" cancelText="Annuler" isLoading={isDeleting} />
     </div>
   );
 }

@@ -11,7 +11,7 @@ interface AgencyMapProps {
   onSelectAgency: (id: string) => void;
 }
 
-// Correction des icÃ´nes Leaflet par dÃ©faut dans Next.js
+// Correction des icônes Leaflet par défaut dans Next.js
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
@@ -25,13 +25,13 @@ export function AgencyMap({ agencies, selectedAgencyId, onSelectAgency }: Agency
   const markersRef = useRef<L.Marker[]>([]);
 
   useEffect(() => {
-    // âœ… CORRECTION : VÃ©rifier que mapRef.current n'est pas null avant d'initialiser
+    // âœ… CORRECTION : Vérifier que mapRef.current n'est pas null avant d'initialiser
     if (!mapRef.current) return;
 
     // Initialiser la carte uniquement si elle n'existe pas encore
     if (!mapInstanceRef.current) {
       const map = L.map(mapRef.current, {
-        center: [2, 15], // CentrÃ© sur l'Afrique Centrale
+        center: [2, 15], // Centré sur l'Afrique Centrale
         zoom: 4,
         zoomControl: true,
         scrollWheelZoom: true,
@@ -63,7 +63,7 @@ export function AgencyMap({ agencies, selectedAgencyId, onSelectAgency }: Agency
           </div>
         `);
 
-        // Clic sur le marqueur sÃ©lectionne l'agence
+        // Clic sur le marqueur sélectionne l'agence
         marker.on('click', () => {
           onSelectAgency(agency.id);
         });
@@ -72,7 +72,7 @@ export function AgencyMap({ agencies, selectedAgencyId, onSelectAgency }: Agency
       }
     });
 
-    // Si une agence est sÃ©lectionnÃ©e, centrer la carte dessus
+    // Si une agence est sélectionnée, centrer la carte dessus
     if (selectedAgencyId) {
       const selected = agencies.find((a) => a.id === selectedAgencyId);
       if (selected && selected.latitude && selected.longitude) {
@@ -80,7 +80,7 @@ export function AgencyMap({ agencies, selectedAgencyId, onSelectAgency }: Agency
           duration: 1.5,
         });
         
-        // Ouvrir le popup du marqueur sÃ©lectionnÃ©
+        // Ouvrir le popup du marqueur sélectionné
         const selectedMarker = markersRef.current.find((m) => {
           const latLng = m.getLatLng();
           return latLng.lat === selected.latitude && latLng.lng === selected.longitude;
@@ -91,7 +91,7 @@ export function AgencyMap({ agencies, selectedAgencyId, onSelectAgency }: Agency
       }
     }
 
-    // Nettoyage au dÃ©montage du composant
+    // Nettoyage au démontage du composant
     return () => {
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();

@@ -17,7 +17,7 @@ export function CraftsmanshipSection() {
           <div className="relative overflow-hidden rounded-lg shadow-elevated">
             <img
               src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=800&fit=crop"
-              alt="Costume sur mannequin - Ã‰lÃ©gance Pressing"
+              alt="Costume sur mannequin - Ã‰légance Pressing"
               className="w-full h-[500px] md:h-[600px] object-cover grayscale"
             />
             
@@ -33,13 +33,13 @@ export function CraftsmanshipSection() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-white text-base md:text-lg leading-relaxed italic max-w-3xl"
               >
-                RedÃ©finissons votre vision de la perfection. Quand la rigueur rencontre la haute blanchisserie, 
-                la propretÃ© trouve sa plus belle expression. Ici, propre n'a jamais Ã©tÃ© aussi Ã©lÃ©gant.
+                Redéfinissons votre vision de la perfection. Quand la rigueur rencontre la haute blanchisserie, 
+                la propreté trouve sa plus belle expression. Ici, propre n'a jamais été aussi élégant.
               </motion.p>
             </div>
           </div>
 
-          {/* Ã‰lÃ©ment dÃ©coratif */}
+          {/* Ã‰lément décoratif */}
           <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-primary/20 rounded-lg -z-10" />
           <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-primary/20 rounded-lg -z-10" />
         </motion.div>

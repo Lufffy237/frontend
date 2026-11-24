@@ -7,9 +7,9 @@ export interface NavItem {
   export const NAV_ITEMS: NavItem[] = [
     { label: 'Accueil', href: '/' },
     { label: 'Services', href: '/services' },
-    { label: 'Ã€ propos', href: '/a-propos' },
+    { label: '€ propos', href: '/a-propos' },
     { label: 'Blog / Info', href: '/blog' },
-    { label: 'CarriÃ¨res', href: '/carrieres' },
+    { label: 'Carrières', href: '/carrieres' },
     { label: 'Galerie', href: '/galerie' },
   ];
   
@@ -20,9 +20,9 @@ export interface NavItem {
   
   export const FOOTER_SERVICES = [
     { label: 'Blanchisserie', href: '/services#blanchisserie' },
-    { label: 'Nettoyage Ã  sec', href: '/services#nettoyage-sec' },
+    { label: 'Nettoyage à sec', href: '/services#nettoyage-sec' },
     { label: 'Nettoyage industriel', href: '/services#nettoyage-industriel' },
-    { label: 'HygiÃ¨ne & assainissement', href: '/services#hygiene' },
+    { label: 'Hygiène & assainissement', href: '/services#hygiene' },
     { label: 'Raccommodage & stoppage', href: '/services#raccommodage' },
   ];
   
@@ -34,7 +34,7 @@ export interface NavItem {
   ];
   
   export const FOOTER_RESOURCES = [
-    { label: 'Blog & actualitÃ©s', href: '/blog' },
+    { label: 'Blog & actualités', href: '/blog' },
     { label: 'Conseils entretien', href: '/blog?category=conseils' },
     { label: 'Offres d\'emploi', href: '/carrieres' },
     { label: 'Stages', href: '/carrieres?type=INTERNSHIP' },

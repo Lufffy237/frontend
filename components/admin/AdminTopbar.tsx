@@ -12,7 +12,7 @@ import { useAuth } from '@/hooks/useAuth';
 // Titres des pages selon la route
 const pageTitles: Record<string, string> = {
   '/admin': 'Tableau de bord',
-  '/admin/agences': 'Agences & DÃ©pÃ´ts',
+  '/admin/agences': 'Agences & Dépôts',
   '/admin/articles': 'Articles & Blog',
   '/admin/carrieres': 'Offres d\'emploi',
   '/admin/galerie': 'Galerie',
@@ -31,7 +31,7 @@ export function AdminTopbar() {
 
   const currentPageTitle = pageTitles[pathname] || 'Administration';
 
-  // Fermer les menus au clic extÃ©rieur
+  // Fermer les menus au clic extérieur
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -108,7 +108,7 @@ export function AdminTopbar() {
                     <p className="text-xs text-muted mt-1">Il y a 5 minutes</p>
                   </div>
                   <div className="p-4 hover:bg-surface transition-colors">
-                    <p className="text-sm text-secondary font-medium">Mise Ã  jour systÃ¨me</p>
+                    <p className="text-sm text-secondary font-medium">Mise à jour système</p>
                     <p className="text-xs text-muted mt-1">Il y a 2 heures</p>
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export function AdminTopbar() {
           </AnimatePresence>
         </div>
 
-        {/* SÃ©parateur */}
+        {/* Séparateur */}
         <div className="w-px h-8 bg-border"></div>
 
         {/* Menu Profil */}
@@ -150,7 +150,7 @@ export function AdminTopbar() {
                 transition={{ duration: 0.15 }}
                 className="absolute right-0 mt-2 w-64 bg-white rounded-xl border border-border shadow-elevated overflow-hidden"
               >
-                {/* En-tÃªte du menu */}
+                {/* En-tête du menu */}
                 <div className="p-4 bg-surface border-b border-border">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-hover flex items-center justify-center text-white font-bold text-lg">
@@ -184,18 +184,18 @@ export function AdminTopbar() {
                   </button>
                   <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface transition-colors text-sm text-secondary">
                     <Settings className="w-4 h-4 text-muted" />
-                    ParamÃ¨tres
+                    Paramètres
                   </button>
                 </div>
 
-                {/* DÃ©connexion */}
+                {/* Déconnexion */}
                 <div className="p-2 border-t border-border">
                   <button
                     onClick={handleLogout}
                     className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-red-50 transition-colors text-sm text-red-600 font-medium"
                   >
                     <LogOut className="w-4 h-4" />
-                    Se dÃ©connecter
+                    Se déconnecter
                   </button>
                 </div>
               </motion.div>

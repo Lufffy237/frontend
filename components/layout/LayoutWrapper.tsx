@@ -8,7 +8,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   const pathname = usePathname();
   const isAdminRoute = pathname.startsWith('/admin');
 
-  // Si on est dans l'admin, on n'affiche QUE le contenu (le layout admin gÃ¨re tout)
+  // Si on est dans l'admin, on n'affiche QUE le contenu (le layout admin gère tout)
   if (isAdminRoute) {
     return <>{children}</>;
   }

@@ -27,7 +27,7 @@ interface JobOffer {
 
 const ITEMS_PER_PAGE = 6;
 const JOB_CATEGORIES = [
-  { value: 'ALL', label: 'Toutes les catÃ©gories' }, // âœ… Accent corrigÃ©
+  { value: 'ALL', label: 'Toutes les catégories' }, // âœ… Accent corrigé
   { value: 'EMPLOI', label: 'Offres d\'emploi' },
   { value: 'STAGE', label: 'Stages' },
 ];
@@ -117,8 +117,8 @@ export default function CareersPage() {
                       image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop',
                       shortDescription: job.description.substring(0, 150) + '...',
                       publishedAt: job.createdAt,
-                      // âœ… CORRECTION : On force le type 'string' en fournissant une valeur par dÃ©faut si null
-                      contract: job.contract || 'Non spÃ©cifiÃ©',
+                      // âœ… CORRECTION : On force le type 'string' en fournissant une valeur par défaut si null
+                      contract: job.contract || 'Non spécifié',
                       profile: job.profile || '',
                       howToApply: job.howToApply || ''
                     }} 
@@ -135,7 +135,7 @@ export default function CareersPage() {
             </>
           ) : (
             <div className="text-center py-20">
-              <p className="text-muted text-lg">Aucune offre ne correspond Ã  cette catÃ©gorie pour le moment.</p> {/* âœ… Accent corrigÃ© */}
+              <p className="text-muted text-lg">Aucune offre ne correspond à cette catégorie pour le moment.</p> {/* âœ… Accent corrigé */}
             </div>
           )}
         </div>
@@ -145,7 +145,7 @@ export default function CareersPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/agences" className="inline-flex items-center justify-center px-8 py-3 rounded-lg border-2 border-secondary text-secondary font-semibold hover:bg-secondary hover:text-white transition-all duration-300">
-              DÃ©couvrir Nos Agences {/* âœ… Accent corrigÃ© */}
+              Découvrir Nos Agences {/* âœ… Accent corrigé */}
             </Link>
             <Link href="/contact" className="inline-flex items-center justify-center px-8 py-3 rounded-lg bg-primary text-white font-semibold shadow-soft hover:bg-primary-hover hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300">
               Contactez-Nous

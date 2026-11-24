@@ -25,7 +25,7 @@ export function useCountUp({
   const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // DÃ©lai pour que l'utilisateur voie le 0 avant le comptage
+    // Délai pour que l'utilisateur voie le 0 avant le comptage
     const startTimer = setTimeout(() => {
       setHasStarted(true);
       const startTime = performance.now();

@@ -94,7 +94,7 @@ export function Modal({
                 <button
                   onClick={onClose}
                   className="p-2 rounded-lg hover:bg-surface transition-colors"
-                  aria-label="Fermer la fenÃªtre"
+                  aria-label="Fermer la fenêtre"
                 >
                   <X className="w-5 h-5" />
                 </button>

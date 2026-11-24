@@ -27,7 +27,7 @@ const slides: Slide[] = [
   {
     image: '/images/hero-2.jpg',
     title: 'UN SAVOIR-FAIRE RECONNU EN AFRIQUE CENTRALE',
-    subtitle: 'QualitÃ©, Ã©lÃ©gance et professionnalisme',
+    subtitle: 'Qualité, élégance et professionnalisme',
     cta: {
       label: 'NOS SERVICES',
       href: '/services',
@@ -36,7 +36,7 @@ const slides: Slide[] = [
   {
     image: '/images/hero-3.jpg',
     title: 'VOTRE LINGE MÃ‰RITE LE MEILLEUR TRAITEMENT',
-    subtitle: 'Blanchisserie, nettoyage Ã  sec, nettoyage industriel ',
+    subtitle: 'Blanchisserie, nettoyage à sec, nettoyage industriel ',
     cta: {
       label: 'TROUVER UNE AGENCE',
       href: '/agences',
@@ -85,7 +85,7 @@ export function HeroSlider() {
               backgroundImage: `url(${slides[currentSlide].image})`,
             }}
           >
-            {/* Overlay sombre pour lisibilitÃ© du texte */}
+            {/* Overlay sombre pour lisibilité du texte */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
           </div>
 
@@ -131,12 +131,12 @@ export function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      {/* FlÃ¨ches de navigation */}
+      {/* Flèches de navigation */}
       <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
         <button
           onClick={prevSlide}
           className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-hover transition-colors duration-300 shadow-medium"
-          aria-label="Slide prÃ©cÃ©dent"
+          aria-label="Slide précédent"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>

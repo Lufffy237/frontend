@@ -22,8 +22,8 @@ export interface JobApplicationData {
   lastName: string;
   email: string;
   phone: string;
-  cv: File | null;            // <-- DÃ©fini explicitement ici
-  coverLetter: File | null;   // <-- DÃ©fini explicitement ici
+  cv: File | null;            // <-- Défini explicitement ici
+  coverLetter: File | null;   // <-- Défini explicitement ici
   message: string;
 }
 // ------------------------------------------------------------------
@@ -61,7 +61,7 @@ export function ContactForm() {
   // Erreurs
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  // Fichiers uploadÃ©s
+  // Fichiers uploadés
   const [cvFileName, setCvFileName] = useState<string>('');
   const [coverLetterFileName, setCoverLetterFileName] = useState<string>('');
   const [attachmentFileName, setAttachmentFileName] = useState<string>('');
@@ -72,7 +72,7 @@ export function ContactForm() {
   const [captchaInput, setCaptchaInput] = useState('');
   const [captchaError, setCaptchaError] = useState('');
 
-  // GÃ©nÃ©rer de nouveaux nombres pour le captcha
+  // Générer de nouveaux nombres pour le captcha
   const generateCaptcha = () => {
     setCaptchaNum1(Math.floor(Math.random() * 9) + 1);
     setCaptchaNum2(Math.floor(Math.random() * 9) + 1);
@@ -94,7 +94,7 @@ export function ContactForm() {
   // Validation du captcha
   const validateCaptcha = () => {
     if (parseInt(captchaInput) !== captchaNum1 + captchaNum2) {
-      setCaptchaError('VÃ©rification Ã©chouÃ©e. Veuillez rÃ©soudre l\'opÃ©ration.');
+      setCaptchaError('Vérification échouée. Veuillez résoudre l\'opération.');
       return false;
     }
     setCaptchaError('');
@@ -114,12 +114,12 @@ export function ContactForm() {
     if (!contactData.message.trim()) newErrors.message = 'Le message est requis';
 
     if (contactData.phone && !validatePhone(contactData.phone)) {
-      newErrors.phone = 'TÃ©lÃ©phone invalide';
+      newErrors.phone = 'Téléphone invalide';
     }
 
     // Validation captcha
     if (!validateCaptcha()) {
-      newErrors.captcha = 'VÃ©rification anti-robot Ã©chouÃ©e';
+      newErrors.captcha = 'Vérification anti-robot échouée';
     }
 
     setErrors(newErrors);
@@ -130,16 +130,16 @@ export function ContactForm() {
     const newErrors: Record<string, string> = {};
 
     if (!applicationData.firstName.trim()) newErrors.firstName = 'Le nom est requis';
-    if (!applicationData.lastName.trim()) newErrors.lastName = 'Le prÃ©nom est requis';
+    if (!applicationData.lastName.trim()) newErrors.lastName = 'Le prénom est requis';
     if (!applicationData.email.trim()) {
       newErrors.email = 'L\'email est requis';
     } else if (!validateEmail(applicationData.email)) {
       newErrors.email = 'Email invalide';
     }
     if (!applicationData.phone.trim()) {
-      newErrors.phone = 'Le tÃ©lÃ©phone est requis';
+      newErrors.phone = 'Le téléphone est requis';
     } else if (!validatePhone(applicationData.phone)) {
-      newErrors.phone = 'TÃ©lÃ©phone invalide';
+      newErrors.phone = 'Téléphone invalide';
     }
     if (!applicationData.cv) {
       newErrors.cv = 'Le CV est requis';
@@ -147,7 +147,7 @@ export function ContactForm() {
 
     // Validation captcha
     if (!validateCaptcha()) {
-      newErrors.captcha = 'VÃ©rification anti-robot Ã©chouÃ©e';
+      newErrors.captcha = 'Vérification anti-robot échouée';
     }
 
     setErrors(newErrors);
@@ -162,13 +162,13 @@ export function ContactForm() {
     if (!file) return;
 
     if (file.size > MAX_FILE_SIZE) {
-      toast.error('Le fichier dÃ©passe la taille maximale de 10 Mo');
+      toast.error('Le fichier dépasse la taille maximale de 10 Mo');
       e.target.value = '';
       return;
     }
 
     if (!ALLOWED_TYPES.includes(file.type)) {
-      toast.error('Format non autorisÃ©. Utilisez PDF, JPEG ou PNG');
+      toast.error('Format non autorisé. Utilisez PDF, JPEG ou PNG');
       e.target.value = '';
       return;
     }
@@ -207,14 +207,14 @@ export function ContactForm() {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       console.log('Contact form data:', contactData);
       setSuccess(true);
-      toast.success('Message envoyÃ© avec succÃ¨s ! Nous vous rÃ©pondrons rapidement.');
+      toast.success('Message envoyé avec succès ! Nous vous répondrons rapidement.');
       
       // Reset
       setContactData({ title: '', firstName: '', lastName: '', email: '', phone: '', subject: '', message: '' });
       setAttachmentFileName('');
       generateCaptcha(); // Nouveau captcha pour le prochain envoi
     } catch (error) {
-      toast.error('Erreur lors de l\'envoi. Veuillez rÃ©essayer.');
+      toast.error('Erreur lors de l\'envoi. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
@@ -229,7 +229,7 @@ export function ContactForm() {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       console.log('Application form data:', applicationData);
       setSuccess(true);
-      toast.success('Candidature envoyÃ©e avec succÃ¨s ! Nous Ã©tudierons votre dossier.');
+      toast.success('Candidature envoyée avec succès ! Nous étudierons votre dossier.');
       
       // Reset
       setApplicationData({ 
@@ -246,7 +246,7 @@ export function ContactForm() {
       setCoverLetterFileName('');
       generateCaptcha(); // Nouveau captcha pour le prochain envoi
     } catch (error) {
-      toast.error('Erreur lors de l\'envoi. Veuillez rÃ©essayer.');
+      toast.error('Erreur lors de l\'envoi. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
@@ -259,7 +259,7 @@ export function ContactForm() {
     generateCaptcha();
   };
 
-  // Calcul pour savoir si le captcha est visuellement validÃ© (pour la coche verte)
+  // Calcul pour savoir si le captcha est visuellement validé (pour la coche verte)
   const isCaptchaValid = parseInt(captchaInput) === captchaNum1 + captchaNum2;
 
   if (success) {
@@ -273,12 +273,12 @@ export function ContactForm() {
           <CheckCircle className="w-12 h-12 text-green-600" />
         </div>
         <h3 className="text-2xl font-bold text-secondary mb-3">
-          {mode === 'contact' ? 'Message envoyÃ© !' : 'Candidature reÃ§ue !'}
+          {mode === 'contact' ? 'Message envoyé !' : 'Candidature reçue !'}
         </h3>
         <p className="text-muted mb-8">
           {mode === 'contact'
-            ? 'Nous vous rÃ©pondrons dans les plus brefs dÃ©lais.'
-            : 'Notre Ã©quipe RH Ã©tudiera votre dossier et vous contactera rapidement.'}
+            ? 'Nous vous répondrons dans les plus brefs délais.'
+            : 'Notre équipe RH étudiera votre dossier et vous contactera rapidement.'}
         </p>
         <button
           onClick={() => setSuccess(false)}
@@ -339,7 +339,7 @@ export function ContactForm() {
               />
             </div>
 
-            {/* Nom et PrÃ©nom */}
+            {/* Nom et Prénom */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
@@ -361,18 +361,18 @@ export function ContactForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2">PrÃ©nom</label>
+                <label className="block text-sm font-medium text-secondary mb-2">Prénom</label>
                 <input
                   type="text"
                   value={contactData.lastName}
                   onChange={(e) => setContactData({ ...contactData, lastName: e.target.value })}
-                  placeholder="PrÃ©nom"
+                  placeholder="Prénom"
                   className="w-full px-4 py-3 rounded-lg border border-border bg-white text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                 />
               </div>
             </div>
 
-            {/* Email et TÃ©lÃ©phone */}
+            {/* Email et Téléphone */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
@@ -394,7 +394,7 @@ export function ContactForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2">TÃ©lÃ©phone</label>
+                <label className="block text-sm font-medium text-secondary mb-2">Téléphone</label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
                   <input
@@ -540,21 +540,21 @@ export function ContactForm() {
           >
             {/* Offre d'emploi */}
             <div>
-              <label className="block text-sm font-medium text-secondary mb-2">Offre concernÃ©e</label>
+              <label className="block text-sm font-medium text-secondary mb-2">Offre concernée</label>
               <select
                 value={applicationData.offerId}
                 onChange={(e) => setApplicationData({ ...applicationData, offerId: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg border border-border bg-white text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
               >
-                <option value="">SÃ©lectionnez une offre...</option>
-                <option value="1">Superviseur de RÃ©seau & Relation Client</option>
+                <option value="">Sélectionnez une offre...</option>
+                <option value="1">Superviseur de Réseau & Relation Client</option>
                 <option value="2">Responsable de la Logistique & du Parc Automobile</option>
-                <option value="3">Gestionnaire des SystÃ¨mes d'Information</option>
+                <option value="3">Gestionnaire des Systèmes d'Information</option>
                 <option value="4">Assistant(e) Communication Digitale</option>
               </select>
             </div>
 
-            {/* Nom et PrÃ©nom */}
+            {/* Nom et Prénom */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
@@ -574,13 +574,13 @@ export function ContactForm() {
 
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
-                  PrÃ©nom<span className="text-primary ml-1">*</span>
+                  Prénom<span className="text-primary ml-1">*</span>
                 </label>
                 <input
                   type="text"
                   value={applicationData.lastName}
                   onChange={(e) => setApplicationData({ ...applicationData, lastName: e.target.value })}
-                  placeholder="PrÃ©nom"
+                  placeholder="Prénom"
                   className={`w-full px-4 py-3 rounded-lg border bg-white text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all ${
                     errors.lastName ? 'border-red-500' : 'border-border'
                   }`}
@@ -589,7 +589,7 @@ export function ContactForm() {
               </div>
             </div>
 
-            {/* Email et TÃ©lÃ©phone */}
+            {/* Email et Téléphone */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
@@ -612,7 +612,7 @@ export function ContactForm() {
 
               <div>
                 <label className="block text-sm font-medium text-secondary mb-2">
-                  TÃ©lÃ©phone<span className="text-primary ml-1">*</span>
+                  Téléphone<span className="text-primary ml-1">*</span>
                 </label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
@@ -711,7 +711,7 @@ export function ContactForm() {
 
             {/* Message */}
             <div>
-              <label className="block text-sm font-medium text-secondary mb-2">Message complÃ©mentaire</label>
+              <label className="block text-sm font-medium text-secondary mb-2">Message complémentaire</label>
               <textarea
                 value={applicationData.message}
                 onChange={(e) => setApplicationData({ ...applicationData, message: e.target.value })}

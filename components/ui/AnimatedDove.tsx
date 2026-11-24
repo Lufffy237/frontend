@@ -35,7 +35,7 @@ export function AnimatedDove({ className = '', size = 200 }: AnimatedDoveProps) 
       }}
       aria-hidden="true"
     >
-      {/* Cercle dÃ©coratif */}
+      {/* Cercle décoratif */}
       <motion.circle
         cx="100"
         cy="100"
@@ -106,7 +106,7 @@ export function AnimatedDove({ className = '', size = 200 }: AnimatedDoveProps) 
         style={{ transformOrigin: '130px 100px' }}
       />
 
-      {/* Plumes dÃ©coratives */}
+      {/* Plumes décoratives */}
       {[0, 1, 2].map((i) => (
         <motion.line
           key={i}

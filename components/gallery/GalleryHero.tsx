@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export function GalleryHero() {
   return (
     <section className="relative bg-secondary text-white overflow-hidden">
-      {/* Motif cercle pointillÃ© dÃ©coratif */}
+      {/* Motif cercle pointillé décoratif */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none">
         <svg viewBox="0 0 600 600" className="w-full h-full opacity-10">
           <circle
@@ -36,9 +36,9 @@ export function GalleryHero() {
               IMAGES
             </h1>
             <p className="text-gray-300 leading-relaxed max-w-md">
-              Explorez nos galeries pour revivre les Ã©vÃ©nements marquants de notre Maison : 
-              des lancement de nos agences Ã  travers l'Afrique Centrale aux moments forts de 
-              nos Ã©quipes, en passant par les distinctions qui couronnent notre savoir-faire unique.
+              Explorez nos galeries pour revivre les événements marquants de notre Maison : 
+              des lancement de nos agences à travers l'Afrique Centrale aux moments forts de 
+              nos équipes, en passant par les distinctions qui couronnent notre savoir-faire unique.
             </p>
           </motion.div>
 
@@ -53,7 +53,7 @@ export function GalleryHero() {
             <div className="col-span-1 row-span-2 rounded-2xl overflow-hidden h-64">
               <img
                 src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=600&fit=crop"
-                alt="Ã‰vÃ©nement ELP"
+                alt="Ã‰vénement ELP"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -61,7 +61,7 @@ export function GalleryHero() {
             <div className="rounded-2xl overflow-hidden h-32">
               <img
                 src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop"
-                alt="CÃ©rÃ©monie"
+                alt="Cérémonie"
                 className="w-full h-full object-cover"
               />
             </div>

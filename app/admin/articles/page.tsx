@@ -61,13 +61,13 @@ export default function AdminArticlesPage() {
       });
       
       if (res.ok) {
-        toast.success('Article supprimÃ© avec succÃ¨s');
+        toast.success('Article supprimé avec succès');
         fetchArticles();
       } else {
         toast.error('Erreur lors de la suppression');
       }
     } catch (error) {
-      toast.error('Erreur rÃ©seau lors de la suppression');
+      toast.error('Erreur réseau lors de la suppression');
     } finally {
       setIsDeleting(false);
       setDeleteId(null);
@@ -81,7 +81,7 @@ export default function AdminArticlesPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-secondary">Articles & Blog</h1>
-          <p className="text-muted mt-1">GÃ©rez le contenu de votre espace info.</p>
+          <p className="text-muted mt-1">Gérez le contenu de votre espace info.</p>
         </div>
         <button
           onClick={() => router.push('/admin/articles/nouveau')}
@@ -97,7 +97,7 @@ export default function AdminArticlesPage() {
           <thead className="bg-surface border-b border-border">
             <tr>
               <th className="px-6 py-4 font-semibold text-secondary">Titre</th>
-              <th className="px-6 py-4 font-semibold text-secondary">CatÃ©gorie</th>
+              <th className="px-6 py-4 font-semibold text-secondary">Catégorie</th>
               <th className="px-6 py-4 font-semibold text-secondary">Auteur</th>
               <th className="px-6 py-4 font-semibold text-secondary">Statut</th>
               <th className="px-6 py-4 font-semibold text-secondary text-right">Actions</th>
@@ -105,7 +105,7 @@ export default function AdminArticlesPage() {
           </thead>
           <tbody className="divide-y divide-border">
             {articles.length === 0 ? (
-              <tr><td colSpan={5} className="px-6 py-12 text-center text-muted">Aucun article trouvÃ©.</td></tr>
+              <tr><td colSpan={5} className="px-6 py-12 text-center text-muted">Aucun article trouvé.</td></tr>
             ) : (
               articles.map((article) => (
                 <tr key={article.id} className="hover:bg-surface/50 transition-colors">
@@ -120,13 +120,13 @@ export default function AdminArticlesPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-muted">{article.category?.name || 'Non catÃ©gorisÃ©'}</td>
+                  <td className="px-6 py-4 text-muted">{article.category?.name || 'Non catégorisé'}</td>
                   <td className="px-6 py-4 text-muted">{article.author.name}</td>
                   <td className="px-6 py-4">
                     <span className={`px-2 py-1 rounded-full text-xs font-bold ${
                       article.published ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
                     }`}>
-                      {article.published ? 'PubliÃ©' : 'Brouillon'}
+                      {article.published ? 'Publié' : 'Brouillon'}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-right">
@@ -154,7 +154,7 @@ export default function AdminArticlesPage() {
         onClose={() => setDeleteId(null)}
         onConfirm={executeDelete}
         title="Supprimer cet article ?"
-        description="Cette action est irrÃ©versible. L'article sera dÃ©finitivement retirÃ© du site public et ne pourra pas Ãªtre rÃ©cupÃ©rÃ©."
+        description="Cette action est irréversible. L'article sera définitivement retiré du site public et ne pourra pas être récupéré."
         confirmText="Oui, supprimer"
         cancelText="Annuler"
         isLoading={isDeleting}

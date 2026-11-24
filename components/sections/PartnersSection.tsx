@@ -10,11 +10,11 @@ interface Partner {
   // logo: '/images/partners/nom-du-logo.png'
 }
 
-// ðŸ”§ Ã€ REMPLACER par vos logos locaux quand vous les aurez
+// ðŸ”§ € REMPLACER par vos logos locaux quand vous les aurez
 // Exemple : { id: '1', name: 'Tulip', logo: '/images/partners/tulip.png' }
 const partners: Partner[] = [
   { id: '1', name: 'Tulip', logo: 'https://placehold.co/120x60/FF6600/FFFFFF?text=TULIP&font=playfair-display' },
-  { id: '2', name: 'HÃ´tel Bel Ami', logo: 'https://placehold.co/120x60/1A1A1A/FFFFFF?text=BEL+AMI&font=playfair-display' },
+  { id: '2', name: 'Hôtel Bel Ami', logo: 'https://placehold.co/120x60/1A1A1A/FFFFFF?text=BEL+AMI&font=playfair-display' },
   { id: '3', name: 'Business', logo: 'https://placehold.co/120x60/0066CC/FFFFFF?text=BUSINESS&font=playfair-display' },
   { id: '4', name: 'WS Studio', logo: 'https://placehold.co/120x60/FF6600/FFFFFF?text=WS&font=playfair-display' },
   { id: '5', name: 'Fuse', logo: 'https://placehold.co/120x60/1A1A1A/FFFFFF?text=FUSE&font=playfair-display' },
@@ -39,7 +39,7 @@ const partners: Partner[] = [
 export function PartnersSection() {
   return (
     <section className="py-20 md:py-28 bg-white relative overflow-hidden">
-      {/* Motif dÃ©coratif latÃ©ral */}
+      {/* Motif décoratif latéral */}
       <div className="absolute left-0 top-0 bottom-0 w-16 opacity-5">
         <div className="h-full" style={{
           backgroundImage: `repeating-linear-gradient(
@@ -65,9 +65,9 @@ export function PartnersSection() {
             ILS NOUS FONT CONFIANCE
           </h2>
           <p className="text-muted text-sm md:text-base max-w-4xl mx-auto leading-relaxed">
-            Parce que l'excellence opÃ©rationnelle ne souffre aucune approximation, les plus grandes institutions, 
-            entreprises et Ã©tablissements hÃ´teliers confient le soin de leurs textiles Ã  ELP. Depuis 1990, 
-            nous garantissons Ã  nos partenaires corporatifs une gestion rigoureuse, un respect strict des dÃ©lais 
+            Parce que l'excellence opérationnelle ne souffre aucune approximation, les plus grandes institutions, 
+            entreprises et établissements hôteliers confient le soin de leurs textiles à ELP. Depuis 1990, 
+            nous garantissons à nos partenaires corporatifs une gestion rigoureuse, un respect strict des délais 
             et des standards de traitement de niveau international.
           </p>
         </motion.div>
