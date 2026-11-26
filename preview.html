@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PREVIEW — Élégance Pressing</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: system-ui, -apple-system, sans-serif; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+</style>
+</head>
+<body class="bg-[#f5f5f5]">
+
+<!-- ===== SECTION BIENVENUE ===== -->
+<section class="relative py-24 bg-[#f5f5f5] overflow-hidden">
+
+  <!-- Motif losanges subtil -->
+  <div class="absolute inset-0 pointer-events-none">
+    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="wax" width="90" height="90" patternUnits="userSpaceOnUse">
+          <g fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-opacity="0.10">
+            <path d="M14,14 L34,34 M34,14 L14,34" />
+            <path d="M60,40 L78,58 L60,76 L42,58 Z" />
+            <circle cx="24" cy="60" r="1.6" fill="#ffffff" stroke="none" fill-opacity="0.10" />
+            <circle cx="70" cy="20" r="1.6" fill="#ffffff" stroke="none" fill-opacity="0.10" />
+          </g>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#wax)" />
+    </svg>
+  </div>
+
+  <!-- Bloc texte -->
+  <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+
+    <!-- LOGO SIMULÉ (remplacé par le vrai Logo.tsx dans le site) -->
+    <div class="mb-10 flex justify-center">
+      <div class="w-[420px] sm:w-[500px] md:w-[580px] lg:w-[640px] max-w-[90vw]">
+        <svg viewBox="0 0 400 320" class="w-full h-auto">
+          <!-- Pigeon -->
+          <circle cx="200" cy="60" r="45" fill="none" stroke="#FF6600" stroke-width="6"/>
+          <path d="M170,70 Q185,45 210,55 Q225,60 220,75 Q210,85 195,80 Z" fill="#FF6600"/>
+          <path d="M175,72 L150,85 L165,90 L155,95 L175,88 Z" fill="#FF6600"/>
+          <!-- Bloc orange -->
+          <rect x="60" y="110" width="280" height="140" fill="#FF6600"/>
+          <text x="200" y="165" text-anchor="middle" font-size="52" font-weight="bold" fill="#111" font-family="Georgia, serif">Élégance</text>
+          <line x1="80" y1="178" x2="320" y2="178" stroke="#fff" stroke-width="2"/>
+          <text x="200" y="232" text-anchor="middle" font-size="48" font-weight="bold" fill="#fff" font-family="Georgia, serif">PRESSING</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- TITRE + DEPUIS 1990 en indice -->
+    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1a1a1a] mb-6 tracking-wide">
+        <span class="relative inline-block">
+          BIENVENUE À ÉLÉGANCE PRESSING
+          <span class="absolute right-0 -bottom-5 text-[9px] md:text-[11px] font-bold tracking-wider whitespace-nowrap">
+            DEPUIS 1990
+          </span>
+        </span>
+      </h2>
+
+    <!-- Ligne de séparation -->
+    <div class="w-36 md:w-44 h-[2px] bg-[#1a1a1a]/70 mx-auto mb-8"></div>
+
+    <!-- Description -->
+    <p class="text-sm md:text-base text-[#666] leading-relaxed max-w-3xl mx-auto">
+      Fondé il y a plus de 35 ans, Élégance Pressing est reconnu pour ses standards d'exception
+      en matière de nettoyage à sec, de blanchisserie, de retouches et de restauration de vêtements.
+      Notre réputation repose sur un savoir-faire méticuleux, un service personnalisé et un engagement
+      continu à préserver la qualité de vos pièces les plus précieuses. Cette quête permanente de
+      perfection fait d'Élégance Pressing la référence absolue du soin du linge haut de gamme.
+    </p>
+  </div>
+
+  <!-- ===== GLOBE ===== -->
+  <div class="relative z-10 w-full mt-12">
+    <div class="relative w-full overflow-hidden flex justify-center">
+      <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" class="w-full max-w-[1100px] h-auto">
+        <defs>
+          <radialGradient id="ocean" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#f2f7fc"/>
+            <stop offset="100%" stop-color="#d6e6f6"/>
+          </radialGradient>
+          <radialGradient id="shade" cx="50%" cy="42%" r="62%">
+            <stop offset="70%" stop-color="rgba(0,0,0,0)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0.12)"/>
+          </radialGradient>
+          <clipPath id="gc"><circle cx="500" cy="560" r="520"/></clipPath>
+        </defs>
+        <circle cx="500" cy="560" r="520" fill="url(#ocean)"/>
+        <g clip-path="url(#gc)">
+          <g stroke="#c2d6ec" fill="none" stroke-width="0.9" opacity="0.5">
+            <line x1="-20" y1="560" x2="1020" y2="560"/>
+            <ellipse cx="500" cy="560" rx="520" ry="150"/>
+            <ellipse cx="500" cy="560" rx="520" ry="320"/>
+            <ellipse cx="500" cy="560" rx="150" ry="520"/>
+            <ellipse cx="500" cy="560" rx="320" ry="520"/>
+          </g>
+          <g fill="#eef2f6" stroke="#dde5ee" stroke-width="0.6">
+            <path d="M470,300 L560,290 L585,330 L560,370 L505,375 L475,345 Z"/>
+            <path d="M590,330 L700,345 L720,410 L650,440 L600,410 L585,370 Z"/>
+            <path d="M470,400 L560,400 L595,455 L580,520 L600,585 L535,640 L480,620 L450,545 L445,470 Z"/>
+          </g>
+          <path d="M500,405 L548,410 L562,452 L540,482 L556,520 L535,560 L552,600 L520,622 L495,602 L505,560 L480,530 L490,492 L470,462 L488,428 Z" fill="#FF6600"/>
+        </g>
+        <circle cx="500" cy="560" r="520" fill="url(#shade)"/>
+        <circle cx="500" cy="560" r="520" fill="none" stroke="#c7d8e8" stroke-width="1.2"/>
+      </svg>
+    </div>
+
+    <!-- Barre stats -->
+    <div class="relative z-20 -mt-10 md:-mt-16 bg-[#141414]">
+      <div class="max-w-6xl mx-auto px-4 py-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-center">
+        <div><div class="text-2xl md:text-3xl font-extrabold text-[#FF6600]">36+</div><div class="text-[11px] md:text-xs text-gray-300 uppercase tracking-wide mt-1">ANNÉES D'EXPÉRIENCE</div></div>
+        <div><div class="text-2xl md:text-3xl font-extrabold text-[#FF6600]">5</div><div class="text-[11px] md:text-xs text-gray-300 uppercase tracking-wide mt-1">Pays</div></div>
+        <div><div class="text-2xl md:text-3xl font-extrabold text-[#FF6600]">15+</div><div class="text-[11px] md:text-xs text-gray-300 uppercase tracking-wide mt-1">Provinces</div></div>
+        <div><div class="text-2xl md:text-3xl font-extrabold text-[#FF6600]">40+</div><div class="text-[11px] md:text-xs text-gray-300 uppercase tracking-wide mt-1">Agences</div></div>
+        <div><div class="text-2xl md:text-3xl font-extrabold text-[#FF6600]">10Mrds+</div><div class="text-[11px] md:text-xs text-gray-300 uppercase tracking-wide mt-1">Pièces nettoyées</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

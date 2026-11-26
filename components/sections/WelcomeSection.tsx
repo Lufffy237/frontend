@@ -36,31 +36,36 @@ export function WelcomeSection() {
       {/* ===== Bloc texte centré ===== */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Logo TRÈS GRAND, centré, sans boîte.
-            Le wrapper masque tout texte enfant (p/h3/h4/span) = le tagline
-            "Propre c'est élégant" interne à Logo, SANS modifier Logo.tsx. */}
+            Les ! forcent la taille même si Logo.tsx bride le SVG.
+            Le wrapper masque le tagline "Propre c'est élégant" interne à Logo. */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-10 flex justify-center"
+          className="mb-10 flex justify-center overflow-visible"
         >
-          <div className="w-[380px] sm:w-[440px] md:w-[520px] lg:w-[560px] mx-auto [&_svg]:w-full [&_svg]:h-auto [&_img]:w-full [&_img]:h-auto [&_p]:hidden [&_h3]:hidden [&_h4]:hidden [&_span]:hidden">
+          <div className="w-[420px] sm:w-[500px] md:w-[580px] lg:w-[640px] max-w-[90vw] mx-auto overflow-visible
+                         [&_svg]:!w-full [&_svg]:!h-auto [&_svg]:!max-w-none [&_svg]:!block
+                         [&_img]:!w-full [&_img]:!h-auto [&_img]:!max-w-none
+                         [&_p]:hidden [&_h3]:hidden [&_h4]:hidden [&_span]:hidden [&_div>div]:!w-full">
             <Logo variant="compact" />
           </div>
         </motion.div>
 
-        {/* Titre + DEPUIS 1990 en INDICE (subscript) collé sous la fin de PRESSING */}
+        {/* ✅ TITRE + DEPUIS 1990 SOUS "ING" (comme sur le preview validé) */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-4 tracking-wide"
+          className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-6 tracking-wide"
         >
-          BIENVENUE À ÉLÉGANCE PRESSING
-          <span className="align-sub text-[8px] md:text-[10px] font-bold ml-0.5 whitespace-nowrap">
-            DEPUIS 1990
+          <span className="relative inline-block">
+            BIENVENUE À ÉLÉGANCE PRESSING
+            <span className="absolute right-0 -bottom-5 text-[9px] md:text-[11px] font-bold tracking-wider whitespace-nowrap">
+              DEPUIS 1990
+            </span>
           </span>
         </motion.h2>
 
