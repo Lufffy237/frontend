@@ -6,20 +6,26 @@ import { AfricaGlobe } from './AfricaGlobe';
 
 export function WelcomeSection() {
   return (
-    <section className="relative py-20 bg-surface overflow-hidden">
-      {/* ===== Motif décoratif losanges / X (comme sur les captures) ===== */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.55]">
+    <section className="relative py-24 bg-surface overflow-hidden">
+      {/* ===== Motif décoratif losanges / X — SUBTIL comme la capture ===== */}
+      <div className="absolute inset-0 pointer-events-none">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="waxPattern" width="90" height="90" patternUnits="userSpaceOnUse">
-              <g fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round">
+              <g
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeOpacity="0.10"
+              >
                 {/* Croix X */}
                 <path d="M14,14 L34,34 M34,14 L14,34" />
                 {/* Losange */}
                 <path d="M60,40 L78,58 L60,76 L42,58 Z" />
                 {/* Petits points */}
-                <circle cx="24" cy="60" r="1.6" fill="#ffffff" stroke="none" />
-                <circle cx="70" cy="20" r="1.6" fill="#ffffff" stroke="none" />
+                <circle cx="24" cy="60" r="1.6" fill="#ffffff" stroke="none" fillOpacity="0.10" />
+                <circle cx="70" cy="20" r="1.6" fill="#ffffff" stroke="none" fillOpacity="0.10" />
               </g>
             </pattern>
           </defs>
@@ -29,7 +35,7 @@ export function WelcomeSection() {
 
       {/* ===== Bloc texte centré ===== */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Logo GRAND, centré, sans boîte */}
+        {/* Logo GRAND, centré, sans boîte — taille forcée pour coller à la capture */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -37,7 +43,7 @@ export function WelcomeSection() {
           transition={{ duration: 0.6 }}
           className="mb-10 flex justify-center"
         >
-          <div className="w-[300px] sm:w-[360px] md:w-[420px] mx-auto">
+          <div className="w-[320px] sm:w-[360px] md:w-[400px] mx-auto [&_svg]:w-full [&_svg]:h-auto">
             <Logo variant="compact" />
           </div>
         </motion.div>
@@ -48,7 +54,7 @@ export function WelcomeSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-3 tracking-wide"
+          className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-4 tracking-wide"
         >
           BIENVENUE À ÉLÉGANCE PRESSING
           <span className="align-super text-[9px] md:text-[11px] font-bold ml-1 whitespace-nowrap">
@@ -56,13 +62,13 @@ export function WelcomeSection() {
           </span>
         </motion.h2>
 
-        {/* Ligne de séparation courte */}
+        {/* Ligne de séparation courte et fine, centrée (élargie pour la capture) */}
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-20 md:w-24 h-[2px] bg-secondary/80 mx-auto mb-8"
+          className="w-36 md:w-44 h-[2px] bg-secondary/70 mx-auto mb-8"
         />
 
         {/* Description */}
