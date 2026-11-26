@@ -35,7 +35,9 @@ export function WelcomeSection() {
 
       {/* ===== Bloc texte centré ===== */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Logo GRAND, centré, sans boîte — taille forcée pour coller à la capture */}
+        {/* Logo TRÈS GRAND, centré, sans boîte.
+            Le wrapper masque tout texte enfant (p/h3/h4/span) = le tagline
+            "Propre c'est élégant" interne à Logo, SANS modifier Logo.tsx. */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,12 +45,12 @@ export function WelcomeSection() {
           transition={{ duration: 0.6 }}
           className="mb-10 flex justify-center"
         >
-          <div className="w-[320px] sm:w-[360px] md:w-[400px] mx-auto [&_svg]:w-full [&_svg]:h-auto">
+          <div className="w-[380px] sm:w-[440px] md:w-[520px] lg:w-[560px] mx-auto [&_svg]:w-full [&_svg]:h-auto [&_img]:w-full [&_img]:h-auto [&_p]:hidden [&_h3]:hidden [&_h4]:hidden [&_span]:hidden">
             <Logo variant="compact" />
           </div>
         </motion.div>
 
-        {/* Titre + DEPUIS 1990 en exposant */}
+        {/* Titre + DEPUIS 1990 en INDICE (subscript) collé sous la fin de PRESSING */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,12 +59,12 @@ export function WelcomeSection() {
           className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-4 tracking-wide"
         >
           BIENVENUE À ÉLÉGANCE PRESSING
-          <span className="align-super text-[9px] md:text-[11px] font-bold ml-1 whitespace-nowrap">
+          <span className="align-sub text-[8px] md:text-[10px] font-bold ml-0.5 whitespace-nowrap">
             DEPUIS 1990
           </span>
         </motion.h2>
 
-        {/* Ligne de séparation courte et fine, centrée (élargie pour la capture) */}
+        {/* Ligne de séparation courte et fine, centrée */}
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
@@ -87,7 +89,7 @@ export function WelcomeSection() {
         </motion.p>
       </div>
 
-      {/* ===== Globe géant + barre stats (PLEINE largeur, hors du bloc texte) ===== */}
+      {/* ===== Globe géant + barre stats (PLEINE largeur) ===== */}
       <AfricaGlobe />
     </section>
   );
