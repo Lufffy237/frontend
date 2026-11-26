@@ -280,8 +280,8 @@ export function NetworkSection() {
             return acc;
           }, {} as Record<string, Agency[]>);
 
-          // ✅ CORRECTION TYPESCRIPT : typage explicite [string, Agency[]]
-          const countriesList: CountryData[] = Object.entries(grouped).map(([id, agencies]: [string, Agency[]]) => ({
+          // ✅ CORRECTION TYPESCRIPT : cast sur Object.entries AVANT le .map()
+          const countriesList: CountryData[] = (Object.entries(grouped) as [string, Agency[]][]).map(([id, agencies]) => ({
             id,
             name: (agencies[0]?.country || id).toUpperCase(),
             agencies,
