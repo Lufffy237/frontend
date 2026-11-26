@@ -24,15 +24,14 @@ interface CountryData {
 }
 
 // ✅ FONCTION DE NORMALISATION : enlève accents + harmonise les tirets/espaces
-// "Guinée Équatoriale" / "Guinee Equatoriale" / "GUINÉE-ÉQUATORIALE" -> "guinee-equatoriale"
 function normalizeCountryId(name: string): string {
   return name
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '') // supprime les accents
-    .replace(/[^a-z0-9]+/g, '-')     // remplace espaces/tirets multiples par '-'
-    .replace(/-+/g, '-')             // évite les tirets en double
-    .replace(/^-|-$/g, '');          // enlève tiret en début/fin
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
 // ✅ LISTE FIXE DES 5 PAYS DU RÉSEAU (toujours affichés, même sans agence)
@@ -275,13 +274,14 @@ export function NetworkSection() {
         const data = await res.json();
         if (data.success) {
           const grouped = data.data.reduce((acc: Record<string, Agency[]>, agency: Agency) => {
-            const key = normalizeCountryId(agency.country); // ✅ ID normalisé SANS accent
+            const key = normalizeCountryId(agency.country);
             if (!acc[key]) acc[key] = [];
             acc[key].push(agency);
             return acc;
           }, {} as Record<string, Agency[]>);
 
-          const countriesList: CountryData[] = Object.entries(grouped).map(([id, agencies]) => ({
+          // ✅ CORRECTION TYPESCRIPT : typage explicite [string, Agency[]]
+          const countriesList: CountryData[] = Object.entries(grouped).map(([id, agencies]: [string, Agency[]]) => ({
             id,
             name: (agencies[0]?.country || id).toUpperCase(),
             agencies,
@@ -368,7 +368,6 @@ export function NetworkSection() {
         </motion.div>
 
         <div className="relative aspect-[4/3] max-w-4xl mx-auto">
-          {/* Lignes de connexion (clés sans accent) */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
             {[
               ['tchad', 'cameroun'],
@@ -401,7 +400,6 @@ export function NetworkSection() {
             })}
           </svg>
 
-          {/* ✅ Rendu des 5 pays TOUJOURS (même sans agence) */}
           {countriesWithAgencies.map((country, index) => {
             const pos = countryPositions[country.id];
             if (!pos) return null;
