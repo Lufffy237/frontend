@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Logo } from '@/components/ui/Logo';
 import { AfricaGlobe } from './AfricaGlobe';
 
 export function WelcomeSection() {
@@ -19,11 +18,8 @@ export function WelcomeSection() {
                 strokeLinecap="round"
                 strokeOpacity="0.10"
               >
-                {/* Croix X */}
                 <path d="M14,14 L34,34 M34,14 L14,34" />
-                {/* Losange */}
                 <path d="M60,40 L78,58 L60,76 L42,58 Z" />
-                {/* Petits points */}
                 <circle cx="24" cy="60" r="1.6" fill="#ffffff" stroke="none" fillOpacity="0.10" />
                 <circle cx="70" cy="20" r="1.6" fill="#ffffff" stroke="none" fillOpacity="0.10" />
               </g>
@@ -35,25 +31,23 @@ export function WelcomeSection() {
 
       {/* ===== Bloc texte centré ===== */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Logo TRÈS GRAND, centré, sans boîte.
-            Les ! forcent la taille même si Logo.tsx bride le SVG.
-            Le wrapper masque le tagline "Propre c'est élégant" interne à Logo. */}
+
+        {/* ✅ LOGO PNG DIRECT — TRÈS GRAND, sans passer par le composant Logo */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-10 flex justify-center overflow-visible"
+          className="mb-10 flex justify-center"
         >
-          <div className="w-[420px] sm:w-[500px] md:w-[580px] lg:w-[640px] max-w-[90vw] mx-auto overflow-visible
-                         [&_svg]:!w-full [&_svg]:!h-auto [&_svg]:!max-w-none [&_svg]:!block
-                         [&_img]:!w-full [&_img]:!h-auto [&_img]:!max-w-none
-                         [&_p]:hidden [&_h3]:hidden [&_h4]:hidden [&_span]:hidden [&_div>div]:!w-full">
-            <Logo variant="compact" />
-          </div>
+          <img
+            src="/images/logo.png"
+            alt="Élégance Pressing — Propre c'est élégant"
+            className="w-[420px] sm:w-[500px] md:w-[580px] lg:w-[640px] max-w-[90vw] h-auto object-contain"
+          />
         </motion.div>
 
-        {/* ✅ TITRE + DEPUIS 1990 SOUS "ING" (comme sur le preview validé) */}
+        {/* TITRE + DEPUIS 1990 SOUS "ING" (comme sur le preview validé) */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
