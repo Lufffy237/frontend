@@ -23,6 +23,254 @@ interface CountryData {
   agencies: Agency[];
 }
 
+// ============================================================
+// 🗺️ FORMES SVG DES PAYS (paths simplifiés mais reconnaissables)
+// ============================================================
+const COUNTRY_PATHS: Record<string, string> = {
+  'tchad': 'M35,8 L55,5 L70,8 L80,15 L88,30 L92,50 L90,75 L85,100 L75,125 L65,145 L55,160 L45,168 L35,165 L28,155 L22,140 L18,120 L15,95 L15,70 L18,45 L25,25 Z',
+  'cameroun': 'M55,5 L70,3 L80,8 L85,18 L88,30 L85,45 L80,55 L75,65 L72,80 L70,95 L68,110 L65,125 L60,140 L52,150 L42,155 L32,150 L25,140 L20,125 L18,110 L18,90 L20,70 L25,50 L32,35 L42,20 L50,10 Z',
+  'guinée-équatoriale': 'M15,25 L35,20 L55,18 L75,20 L90,25 L100,32 L105,40 L100,48 L85,52 L65,54 L45,52 L25,50 L15,45 L10,38 L12,30 Z',
+  'gabon': 'M25,10 L45,5 L65,8 L80,15 L90,28 L95,45 L92,65 L85,85 L72,100 L58,110 L42,112 L28,105 L18,92 L12,75 L12,55 L15,35 L20,20 Z',
+  'congo': 'M35,8 L55,5 L75,8 L90,18 L100,35 L105,55 L102,80 L95,105 L82,125 L68,138 L52,142 L38,138 L25,128 L15,112 L10,92 L10,70 L15,50 L22,30 L30,15 Z',
+};
+
+// ============================================================
+// 🎨 CONFIGURATION DES DRAPEAUX PAR PAYS
+// ============================================================
+const COUNTRY_FLAGS: Record<string, {
+  viewBox: string;
+  width: number;
+  height: number;
+  render: () => JSX.Element;
+}> = {
+  'tchad': {
+    viewBox: '0 0 100 180',
+    width: 110,
+    height: 180,
+    render: () => (
+      <>
+        <rect x="0" y="0" width="33.3" height="180" fill="#002664" />
+        <rect x="33.3" y="0" width="33.4" height="180" fill="#FECB00" />
+        <rect x="66.7" y="0" width="33.3" height="180" fill="#C60C30" />
+      </>
+    ),
+  },
+  'cameroun': {
+    viewBox: '0 0 110 160',
+    width: 140,
+    height: 180,
+    render: () => (
+      <>
+        <rect x="0" y="0" width="37" height="160" fill="#007A5E" />
+        <rect x="37" y="0" width="36" height="160" fill="#CE1126" />
+        <rect x="73" y="0" width="37" height="160" fill="#FCD116" />
+        <polygon
+          points="55,66 58.15,75.66 68.32,75.67 60.1,81.66 63.23,91.33 55,85.36 46.77,91.33 49.9,81.66 41.68,75.67 51.85,75.66"
+          fill="#FCD116"
+        />
+      </>
+    ),
+  },
+  'guinée-équatoriale': {
+    viewBox: '0 0 120 70',
+    width: 130,
+    height: 70,
+    render: () => (
+      <>
+        <rect x="0" y="0" width="120" height="23.3" fill="#3E9A4D" />
+        <rect x="0" y="23.3" width="120" height="23.4" fill="#FFFFFF" />
+        <rect x="0" y="46.7" width="120" height="23.3" fill="#CE1126" />
+        <polygon points="0,0 32,35 0,70" fill="#0073CE" />
+        <rect x="52" y="26" width="16" height="14" fill="#FFFFFF" stroke="#B0B0B0" strokeWidth="0.6" />
+        <rect x="59" y="33" width="2" height="7" fill="#8B5A2B" />
+        <circle cx="60" cy="31" r="4" fill="#2E7D32" />
+        <circle cx="50" cy="22" r="1.1" fill="#FCD116" />
+        <circle cx="54" cy="20.5" r="1.1" fill="#FCD116" />
+        <circle cx="58" cy="19.8" r="1.1" fill="#FCD116" />
+        <circle cx="62" cy="19.8" r="1.1" fill="#FCD116" />
+        <circle cx="66" cy="20.5" r="1.1" fill="#FCD116" />
+        <circle cx="70" cy="22" r="1.1" fill="#FCD116" />
+      </>
+    ),
+  },
+  'gabon': {
+    viewBox: '0 0 100 120',
+    width: 100,
+    height: 130,
+    render: () => (
+      <>
+        <rect x="0" y="0" width="100" height="40" fill="#009E49" />
+        <rect x="0" y="40" width="100" height="40" fill="#FCD116" />
+        <rect x="0" y="80" width="100" height="40" fill="#3A75C4" />
+      </>
+    ),
+  },
+  'congo': {
+    viewBox: '0 0 110 150',
+    width: 120,
+    height: 160,
+    render: () => (
+      <>
+        <rect x="0" y="0" width="110" height="150" fill="#007FFF" />
+        <rect x="-30" y="60" width="170" height="30" fill="#F7D84C" transform="rotate(-35 55 75)" />
+        <rect x="-30" y="68" width="170" height="14" fill="#CE1021" transform="rotate(-35 55 75)" />
+      </>
+    ),
+  },
+};
+
+// ============================================================
+// 🧊 COMPOSANT CARTE 3D D'UN PAYS
+// ============================================================
+interface Country3DMapProps {
+  countryId: string;
+  countryName: string;
+  agencyCount: number;
+  onClick: () => void;
+  animationDelay: number;
+}
+
+function Country3DMap({ countryId, countryName, agencyCount, onClick, animationDelay }: Country3DMapProps) {
+  const path = COUNTRY_PATHS[countryId];
+  const flag = COUNTRY_FLAGS[countryId];
+
+  if (!path || !flag) return null;
+
+  const { viewBox, width, height, render } = flag;
+
+  // Couches d'extrusion pour l'effet 3D (du plus profond au plus proche)
+  const extrusionLayers = [
+    { z: -18, color: '#3d2817' },
+    { z: -14, color: '#5a3d22' },
+    { z: -10, color: '#7a5430' },
+    { z: -6, color: '#9a6d3e' },
+    { z: -3, color: '#b8874d' },
+  ];
+
+  return (
+    <motion.div
+      className="absolute cursor-pointer group"
+      style={{
+        width: `${width}px`,
+        height: `${height}px`,
+      }}
+      initial={{ opacity: 0, scale: 0 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: animationDelay }}
+      onClick={onClick}
+    >
+      {/* Scène 3D avec perspective */}
+      <div
+        className="relative w-full h-full"
+        style={{ perspective: '1200px' }}
+      >
+        {/* Conteneur 3D animé */}
+        <div
+          className="relative w-full h-full transition-transform duration-500 ease-out group-hover:scale-110"
+          style={{
+            transformStyle: 'preserve-3d',
+            transform: 'rotateX(55deg) rotateZ(-15deg) rotateY(5deg)',
+            animation: `float-${countryId} 4s ease-in-out infinite`,
+          }}
+        >
+          {/* Ombre portée au sol */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              transform: 'translateZ(-30px) translateY(20px)',
+              filter: 'blur(25px)',
+              opacity: 0.35,
+            }}
+          >
+            <svg viewBox={viewBox} className="w-full h-full">
+              <path d={path} fill="rgba(0,0,0,0.6)" />
+            </svg>
+          </div>
+
+          {/* Couches d'extrusion (épaisseur 3D) */}
+          {extrusionLayers.map((layer, idx) => (
+            <div
+              key={idx}
+              className="absolute inset-0"
+              style={{ transform: `translateZ(${layer.z}px)` }}
+            >
+              <svg viewBox={viewBox} className="w-full h-full">
+                <path d={path} fill={layer.color} />
+              </svg>
+            </div>
+          ))}
+
+          {/* Couche supérieure : drapeau */}
+          <div
+            className="absolute inset-0"
+            style={{
+              transform: 'translateZ(0px)',
+              filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
+            }}
+          >
+            <svg viewBox={viewBox} className="w-full h-full">
+              <defs>
+                <clipPath id={`clip-${countryId}`}>
+                  <path d={path} />
+                </clipPath>
+                <linearGradient id={`shine-${countryId}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="rgba(255,255,255,0.3)" />
+                  <stop offset="50%" stopColor="rgba(255,255,255,0.05)" />
+                  <stop offset="100%" stopColor="rgba(0,0,0,0.1)" />
+                </linearGradient>
+              </defs>
+
+              {/* Drapeau clipé à la forme du pays */}
+              <g clipPath={`url(#clip-${countryId})`}>
+                {render()}
+                {/* Overlay de brillance */}
+                <rect x="0" y="0" width="100%" height="100%" fill={`url(#shine-${countryId})`} />
+              </g>
+
+              {/* Contour blanc du pays */}
+              <path d={path} fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="1.5" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* Étiquette du pays (au-dessus de la carte 3D) */}
+      <motion.div
+        className="absolute bg-white rounded-md shadow-xl px-3 py-1.5 whitespace-nowrap pointer-events-none"
+        style={{
+          left: '50%',
+          transform: 'translateX(-50%)',
+          top: '-15px',
+        }}
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: animationDelay + 0.4 }}
+      >
+        <div className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-white"></div>
+        <div className="text-[7px] md:text-[8px] text-gray-500 font-bold uppercase tracking-wider leading-tight">
+          Élégance Pressing
+        </div>
+        <div className="text-xs md:text-sm font-extrabold text-gray-900 leading-tight">
+          {countryName}
+        </div>
+      </motion.div>
+
+      {/* Style d'animation flottante unique par pays */}
+      <style>{`
+        @keyframes float-${countryId} {
+          0%, 100% { transform: rotateX(55deg) rotateZ(-15deg) rotateY(5deg) translateY(0px); }
+          50% { transform: rotateX(55deg) rotateZ(-15deg) rotateY(5deg) translateY(-8px); }
+        }
+      `}</style>
+    </motion.div>
+  );
+}
+
+// ============================================================
+// 🌍 COMPOSANT PRINCIPAL : NetworkSection
+// ============================================================
 export function NetworkSection() {
   const [countries, setCountries] = useState<CountryData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -31,7 +279,6 @@ export function NetworkSection() {
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        // ✅ Fallback sécurisé pour éviter les URLs undefined
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
         const res = await fetch(`${apiUrl}/api/agencies/public`);
         const data = await res.json();
@@ -61,131 +308,13 @@ export function NetworkSection() {
     fetchAgencies();
   }, []);
 
-  // Positions relatives (en %) - fidèles à l'image
+  // Positions relatives (en %)
   const countryPositions: Record<string, { x: number; y: number }> = {
     'tchad': { x: 78, y: 18 },
     'cameroun': { x: 58, y: 48 },
     'guinée-équatoriale': { x: 18, y: 42 },
     'gabon': { x: 35, y: 78 },
     'congo': { x: 72, y: 78 },
-  };
-
-  // ✅ DRAPEAUX 3D REPRODUITS FIDÈLEMENT (tranche carton + ombre + liseré blanc)
-  const countrySVGs: Record<string, () => JSX.Element> = {
-    'tchad': () => (
-      <svg viewBox="0 0 100 180" className="w-full h-full" style={{ filter: 'drop-shadow(8px 10px 8px rgba(0,0,0,0.4))' }}>
-        <defs>
-          <clipPath id="tchad-clip">
-            <path d="M35,8 L55,5 L70,8 L80,15 L88,30 L92,50 L90,75 L85,100 L75,125 L65,145 L55,160 L45,168 L35,165 L28,155 L22,140 L18,120 L15,95 L15,70 L18,45 L25,25 Z" />
-          </clipPath>
-        </defs>
-        {/* Tranche 3D carton */}
-        <path d="M35,8 L55,5 L70,8 L80,15 L88,30 L92,50 L90,75 L85,100 L75,125 L65,145 L55,160 L45,168 L35,165 L28,155 L22,140 L18,120 L15,95 L15,70 L18,45 L25,25 Z"
-              fill="#A67C52" transform="translate(5, 9)" />
-        {/* Face du drapeau : bleu / jaune / rouge */}
-        <g clipPath="url(#tchad-clip)">
-          <rect x="0" y="0" width="33.3" height="180" fill="#002664" />
-          <rect x="33.3" y="0" width="33.4" height="180" fill="#FECB00" />
-          <rect x="66.7" y="0" width="33.3" height="180" fill="#C60C30" />
-        </g>
-        <path d="M35,8 L55,5 L70,8 L80,15 L88,30 L92,50 L90,75 L85,100 L75,125 L65,145 L55,160 L45,168 L35,165 L28,155 L22,140 L18,120 L15,95 L15,70 L18,45 L25,25 Z"
-              fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" />
-      </svg>
-    ),
-    'cameroun': () => (
-      <svg viewBox="0 0 110 160" className="w-full h-full" style={{ filter: 'drop-shadow(8px 10px 8px rgba(0,0,0,0.4))' }}>
-        <defs>
-          <clipPath id="cameroun-clip">
-            <path d="M55,5 L70,3 L80,8 L85,18 L88,30 L85,45 L80,55 L75,65 L72,80 L70,95 L68,110 L65,125 L60,140 L52,150 L42,155 L32,150 L25,140 L20,125 L18,110 L18,90 L20,70 L25,50 L32,35 L42,20 L50,10 Z" />
-          </clipPath>
-        </defs>
-        <path d="M55,5 L70,3 L80,8 L85,18 L88,30 L85,45 L80,55 L75,65 L72,80 L70,95 L68,110 L65,125 L60,140 L52,150 L42,155 L32,150 L25,140 L20,125 L18,110 L18,90 L20,70 L25,50 L32,35 L42,20 L50,10 Z"
-              fill="#A67C52" transform="translate(5, 9)" />
-        <g clipPath="url(#cameroun-clip)">
-          <rect x="0" y="0" width="37" height="160" fill="#007A5E" />
-          <rect x="37" y="0" width="36" height="160" fill="#CE1126" />
-          <rect x="73" y="0" width="37" height="160" fill="#FCD116" />
-          {/* Étoile à 5 branches */}
-          <polygon
-            points="55,66 58.15,75.66 68.32,75.67 60.1,81.66 63.23,91.33 55,85.36 46.77,91.33 49.9,81.66 41.68,75.67 51.85,75.66"
-            fill="#FCD116" stroke="#FCD116" strokeWidth="0.5" strokeLinejoin="round"
-          />
-        </g>
-        <path d="M55,5 L70,3 L80,8 L85,18 L88,30 L85,45 L80,55 L75,65 L72,80 L70,95 L68,110 L65,125 L60,140 L52,150 L42,155 L32,150 L25,140 L20,125 L18,110 L18,90 L20,70 L25,50 L32,35 L42,20 L50,10 Z"
-              fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" />
-      </svg>
-    ),
-    'guinée-équatoriale': () => (
-      <svg viewBox="0 0 120 70" className="w-full h-full" style={{ filter: 'drop-shadow(6px 8px 6px rgba(0,0,0,0.4))' }}>
-        <defs>
-          <clipPath id="guinee-clip">
-            <path d="M15,25 L35,20 L55,18 L75,20 L90,25 L100,32 L105,40 L100,48 L85,52 L65,54 L45,52 L25,50 L15,45 L10,38 L12,30 Z" />
-          </clipPath>
-        </defs>
-        <path d="M15,25 L35,20 L55,18 L75,20 L90,25 L100,32 L105,40 L100,48 L85,52 L65,54 L45,52 L25,50 L15,45 L10,38 L12,30 Z"
-              fill="#A67C52" transform="translate(4, 7)" />
-        <g clipPath="url(#guinee-clip)">
-          {/* Bandes horizontales : vert / blanc / rouge */}
-          <rect x="0" y="0" width="120" height="23.3" fill="#3E9A4D" />
-          <rect x="0" y="23.3" width="120" height="23.4" fill="#FFFFFF" />
-          <rect x="0" y="46.7" width="120" height="23.3" fill="#CE1126" />
-          {/* Triangle bleu à gauche */}
-          <polygon points="0,0 32,35 0,70" fill="#0073CE" />
-          {/* Blason : arbre dans un rectangle blanc */}
-          <rect x="52" y="26" width="16" height="14" fill="#FFFFFF" stroke="#B0B0B0" strokeWidth="0.6" />
-          <rect x="59" y="33" width="2" height="7" fill="#8B5A2B" />
-          <circle cx="60" cy="31" r="4" fill="#2E7D32" />
-          {/* 6 étoiles jaunes en arc */}
-          <circle cx="50" cy="22" r="1.1" fill="#FCD116" />
-          <circle cx="54" cy="20.5" r="1.1" fill="#FCD116" />
-          <circle cx="58" cy="19.8" r="1.1" fill="#FCD116" />
-          <circle cx="62" cy="19.8" r="1.1" fill="#FCD116" />
-          <circle cx="66" cy="20.5" r="1.1" fill="#FCD116" />
-          <circle cx="70" cy="22" r="1.1" fill="#FCD116" />
-        </g>
-        <path d="M15,25 L35,20 L55,18 L75,20 L90,25 L100,32 L105,40 L100,48 L85,52 L65,54 L45,52 L25,50 L15,45 L10,38 L12,30 Z"
-              fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" />
-      </svg>
-    ),
-    'gabon': () => (
-      <svg viewBox="0 0 100 120" className="w-full h-full" style={{ filter: 'drop-shadow(8px 10px 8px rgba(0,0,0,0.4))' }}>
-        <defs>
-          <clipPath id="gabon-clip">
-            <path d="M25,10 L45,5 L65,8 L80,15 L90,28 L95,45 L92,65 L85,85 L72,100 L58,110 L42,112 L28,105 L18,92 L12,75 L12,55 L15,35 L20,20 Z" />
-          </clipPath>
-        </defs>
-        <path d="M25,10 L45,5 L65,8 L80,15 L90,28 L95,45 L92,65 L85,85 L72,100 L58,110 L42,112 L28,105 L18,92 L12,75 L12,55 L15,35 L20,20 Z"
-              fill="#A67C52" transform="translate(5, 9)" />
-        <g clipPath="url(#gabon-clip)">
-          <rect x="0" y="0" width="100" height="40" fill="#009E49" />
-          <rect x="0" y="40" width="100" height="40" fill="#FCD116" />
-          <rect x="0" y="80" width="100" height="40" fill="#3A75C4" />
-        </g>
-        <path d="M25,10 L45,5 L65,8 L80,15 L90,28 L95,45 L92,65 L85,85 L72,100 L58,110 L42,112 L28,105 L18,92 L12,75 L12,55 L15,35 L20,20 Z"
-              fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" />
-      </svg>
-    ),
-    'congo': () => (
-      <svg viewBox="0 0 110 150" className="w-full h-full" style={{ filter: 'drop-shadow(8px 10px 8px rgba(0,0,0,0.4))' }}>
-        <defs>
-          <clipPath id="congo-clip">
-            <path d="M35,8 L55,5 L75,8 L90,18 L100,35 L105,55 L102,80 L95,105 L82,125 L68,138 L52,142 L38,138 L25,128 L15,112 L10,92 L10,70 L15,50 L22,30 L30,15 Z" />
-          </clipPath>
-        </defs>
-        <path d="M35,8 L55,5 L75,8 L90,18 L100,35 L105,55 L102,80 L95,105 L82,125 L68,138 L52,142 L38,138 L25,128 L15,112 L10,92 L10,70 L15,50 L22,30 L30,15 Z"
-              fill="#A67C52" transform="translate(5, 9)" />
-        <g clipPath="url(#congo-clip)">
-          {/* Fond bleu */}
-          <rect x="0" y="0" width="110" height="150" fill="#007FFF" />
-          {/* Diagonale jaune (bordure) */}
-          <rect x="-30" y="60" width="170" height="30" fill="#F7D84C" transform="rotate(-35 55 75)" />
-          {/* Diagonale rouge (bande centrale) */}
-          <rect x="-30" y="68" width="170" height="14" fill="#CE1021" transform="rotate(-35 55 75)" />
-        </g>
-        <path d="M35,8 L55,5 L75,8 L90,18 L100,35 L105,55 L102,80 L95,105 L82,125 L68,138 L52,142 L38,138 L25,128 L15,112 L10,92 L10,70 L15,50 L22,30 L30,15 Z"
-              fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" />
-      </svg>
-    ),
   };
 
   const groupByCity = (agencies: Agency[]) => {
@@ -244,7 +373,9 @@ export function NetworkSection() {
           </h2>
         </motion.div>
 
+        {/* Zone de la carte avec tous les pays en 3D */}
         <div className="relative aspect-[4/3] max-w-4xl mx-auto">
+          {/* Lignes de connexion entre pays */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
             {[
               ['tchad', 'cameroun'],
@@ -277,71 +408,36 @@ export function NetworkSection() {
             })}
           </svg>
 
+          {/* Rendu de chaque pays en 3D */}
           {countries.map((country, index) => {
             const pos = countryPositions[country.id];
-            const renderSVG = countrySVGs[country.id];
-
-            if (!pos || !renderSVG) return null;
+            if (!pos) return null;
 
             return (
-              <motion.div
+              <div
                 key={country.id}
-                className="absolute cursor-pointer group"
+                className="absolute"
                 style={{
                   left: `${pos.x}%`,
                   top: `${pos.y}%`,
                   transform: 'translate(-50%, -50%)',
                   zIndex: 10,
                 }}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                whileHover={{ scale: 1.1, y: -5 }}
-                onClick={() => setSelectedCountry(country)}
               >
-                <div
-                  className="relative transition-all duration-300"
-                  style={{
-                    width: country.id === 'cameroun' ? '140px' :
-                           country.id === 'tchad' ? '110px' :
-                           country.id === 'congo' ? '120px' :
-                           country.id === 'gabon' ? '100px' : '90px',
-                    height: country.id === 'cameroun' ? '180px' :
-                           country.id === 'tchad' ? '180px' :
-                           country.id === 'congo' ? '160px' :
-                           country.id === 'gabon' ? '130px' : '70px',
-                  }}
-                >
-                  {renderSVG()}
-                </div>
-
-                <motion.div
-                  className="absolute bg-white rounded-md shadow-xl px-3 py-1.5 whitespace-nowrap"
-                  style={{
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    top: '-10px',
-                  }}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.15 + 0.4 }}
-                >
-                  <div className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-white"></div>
-                  <div className="text-[7px] md:text-[8px] text-gray-500 font-bold uppercase tracking-wider leading-tight">
-                    Élégance Pressing
-                  </div>
-                  <div className="text-xs md:text-sm font-extrabold text-gray-900 leading-tight">
-                    {country.name}
-                  </div>
-                </motion.div>
-              </motion.div>
+                <Country3DMap
+                  countryId={country.id}
+                  countryName={country.name}
+                  agencyCount={country.agencies.length}
+                  onClick={() => setSelectedCountry(country)}
+                  animationDelay={index * 0.15}
+                />
+              </div>
             );
           })}
         </div>
       </div>
 
+      {/* Modale de détails du pays */}
       <AnimatePresence>
         {selectedCountry && (
           <motion.div
