@@ -31,10 +31,11 @@ export function NetworkSection() {
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/agencies/public');
+        // ✅ Fallback sécurisé pour éviter les URLs undefined
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        const res = await fetch(`${apiUrl}/api/agencies/public`);
         const data = await res.json();
         if (data.success) {
-          // Typage explicite de l'accumulateur
           const grouped = data.data.reduce((acc: Record<string, Agency[]>, agency: Agency) => {
             const countryName = agency.country;
             if (!acc[countryName]) acc[countryName] = [];
@@ -42,7 +43,6 @@ export function NetworkSection() {
             return acc;
           }, {} as Record<string, Agency[]>);
 
-          // ? CORRECTION : Cast explicite pour garantir que agencies est bien Agency[]
           const countriesList: CountryData[] = Object.entries(grouped).map(([name, agencies]) => ({
             id: name.toLowerCase().replace(/\s+/g, '-'),
             name: name.toUpperCase(),
@@ -70,100 +70,120 @@ export function NetworkSection() {
     'congo': { x: 72, y: 78 },
   };
 
-  // Formes SVG réelles des pays avec drapeaux
+  // ✅ DRAPEAUX 3D REPRODUITS FIDÈLEMENT (tranche carton + ombre + liseré blanc)
   const countrySVGs: Record<string, () => JSX.Element> = {
     'tchad': () => (
-      <svg viewBox="0 0 100 180" className="w-full h-full" style={{ filter: 'drop-shadow(4px 6px 4px rgba(0,0,0,0.4))' }}>
+      <svg viewBox="0 0 100 180" className="w-full h-full" style={{ filter: 'drop-shadow(8px 10px 8px rgba(0,0,0,0.4))' }}>
         <defs>
           <clipPath id="tchad-clip">
             <path d="M35,8 L55,5 L70,8 L80,15 L88,30 L92,50 L90,75 L85,100 L75,125 L65,145 L55,160 L45,168 L35,165 L28,155 L22,140 L18,120 L15,95 L15,70 L18,45 L25,25 Z" />
           </clipPath>
         </defs>
-        <path d="M35,8 L55,5 L70,8 L80,15 L88,30 L92,50 L90,75 L85,100 L75,125 L65,145 L55,160 L45,168 L35,165 L28,155 L22,140 L18,120 L15,95 L15,70 L18,45 L25,25 Z" 
-              fill="#000" opacity="0.3" transform="translate(3, 5)"/>
+        {/* Tranche 3D carton */}
+        <path d="M35,8 L55,5 L70,8 L80,15 L88,30 L92,50 L90,75 L85,100 L75,125 L65,145 L55,160 L45,168 L35,165 L28,155 L22,140 L18,120 L15,95 L15,70 L18,45 L25,25 Z"
+              fill="#A67C52" transform="translate(5, 9)" />
+        {/* Face du drapeau : bleu / jaune / rouge */}
         <g clipPath="url(#tchad-clip)">
-          <rect x="0" y="0" width="33" height="180" fill="#002664"/>
-          <rect x="33" y="0" width="34" height="180" fill="#FECB00"/>
-          <rect x="67" y="0" width="33" height="180" fill="#C60C30"/>
+          <rect x="0" y="0" width="33.3" height="180" fill="#002664" />
+          <rect x="33.3" y="0" width="33.4" height="180" fill="#FECB00" />
+          <rect x="66.7" y="0" width="33.3" height="180" fill="#C60C30" />
         </g>
-        <path d="M35,8 L55,5 L70,8 L80,15 L88,30 L92,50 L90,75 L85,100 L75,125 L65,145 L55,160 L45,168 L35,165 L28,155 L22,140 L18,120 L15,95 L15,70 L18,45 L25,25 Z" 
-              fill="none" stroke="white" strokeWidth="1.5"/>
+        <path d="M35,8 L55,5 L70,8 L80,15 L88,30 L92,50 L90,75 L85,100 L75,125 L65,145 L55,160 L45,168 L35,165 L28,155 L22,140 L18,120 L15,95 L15,70 L18,45 L25,25 Z"
+              fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" />
       </svg>
     ),
     'cameroun': () => (
-      <svg viewBox="0 0 110 160" className="w-full h-full" style={{ filter: 'drop-shadow(4px 6px 4px rgba(0,0,0,0.4))' }}>
+      <svg viewBox="0 0 110 160" className="w-full h-full" style={{ filter: 'drop-shadow(8px 10px 8px rgba(0,0,0,0.4))' }}>
         <defs>
           <clipPath id="cameroun-clip">
             <path d="M55,5 L70,3 L80,8 L85,18 L88,30 L85,45 L80,55 L75,65 L72,80 L70,95 L68,110 L65,125 L60,140 L52,150 L42,155 L32,150 L25,140 L20,125 L18,110 L18,90 L20,70 L25,50 L32,35 L42,20 L50,10 Z" />
           </clipPath>
         </defs>
-        <path d="M55,5 L70,3 L80,8 L85,18 L88,30 L85,45 L80,55 L75,65 L72,80 L70,95 L68,110 L65,125 L60,140 L52,150 L42,155 L32,150 L25,140 L20,125 L18,110 L18,90 L20,70 L25,50 L32,35 L42,20 L50,10 Z" 
-              fill="#000" opacity="0.3" transform="translate(3, 5)"/>
+        <path d="M55,5 L70,3 L80,8 L85,18 L88,30 L85,45 L80,55 L75,65 L72,80 L70,95 L68,110 L65,125 L60,140 L52,150 L42,155 L32,150 L25,140 L20,125 L18,110 L18,90 L20,70 L25,50 L32,35 L42,20 L50,10 Z"
+              fill="#A67C52" transform="translate(5, 9)" />
         <g clipPath="url(#cameroun-clip)">
-          <rect x="0" y="0" width="37" height="160" fill="#007A5E"/>
-          <rect x="37" y="0" width="36" height="160" fill="#CE1126"/>
-          <rect x="73" y="0" width="37" height="160" fill="#FCD116"/>
-          <polygon points="55,70 58,80 68,80 60,86 63,96 55,90 47,96 50,86 42,80 52,80" fill="#FCD116"/>
+          <rect x="0" y="0" width="37" height="160" fill="#007A5E" />
+          <rect x="37" y="0" width="36" height="160" fill="#CE1126" />
+          <rect x="73" y="0" width="37" height="160" fill="#FCD116" />
+          {/* Étoile à 5 branches */}
+          <polygon
+            points="55,66 58.15,75.66 68.32,75.67 60.1,81.66 63.23,91.33 55,85.36 46.77,91.33 49.9,81.66 41.68,75.67 51.85,75.66"
+            fill="#FCD116" stroke="#FCD116" strokeWidth="0.5" strokeLinejoin="round"
+          />
         </g>
-        <path d="M55,5 L70,3 L80,8 L85,18 L88,30 L85,45 L80,55 L75,65 L72,80 L70,95 L68,110 L65,125 L60,140 L52,150 L42,155 L32,150 L25,140 L20,125 L18,110 L18,90 L20,70 L25,50 L32,35 L42,20 L50,10 Z" 
-              fill="none" stroke="white" strokeWidth="1.5"/>
+        <path d="M55,5 L70,3 L80,8 L85,18 L88,30 L85,45 L80,55 L75,65 L72,80 L70,95 L68,110 L65,125 L60,140 L52,150 L42,155 L32,150 L25,140 L20,125 L18,110 L18,90 L20,70 L25,50 L32,35 L42,20 L50,10 Z"
+              fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" />
       </svg>
     ),
     'guinée-équatoriale': () => (
-      <svg viewBox="0 0 120 70" className="w-full h-full" style={{ filter: 'drop-shadow(4px 6px 4px rgba(0,0,0,0.4))' }}>
+      <svg viewBox="0 0 120 70" className="w-full h-full" style={{ filter: 'drop-shadow(6px 8px 6px rgba(0,0,0,0.4))' }}>
         <defs>
           <clipPath id="guinee-clip">
             <path d="M15,25 L35,20 L55,18 L75,20 L90,25 L100,32 L105,40 L100,48 L85,52 L65,54 L45,52 L25,50 L15,45 L10,38 L12,30 Z" />
           </clipPath>
         </defs>
-        <path d="M15,25 L35,20 L55,18 L75,20 L90,25 L100,32 L105,40 L100,48 L85,52 L65,54 L45,52 L25,50 L15,45 L10,38 L12,30 Z" 
-              fill="#000" opacity="0.3" transform="translate(3, 5)"/>
+        <path d="M15,25 L35,20 L55,18 L75,20 L90,25 L100,32 L105,40 L100,48 L85,52 L65,54 L45,52 L25,50 L15,45 L10,38 L12,30 Z"
+              fill="#A67C52" transform="translate(4, 7)" />
         <g clipPath="url(#guinee-clip)">
-          <rect x="0" y="0" width="120" height="23" fill="#009900"/>
-          <rect x="0" y="23" width="120" height="24" fill="#FFFFFF"/>
-          <rect x="0" y="47" width="120" height="23" fill="#0033A0"/>
-          <polygon points="0,0 35,35 0,70" fill="#CE1126"/>
-          <circle cx="60" cy="35" r="8" fill="#0033A0" opacity="0.6"/>
+          {/* Bandes horizontales : vert / blanc / rouge */}
+          <rect x="0" y="0" width="120" height="23.3" fill="#3E9A4D" />
+          <rect x="0" y="23.3" width="120" height="23.4" fill="#FFFFFF" />
+          <rect x="0" y="46.7" width="120" height="23.3" fill="#CE1126" />
+          {/* Triangle bleu à gauche */}
+          <polygon points="0,0 32,35 0,70" fill="#0073CE" />
+          {/* Blason : arbre dans un rectangle blanc */}
+          <rect x="52" y="26" width="16" height="14" fill="#FFFFFF" stroke="#B0B0B0" strokeWidth="0.6" />
+          <rect x="59" y="33" width="2" height="7" fill="#8B5A2B" />
+          <circle cx="60" cy="31" r="4" fill="#2E7D32" />
+          {/* 6 étoiles jaunes en arc */}
+          <circle cx="50" cy="22" r="1.1" fill="#FCD116" />
+          <circle cx="54" cy="20.5" r="1.1" fill="#FCD116" />
+          <circle cx="58" cy="19.8" r="1.1" fill="#FCD116" />
+          <circle cx="62" cy="19.8" r="1.1" fill="#FCD116" />
+          <circle cx="66" cy="20.5" r="1.1" fill="#FCD116" />
+          <circle cx="70" cy="22" r="1.1" fill="#FCD116" />
         </g>
-        <path d="M15,25 L35,20 L55,18 L75,20 L90,25 L100,32 L105,40 L100,48 L85,52 L65,54 L45,52 L25,50 L15,45 L10,38 L12,30 Z" 
-              fill="none" stroke="white" strokeWidth="1.5"/>
+        <path d="M15,25 L35,20 L55,18 L75,20 L90,25 L100,32 L105,40 L100,48 L85,52 L65,54 L45,52 L25,50 L15,45 L10,38 L12,30 Z"
+              fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" />
       </svg>
     ),
     'gabon': () => (
-      <svg viewBox="0 0 100 120" className="w-full h-full" style={{ filter: 'drop-shadow(4px 6px 4px rgba(0,0,0,0.4))' }}>
+      <svg viewBox="0 0 100 120" className="w-full h-full" style={{ filter: 'drop-shadow(8px 10px 8px rgba(0,0,0,0.4))' }}>
         <defs>
           <clipPath id="gabon-clip">
             <path d="M25,10 L45,5 L65,8 L80,15 L90,28 L95,45 L92,65 L85,85 L72,100 L58,110 L42,112 L28,105 L18,92 L12,75 L12,55 L15,35 L20,20 Z" />
           </clipPath>
         </defs>
-        <path d="M25,10 L45,5 L65,8 L80,15 L90,28 L95,45 L92,65 L85,85 L72,100 L58,110 L42,112 L28,105 L18,92 L12,75 L12,55 L15,35 L20,20 Z" 
-              fill="#000" opacity="0.3" transform="translate(3, 5)"/>
+        <path d="M25,10 L45,5 L65,8 L80,15 L90,28 L95,45 L92,65 L85,85 L72,100 L58,110 L42,112 L28,105 L18,92 L12,75 L12,55 L15,35 L20,20 Z"
+              fill="#A67C52" transform="translate(5, 9)" />
         <g clipPath="url(#gabon-clip)">
-          <rect x="0" y="0" width="100" height="40" fill="#009E49"/>
-          <rect x="0" y="40" width="100" height="40" fill="#FCD116"/>
-          <rect x="0" y="80" width="100" height="40" fill="#3A75C4"/>
+          <rect x="0" y="0" width="100" height="40" fill="#009E49" />
+          <rect x="0" y="40" width="100" height="40" fill="#FCD116" />
+          <rect x="0" y="80" width="100" height="40" fill="#3A75C4" />
         </g>
-        <path d="M25,10 L45,5 L65,8 L80,15 L90,28 L95,45 L92,65 L85,85 L72,100 L58,110 L42,112 L28,105 L18,92 L12,75 L12,55 L15,35 L20,20 Z" 
-              fill="none" stroke="white" strokeWidth="1.5"/>
+        <path d="M25,10 L45,5 L65,8 L80,15 L90,28 L95,45 L92,65 L85,85 L72,100 L58,110 L42,112 L28,105 L18,92 L12,75 L12,55 L15,35 L20,20 Z"
+              fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" />
       </svg>
     ),
     'congo': () => (
-      <svg viewBox="0 0 110 150" className="w-full h-full" style={{ filter: 'drop-shadow(4px 6px 4px rgba(0,0,0,0.4))' }}>
+      <svg viewBox="0 0 110 150" className="w-full h-full" style={{ filter: 'drop-shadow(8px 10px 8px rgba(0,0,0,0.4))' }}>
         <defs>
           <clipPath id="congo-clip">
             <path d="M35,8 L55,5 L75,8 L90,18 L100,35 L105,55 L102,80 L95,105 L82,125 L68,138 L52,142 L38,138 L25,128 L15,112 L10,92 L10,70 L15,50 L22,30 L30,15 Z" />
           </clipPath>
         </defs>
-        <path d="M35,8 L55,5 L75,8 L90,18 L100,35 L105,55 L102,80 L95,105 L82,125 L68,138 L52,142 L38,138 L25,128 L15,112 L10,92 L10,70 L15,50 L22,30 L30,15 Z" 
-              fill="#000" opacity="0.3" transform="translate(3, 5)"/>
+        <path d="M35,8 L55,5 L75,8 L90,18 L100,35 L105,55 L102,80 L95,105 L82,125 L68,138 L52,142 L38,138 L25,128 L15,112 L10,92 L10,70 L15,50 L22,30 L30,15 Z"
+              fill="#A67C52" transform="translate(5, 9)" />
         <g clipPath="url(#congo-clip)">
-          <rect x="0" y="0" width="110" height="150" fill="#009543"/>
-          <polygon points="0,0 110,0 110,30 0,120" fill="#FBDE4A"/>
-          <polygon points="0,120 110,30 110,60 0,150" fill="#FBDE4A"/>
-          <polygon points="0,150 110,60 110,150" fill="#DC241F"/>
+          {/* Fond bleu */}
+          <rect x="0" y="0" width="110" height="150" fill="#007FFF" />
+          {/* Diagonale jaune (bordure) */}
+          <rect x="-30" y="60" width="170" height="30" fill="#F7D84C" transform="rotate(-35 55 75)" />
+          {/* Diagonale rouge (bande centrale) */}
+          <rect x="-30" y="68" width="170" height="14" fill="#CE1021" transform="rotate(-35 55 75)" />
         </g>
-        <path d="M35,8 L55,5 L75,8 L90,18 L100,35 L105,55 L102,80 L95,105 L82,125 L68,138 L52,142 L38,138 L25,128 L15,112 L10,92 L10,70 L15,50 L22,30 L30,15 Z" 
-              fill="none" stroke="white" strokeWidth="1.5"/>
+        <path d="M35,8 L55,5 L75,8 L90,18 L100,35 L105,55 L102,80 L95,105 L82,125 L68,138 L52,142 L38,138 L25,128 L15,112 L10,92 L10,70 L15,50 L22,30 L30,15 Z"
+              fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" />
       </svg>
     ),
   };
@@ -263,8 +283,6 @@ export function NetworkSection() {
 
             if (!pos || !renderSVG) return null;
 
-            const totalAgencies = country.agencies.length;
-
             return (
               <motion.div
                 key={country.id}
@@ -282,14 +300,14 @@ export function NetworkSection() {
                 whileHover={{ scale: 1.1, y: -5 }}
                 onClick={() => setSelectedCountry(country)}
               >
-                <div 
+                <div
                   className="relative transition-all duration-300"
-                  style={{ 
-                    width: country.id === 'cameroun' ? '140px' : 
+                  style={{
+                    width: country.id === 'cameroun' ? '140px' :
                            country.id === 'tchad' ? '110px' :
                            country.id === 'congo' ? '120px' :
                            country.id === 'gabon' ? '100px' : '90px',
-                    height: country.id === 'cameroun' ? '180px' : 
+                    height: country.id === 'cameroun' ? '180px' :
                            country.id === 'tchad' ? '180px' :
                            country.id === 'congo' ? '160px' :
                            country.id === 'gabon' ? '130px' : '70px',
@@ -300,7 +318,7 @@ export function NetworkSection() {
 
                 <motion.div
                   className="absolute bg-white rounded-md shadow-xl px-3 py-1.5 whitespace-nowrap"
-                  style={{ 
+                  style={{
                     left: '50%',
                     transform: 'translateX(-50%)',
                     top: '-10px',
