@@ -43,7 +43,7 @@ export function WelcomeSection() {
           <img
             src="/images/logo.png"
             alt="Élégance Pressing — Propre c'est élégant"
-            className="w-[420px] sm:w-[500px] md:w-[580px] lg:w-[640px] max-w-[90vw] h-auto object-contain"
+            className="w-[120px] sm:w-[400px] md:w-[580px] lg:w-[540px] max-w-[90vw] h-auto object-contain"
           />
         </motion.div>
 
