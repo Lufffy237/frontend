@@ -2,81 +2,101 @@
 
 import { motion } from 'framer-motion';
 
+const stats = [
+  { value: '36+', label: 'ANNÉES D\'EXPÉRIENCE' },
+  { value: '5', label: 'Pays' },
+  { value: '15+', label: 'Provinces' },
+  { value: '40+', label: 'Agences' },
+  { value: '10Mrds+', label: 'Pièces nettoyées' },
+];
+
 export function AfricaGlobe() {
   return (
-    <div className="relative w-full max-w-md mx-auto mt-12">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, ease: 'easeOut' }}
-        className="relative"
-      >
-        {/* Globe terrestre SVG */}
-        <svg
-          viewBox="0 0 400 400"
-          className="w-full h-auto"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Cercle de base (océan) */}
-          <circle
-            cx="200"
-            cy="200"
-            r="180"
-            fill="#E5E7EB"
-            opacity="0.3"
-          />
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="w-full"
+    >
+      {/* ===== GLOBE ===== */}
+      <div className="relative max-w-5xl mx-auto px-4">
+        <svg viewBox="0 0 1000 600" className="w-full h-auto">
+          <defs>
+            <radialGradient id="oceanGrad" cx="50%" cy="42%" r="62%">
+              <stop offset="0%" stopColor="#eef5fc" />
+              <stop offset="100%" stopColor="#cfe3f5" />
+            </radialGradient>
+            <radialGradient id="shadeGrad" cx="50%" cy="45%" r="65%">
+              <stop offset="68%" stopColor="rgba(0,0,0,0)" />
+              <stop offset="100%" stopColor="rgba(0,0,0,0.14)" />
+            </radialGradient>
+            <clipPath id="globeClip">
+              <circle cx="500" cy="300" r="270" />
+            </clipPath>
+          </defs>
 
-          {/* Continents simplifiés (gris clair) */}
-          <g fill="#D1D5DB" opacity="0.5">
-            {/* Amérique du Nord */}
-            <path d="M 80 120 Q 100 100, 130 110 Q 150 120, 140 140 Q 130 160, 110 150 Q 90 140, 80 120 Z" />
-            {/* Amérique du Sud */}
-            <path d="M 120 180 Q 140 170, 150 190 Q 160 220, 140 250 Q 120 270, 110 240 Q 100 210, 120 180 Z" />
-            {/* Europe */}
-            <path d="M 180 100 Q 200 90, 220 100 Q 230 110, 220 120 Q 200 130, 180 120 Q 170 110, 180 100 Z" />
-            {/* Asie */}
-            <path d="M 230 110 Q 260 100, 290 120 Q 310 140, 300 160 Q 280 170, 260 160 Q 240 150, 230 130 Q 220 120, 230 110 Z" />
-            {/* Australie */}
-            <path d="M 280 240 Q 300 230, 310 250 Q 320 270, 300 280 Q 280 290, 270 270 Q 260 250, 280 240 Z" />
+          {/* Ombre au sol */}
+          <ellipse cx="500" cy="588" rx="250" ry="16" fill="#000" opacity="0.06" />
+
+          {/* Océan (globe) */}
+          <circle cx="500" cy="300" r="270" fill="url(#oceanGrad)" />
+
+          <g clipPath="url(#globeClip)">
+            {/* Grille latitudes / longitudes */}
+            <g stroke="#b9d2ea" fill="none" strokeWidth="0.8" opacity="0.55">
+              <line x1="230" y1="300" x2="770" y2="300" />
+              <ellipse cx="500" cy="300" rx="270" ry="90" />
+              <ellipse cx="500" cy="300" rx="270" ry="180" />
+              <ellipse cx="500" cy="300" rx="90" ry="270" />
+              <ellipse cx="500" cy="300" rx="180" ry="270" />
+            </g>
+
+            {/* Continents (Europe, Afrique, Asie) en gris clair */}
+            <g fill="#dde5ee">
+              {/* Europe */}
+              <path d="M430,150 L520,145 L545,180 L520,220 L470,225 L440,195 Z" />
+              {/* Afrique */}
+              <path d="M470,250 L560,250 L590,300 L580,360 L600,420 L540,470 L490,450 L460,380 L455,320 Z" />
+              {/* Moyen-Orient / Asie */}
+              <path d="M550,180 L680,200 L700,260 L640,290 L580,260 L560,220 Z" />
+            </g>
+
+            {/* Afrique centrale surlignée en ORANGE (Tchad, Cameroun, Gabon, Congo, Guinée Eq.) */}
+            <path
+              d="M495,255 L545,260 L560,300 L535,330 L550,370 L530,410 L550,450 L515,470 L490,450 L500,410 L475,380 L485,340 L465,310 L485,275 Z"
+              fill="#FF6600"
+            />
           </g>
 
-          {/* Afrique (orange) */}
-          <motion.path
-            d="M 180 160 Q 200 150, 220 160 Q 240 180, 230 210 Q 220 240, 200 260 Q 180 270, 170 250 Q 160 220, 170 190 Q 175 170, 180 160 Z"
-            fill="#FF6600"
-            initial={{ pathLength: 0, opacity: 0 }}
-            whileInView={{ pathLength: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, delay: 0.5, ease: 'easeOut' }}
-          />
-
-          {/* Lignes de latitude/longitude décoratives */}
-          <g stroke="#D1D5DB" strokeWidth="1" opacity="0.3" fill="none">
-            <ellipse cx="200" cy="200" rx="180" ry="60" />
-            <ellipse cx="200" cy="200" rx="180" ry="120" />
-            <line x1="20" y1="200" x2="380" y2="200" />
-            <line x1="200" y1="20" x2="200" y2="380" />
-          </g>
+          {/* Ombre 3D sur le bord du globe */}
+          <circle cx="500" cy="300" r="270" fill="url(#shadeGrad)" />
+          {/* Contour du globe */}
+          <circle cx="500" cy="300" r="270" fill="none" stroke="#c7d8e8" strokeWidth="1" />
         </svg>
+      </div>
 
-        {/* Points pulsants sur l'Afrique */}
-        <motion.div
-          className="absolute"
-          style={{ top: '55%', left: '50%' }}
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [1, 0.5, 1],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        >
-          <div className="w-3 h-3 rounded-full bg-primary" />
-        </motion.div>
-      </motion.div>
-    </div>
+      {/* ===== BARRE DE STATISTIQUES ===== */}
+      <div className="bg-[#141414] mt-6">
+        <div className="max-w-6xl mx-auto px-4 py-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-center">
+          {stats.map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              <div className="text-2xl md:text-3xl font-extrabold text-[#FF6600] leading-tight">
+                {s.value}
+              </div>
+              <div className="text-[11px] md:text-xs text-gray-300 uppercase tracking-wide mt-1">
+                {s.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
   );
 }

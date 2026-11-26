@@ -1,79 +1,102 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Logo } from '@/components/ui/Logo';
-import { AfricaGlobe } from './AfricaGlobe';
 
-export function WelcomeSection() {
+const stats = [
+  { value: '36+', label: 'ANNÉES D\'EXPÉRIENCE' },
+  { value: '5', label: 'Pays' },
+  { value: '15+', label: 'Provinces' },
+  { value: '40+', label: 'Agences' },
+  { value: '10Mrds+', label: 'Pièces nettoyées' },
+];
+
+export function AfricaGlobe() {
   return (
-    <section className="relative py-20 bg-surface overflow-hidden">
-      {/* Motif décoratif en arrière-plan */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 35px,
-            #FF6600 35px,
-            #FF6600 36px
-          )`,
-        }} />
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="w-full"
+    >
+      {/* ===== GLOBE ===== */}
+      <div className="relative max-w-5xl mx-auto px-4">
+        <svg viewBox="0 0 1000 600" className="w-full h-auto">
+          <defs>
+            <radialGradient id="oceanGrad" cx="50%" cy="42%" r="62%">
+              <stop offset="0%" stopColor="#eef5fc" />
+              <stop offset="100%" stopColor="#cfe3f5" />
+            </radialGradient>
+            <radialGradient id="shadeGrad" cx="50%" cy="45%" r="65%">
+              <stop offset="68%" stopColor="rgba(0,0,0,0)" />
+              <stop offset="100%" stopColor="rgba(0,0,0,0.14)" />
+            </radialGradient>
+            <clipPath id="globeClip">
+              <circle cx="500" cy="300" r="270" />
+            </clipPath>
+          </defs>
+
+          {/* Ombre au sol */}
+          <ellipse cx="500" cy="588" rx="250" ry="16" fill="#000" opacity="0.06" />
+
+          {/* Océan (globe) */}
+          <circle cx="500" cy="300" r="270" fill="url(#oceanGrad)" />
+
+          <g clipPath="url(#globeClip)">
+            {/* Grille latitudes / longitudes */}
+            <g stroke="#b9d2ea" fill="none" strokeWidth="0.8" opacity="0.55">
+              <line x1="230" y1="300" x2="770" y2="300" />
+              <ellipse cx="500" cy="300" rx="270" ry="90" />
+              <ellipse cx="500" cy="300" rx="270" ry="180" />
+              <ellipse cx="500" cy="300" rx="90" ry="270" />
+              <ellipse cx="500" cy="300" rx="180" ry="270" />
+            </g>
+
+            {/* Continents (Europe, Afrique, Asie) en gris clair */}
+            <g fill="#dde5ee">
+              {/* Europe */}
+              <path d="M430,150 L520,145 L545,180 L520,220 L470,225 L440,195 Z" />
+              {/* Afrique */}
+              <path d="M470,250 L560,250 L590,300 L580,360 L600,420 L540,470 L490,450 L460,380 L455,320 Z" />
+              {/* Moyen-Orient / Asie */}
+              <path d="M550,180 L680,200 L700,260 L640,290 L580,260 L560,220 Z" />
+            </g>
+
+            {/* Afrique centrale surlignée en ORANGE (Tchad, Cameroun, Gabon, Congo, Guinée Eq.) */}
+            <path
+              d="M495,255 L545,260 L560,300 L535,330 L550,370 L530,410 L550,450 L515,470 L490,450 L500,410 L475,380 L485,340 L465,310 L485,275 Z"
+              fill="#FF6600"
+            />
+          </g>
+
+          {/* Ombre 3D sur le bord du globe */}
+          <circle cx="500" cy="300" r="270" fill="url(#shadeGrad)" />
+          {/* Contour du globe */}
+          <circle cx="500" cy="300" r="270" fill="none" stroke="#c7d8e8" strokeWidth="1" />
+        </svg>
       </div>
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
-          <div className="inline-block bg-white p-4 rounded-lg shadow-soft">
-            <Logo variant="compact" />
-          </div>
-        </motion.div>
-
-        {/* Titre */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-4 tracking-wide"
-        >
-          BIENVENUE CHEZ ÉLÉGANCE PRESSING
-        </motion.h2>
-
-        {/* Sous-titre */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base md:text-lg text-muted font-medium mb-8"
-        >
-          Le Leader Historique Et Institutionnel En Afrique Centrale
-        </motion.p>
-
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-sm md:text-base text-muted leading-relaxed max-w-3xl mx-auto mb-12"
-        >
-          Fondé il y a plus de 35 ans, Élégance Pressing est reconnu pour ses standards d'exception 
-          en matière de nettoyage à sec, de blanchisserie, de retouches et de restauration de vêtements. 
-          Notre réputation repose sur un savoir-faire méticuleux, un service personnalisé et un engagement 
-          continu à préserver la qualité de vos pièces les plus précieuses. Cette quête permanente de 
-          perfection fait d'Élégance Pressing la référence absolue du soin du linge haut de gamme.
-        </motion.p>
-
-        {/* Globe avec Afrique */}
-        <AfricaGlobe />
+      {/* ===== BARRE DE STATISTIQUES ===== */}
+      <div className="bg-[#141414] mt-6">
+        <div className="max-w-6xl mx-auto px-4 py-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-center">
+          {stats.map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              <div className="text-2xl md:text-3xl font-extrabold text-[#FF6600] leading-tight">
+                {s.value}
+              </div>
+              <div className="text-[11px] md:text-xs text-gray-300 uppercase tracking-wide mt-1">
+                {s.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
-    </section>
+    </motion.div>
   );
 }
