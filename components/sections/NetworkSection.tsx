@@ -23,13 +23,34 @@ interface CountryData {
   agencies: Agency[];
 }
 
+// ✅ FONCTION DE NORMALISATION : enlève accents + harmonise les tirets/espaces
+// "Guinée Équatoriale" / "Guinee Equatoriale" / "GUINÉE-ÉQUATORIALE" -> "guinee-equatoriale"
+function normalizeCountryId(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // supprime les accents
+    .replace(/[^a-z0-9]+/g, '-')     // remplace espaces/tirets multiples par '-'
+    .replace(/-+/g, '-')             // évite les tirets en double
+    .replace(/^-|-$/g, '');          // enlève tiret en début/fin
+}
+
+// ✅ LISTE FIXE DES 5 PAYS DU RÉSEAU (toujours affichés, même sans agence)
+const ALL_COUNTRIES = [
+  { id: 'tchad', displayName: 'TCHAD' },
+  { id: 'cameroun', displayName: 'CAMEROUN' },
+  { id: 'guinee-equatoriale', displayName: 'GUINÉE ÉQUATORIALE' },
+  { id: 'gabon', displayName: 'GABON' },
+  { id: 'congo', displayName: 'CONGO' },
+];
+
 // ============================================================
-// 🗺️ FORMES SVG DES PAYS (paths simplifiés mais reconnaissables)
+// 🗺️ FORMES SVG DES PAYS (clés SANS ACCENT)
 // ============================================================
 const COUNTRY_PATHS: Record<string, string> = {
   'tchad': 'M35,8 L55,5 L70,8 L80,15 L88,30 L92,50 L90,75 L85,100 L75,125 L65,145 L55,160 L45,168 L35,165 L28,155 L22,140 L18,120 L15,95 L15,70 L18,45 L25,25 Z',
   'cameroun': 'M55,5 L70,3 L80,8 L85,18 L88,30 L85,45 L80,55 L75,65 L72,80 L70,95 L68,110 L65,125 L60,140 L52,150 L42,155 L32,150 L25,140 L20,125 L18,110 L18,90 L20,70 L25,50 L32,35 L42,20 L50,10 Z',
-  'guinée-équatoriale': 'M15,25 L35,20 L55,18 L75,20 L90,25 L100,32 L105,40 L100,48 L85,52 L65,54 L45,52 L25,50 L15,45 L10,38 L12,30 Z',
+  'guinee-equatoriale': 'M15,25 L35,20 L55,18 L75,20 L90,25 L100,32 L105,40 L100,48 L85,52 L65,54 L45,52 L25,50 L15,45 L10,38 L12,30 Z',
   'gabon': 'M25,10 L45,5 L65,8 L80,15 L90,28 L95,45 L92,65 L85,85 L72,100 L58,110 L42,112 L28,105 L18,92 L12,75 L12,55 L15,35 L20,20 Z',
   'congo': 'M35,8 L55,5 L75,8 L90,18 L100,35 L105,55 L102,80 L95,105 L82,125 L68,138 L52,142 L38,138 L25,128 L15,112 L10,92 L10,70 L15,50 L22,30 L30,15 Z',
 };
@@ -71,7 +92,7 @@ const COUNTRY_FLAGS: Record<string, {
       </>
     ),
   },
-  'guinée-équatoriale': {
+  'guinee-equatoriale': {
     viewBox: '0 0 120 70',
     width: 130,
     height: 70,
@@ -138,7 +159,6 @@ function Country3DMap({ countryId, countryName, agencyCount, onClick, animationD
 
   const { viewBox, width, height, render } = flag;
 
-  // Couches d'extrusion pour l'effet 3D (du plus profond au plus proche)
   const extrusionLayers = [
     { z: -18, color: '#3d2817' },
     { z: -14, color: '#5a3d22' },
@@ -150,22 +170,14 @@ function Country3DMap({ countryId, countryName, agencyCount, onClick, animationD
   return (
     <motion.div
       className="absolute cursor-pointer group"
-      style={{
-        width: `${width}px`,
-        height: `${height}px`,
-      }}
+      style={{ width: `${width}px`, height: `${height}px` }}
       initial={{ opacity: 0, scale: 0 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: animationDelay }}
       onClick={onClick}
     >
-      {/* Scène 3D avec perspective */}
-      <div
-        className="relative w-full h-full"
-        style={{ perspective: '1200px' }}
-      >
-        {/* Conteneur 3D animé */}
+      <div className="relative w-full h-full" style={{ perspective: '1200px' }}>
         <div
           className="relative w-full h-full transition-transform duration-500 ease-out group-hover:scale-110"
           style={{
@@ -177,11 +189,7 @@ function Country3DMap({ countryId, countryName, agencyCount, onClick, animationD
           {/* Ombre portée au sol */}
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{
-              transform: 'translateZ(-30px) translateY(20px)',
-              filter: 'blur(25px)',
-              opacity: 0.35,
-            }}
+            style={{ transform: 'translateZ(-30px) translateY(20px)', filter: 'blur(25px)', opacity: 0.35 }}
           >
             <svg viewBox={viewBox} className="w-full h-full">
               <path d={path} fill="rgba(0,0,0,0.6)" />
@@ -190,11 +198,7 @@ function Country3DMap({ countryId, countryName, agencyCount, onClick, animationD
 
           {/* Couches d'extrusion (épaisseur 3D) */}
           {extrusionLayers.map((layer, idx) => (
-            <div
-              key={idx}
-              className="absolute inset-0"
-              style={{ transform: `translateZ(${layer.z}px)` }}
-            >
+            <div key={idx} className="absolute inset-0" style={{ transform: `translateZ(${layer.z}px)` }}>
               <svg viewBox={viewBox} className="w-full h-full">
                 <path d={path} fill={layer.color} />
               </svg>
@@ -204,10 +208,7 @@ function Country3DMap({ countryId, countryName, agencyCount, onClick, animationD
           {/* Couche supérieure : drapeau */}
           <div
             className="absolute inset-0"
-            style={{
-              transform: 'translateZ(0px)',
-              filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
-            }}
+            style={{ transform: 'translateZ(0px)', filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }}
           >
             <svg viewBox={viewBox} className="w-full h-full">
               <defs>
@@ -220,29 +221,20 @@ function Country3DMap({ countryId, countryName, agencyCount, onClick, animationD
                   <stop offset="100%" stopColor="rgba(0,0,0,0.1)" />
                 </linearGradient>
               </defs>
-
-              {/* Drapeau clipé à la forme du pays */}
               <g clipPath={`url(#clip-${countryId})`}>
                 {render()}
-                {/* Overlay de brillance */}
                 <rect x="0" y="0" width="100%" height="100%" fill={`url(#shine-${countryId})`} />
               </g>
-
-              {/* Contour blanc du pays */}
               <path d={path} fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="1.5" />
             </svg>
           </div>
         </div>
       </div>
 
-      {/* Étiquette du pays (au-dessus de la carte 3D) */}
+      {/* Étiquette */}
       <motion.div
         className="absolute bg-white rounded-md shadow-xl px-3 py-1.5 whitespace-nowrap pointer-events-none"
-        style={{
-          left: '50%',
-          transform: 'translateX(-50%)',
-          top: '-15px',
-        }}
+        style={{ left: '50%', transform: 'translateX(-50%)', top: '-15px' }}
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -257,7 +249,6 @@ function Country3DMap({ countryId, countryName, agencyCount, onClick, animationD
         </div>
       </motion.div>
 
-      {/* Style d'animation flottante unique par pays */}
       <style>{`
         @keyframes float-${countryId} {
           0%, 100% { transform: rotateX(55deg) rotateZ(-15deg) rotateY(5deg) translateY(0px); }
@@ -269,10 +260,10 @@ function Country3DMap({ countryId, countryName, agencyCount, onClick, animationD
 }
 
 // ============================================================
-// 🌍 COMPOSANT PRINCIPAL : NetworkSection
+// 🌍 COMPOSANT PRINCIPAL
 // ============================================================
 export function NetworkSection() {
-  const [countries, setCountries] = useState<CountryData[]>([]);
+  const [dbCountries, setDbCountries] = useState<CountryData[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(null);
 
@@ -284,19 +275,19 @@ export function NetworkSection() {
         const data = await res.json();
         if (data.success) {
           const grouped = data.data.reduce((acc: Record<string, Agency[]>, agency: Agency) => {
-            const countryName = agency.country;
-            if (!acc[countryName]) acc[countryName] = [];
-            acc[countryName].push(agency);
+            const key = normalizeCountryId(agency.country); // ✅ ID normalisé SANS accent
+            if (!acc[key]) acc[key] = [];
+            acc[key].push(agency);
             return acc;
           }, {} as Record<string, Agency[]>);
 
-          const countriesList: CountryData[] = Object.entries(grouped).map(([name, agencies]) => ({
-            id: name.toLowerCase().replace(/\s+/g, '-'),
-            name: name.toUpperCase(),
-            agencies: agencies as Agency[],
+          const countriesList: CountryData[] = Object.entries(grouped).map(([id, agencies]) => ({
+            id,
+            name: (agencies[0]?.country || id).toUpperCase(),
+            agencies,
           }));
 
-          setCountries(countriesList);
+          setDbCountries(countriesList);
         }
       } catch (error) {
         console.error('Erreur de chargement:', error);
@@ -304,15 +295,19 @@ export function NetworkSection() {
         setLoading(false);
       }
     };
-
     fetchAgencies();
   }, []);
 
-  // Positions relatives (en %)
+  // ✅ Fusion : les 5 pays TOUJOURS présents + agences attachées (0 si aucune)
+  const countriesWithAgencies = ALL_COUNTRIES.map((c) => {
+    const match = dbCountries.find((db) => db.id === c.id);
+    return { ...c, agencies: match ? match.agencies : [] };
+  });
+
   const countryPositions: Record<string, { x: number; y: number }> = {
     'tchad': { x: 78, y: 18 },
     'cameroun': { x: 58, y: 48 },
-    'guinée-équatoriale': { x: 18, y: 42 },
+    'guinee-equatoriale': { x: 18, y: 42 },
     'gabon': { x: 35, y: 78 },
     'congo': { x: 72, y: 78 },
   };
@@ -339,7 +334,6 @@ export function NetworkSection() {
 
   return (
     <section className="py-20 md:py-28 bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400 relative overflow-hidden min-h-[700px]">
-      {/* Fond carte du monde en niveaux de gris */}
       <div className="absolute inset-0 opacity-30">
         <svg viewBox="0 0 1200 700" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
           <g fill="#999" opacity="0.5">
@@ -373,17 +367,16 @@ export function NetworkSection() {
           </h2>
         </motion.div>
 
-        {/* Zone de la carte avec tous les pays en 3D */}
         <div className="relative aspect-[4/3] max-w-4xl mx-auto">
-          {/* Lignes de connexion entre pays */}
+          {/* Lignes de connexion (clés sans accent) */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
             {[
               ['tchad', 'cameroun'],
-              ['cameroun', 'guinée-équatoriale'],
+              ['cameroun', 'guinee-equatoriale'],
               ['cameroun', 'gabon'],
               ['cameroun', 'congo'],
               ['gabon', 'congo'],
-              ['guinée-équatoriale', 'gabon'],
+              ['guinee-equatoriale', 'gabon'],
             ].map(([from, to], idx) => {
               const fromPos = countryPositions[from];
               const toPos = countryPositions[to];
@@ -408,27 +401,21 @@ export function NetworkSection() {
             })}
           </svg>
 
-          {/* Rendu de chaque pays en 3D */}
-          {countries.map((country, index) => {
+          {/* ✅ Rendu des 5 pays TOUJOURS (même sans agence) */}
+          {countriesWithAgencies.map((country, index) => {
             const pos = countryPositions[country.id];
             if (!pos) return null;
-
             return (
               <div
                 key={country.id}
                 className="absolute"
-                style={{
-                  left: `${pos.x}%`,
-                  top: `${pos.y}%`,
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 10,
-                }}
+                style={{ left: `${pos.x}%`, top: `${pos.y}%`, transform: 'translate(-50%, -50%)', zIndex: 10 }}
               >
                 <Country3DMap
                   countryId={country.id}
-                  countryName={country.name}
+                  countryName={country.displayName}
                   agencyCount={country.agencies.length}
-                  onClick={() => setSelectedCountry(country)}
+                  onClick={() => setSelectedCountry({ id: country.id, name: country.displayName, agencies: country.agencies })}
                   animationDelay={index * 0.15}
                 />
               </div>
@@ -437,7 +424,6 @@ export function NetworkSection() {
         </div>
       </div>
 
-      {/* Modale de détails du pays */}
       <AnimatePresence>
         {selectedCountry && (
           <motion.div
@@ -462,109 +448,98 @@ export function NetworkSection() {
                     {selectedCountry.agencies.length} implantation{selectedCountry.agencies.length > 1 ? 's' : ''}
                   </p>
                 </div>
-                <button
-                  onClick={() => setSelectedCountry(null)}
-                  className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-                >
+                <button onClick={() => setSelectedCountry(null)} className="p-2 hover:bg-white/20 rounded-lg transition-colors">
                   <X className="w-6 h-6" />
                 </button>
               </div>
 
               <div className="p-6 overflow-y-auto max-h-[calc(90vh-80px)]">
-                {Object.entries(groupByCity(selectedCountry.agencies)).map(([city, data]) => (
-                  <div key={city} className="mb-8 last:mb-0">
-                    <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2 pb-2 border-b-2 border-[#FF6600]">
-                      <MapPin className="w-5 h-5 text-[#FF6600]" />
-                      {city}
-                    </h4>
+                {selectedCountry.agencies.length === 0 ? (
+                  <p className="text-muted text-center py-8">Aucune agence publiée pour ce pays pour le moment.</p>
+                ) : (
+                  Object.entries(groupByCity(selectedCountry.agencies)).map(([city, data]) => (
+                    <div key={city} className="mb-8 last:mb-0">
+                      <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2 pb-2 border-b-2 border-[#FF6600]">
+                        <MapPin className="w-5 h-5 text-[#FF6600]" />
+                        {city}
+                      </h4>
 
-                    {data.agencies.length > 0 && (
-                      <div className="mb-4">
-                        <h5 className="text-sm font-bold text-gray-700 mb-3 flex items-center gap-2 uppercase tracking-wide">
-                          <Building2 className="w-4 h-4 text-[#FF6600]" />
-                          Agences ({data.agencies.length})
-                        </h5>
-                        <div className="grid md:grid-cols-2 gap-3">
-                          {data.agencies.map((agency) => (
-                            <div
-                              key={agency.id}
-                              className="border-l-4 border-[#FF6600] bg-gray-50 rounded-r-lg p-4 hover:shadow-md transition-shadow"
-                            >
-                              <h6 className="font-bold text-gray-900 mb-2">{agency.name}</h6>
-                              <p className="text-sm text-gray-600 mb-2 flex items-start gap-2">
-                                <MapPin className="w-3 h-3 mt-0.5 flex-shrink-0 text-[#FF6600]" />
-                                {agency.address}
-                              </p>
-                              <div className="space-y-1 text-xs text-gray-600">
-                                {agency.phone && (
-                                  <div className="flex items-center gap-2">
-                                    <Phone className="w-3 h-3 text-[#FF6600]" />
-                                    <a href={`tel:${agency.phone}`} className="hover:text-[#FF6600] font-medium">
-                                      {agency.phone}
-                                    </a>
-                                  </div>
-                                )}
-                                {agency.email && (
-                                  <div className="flex items-center gap-2">
-                                    <Mail className="w-3 h-3 text-[#FF6600]" />
-                                    <a href={`mailto:${agency.email}`} className="hover:text-[#FF6600] truncate">
-                                      {agency.email}
-                                    </a>
-                                  </div>
-                                )}
-                                {agency.hours && (
-                                  <div className="flex items-center gap-2">
-                                    <Clock className="w-3 h-3 text-[#FF6600]" />
-                                    <span>{agency.hours}</span>
-                                  </div>
-                                )}
+                      {data.agencies.length > 0 && (
+                        <div className="mb-4">
+                          <h5 className="text-sm font-bold text-gray-700 mb-3 flex items-center gap-2 uppercase tracking-wide">
+                            <Building2 className="w-4 h-4 text-[#FF6600]" />
+                            Agences ({data.agencies.length})
+                          </h5>
+                          <div className="grid md:grid-cols-2 gap-3">
+                            {data.agencies.map((agency) => (
+                              <div key={agency.id} className="border-l-4 border-[#FF6600] bg-gray-50 rounded-r-lg p-4 hover:shadow-md transition-shadow">
+                                <h6 className="font-bold text-gray-900 mb-2">{agency.name}</h6>
+                                <p className="text-sm text-gray-600 mb-2 flex items-start gap-2">
+                                  <MapPin className="w-3 h-3 mt-0.5 flex-shrink-0 text-[#FF6600]" />
+                                  {agency.address}
+                                </p>
+                                <div className="space-y-1 text-xs text-gray-600">
+                                  {agency.phone && (
+                                    <div className="flex items-center gap-2">
+                                      <Phone className="w-3 h-3 text-[#FF6600]" />
+                                      <a href={`tel:${agency.phone}`} className="hover:text-[#FF6600] font-medium">{agency.phone}</a>
+                                    </div>
+                                  )}
+                                  {agency.email && (
+                                    <div className="flex items-center gap-2">
+                                      <Mail className="w-3 h-3 text-[#FF6600]" />
+                                      <a href={`mailto:${agency.email}`} className="hover:text-[#FF6600] truncate">{agency.email}</a>
+                                    </div>
+                                  )}
+                                  {agency.hours && (
+                                    <div className="flex items-center gap-2">
+                                      <Clock className="w-3 h-3 text-[#FF6600]" />
+                                      <span>{agency.hours}</span>
+                                    </div>
+                                  )}
+                                </div>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {data.depots.length > 0 && (
-                      <div>
-                        <h5 className="text-sm font-bold text-gray-700 mb-3 flex items-center gap-2 uppercase tracking-wide">
-                          <Warehouse className="w-4 h-4 text-[#FF6600]" />
-                          Dépôts ({data.depots.length})
-                        </h5>
-                        <div className="grid md:grid-cols-2 gap-3">
-                          {data.depots.map((depot) => (
-                            <div
-                              key={depot.id}
-                              className="border-l-4 border-gray-600 bg-gray-50 rounded-r-lg p-4 hover:shadow-md transition-shadow"
-                            >
-                              <h6 className="font-bold text-gray-900 mb-2">{depot.name}</h6>
-                              <p className="text-sm text-gray-600 mb-2 flex items-start gap-2">
-                                <MapPin className="w-3 h-3 mt-0.5 flex-shrink-0 text-gray-600" />
-                                {depot.address}
-                              </p>
-                              <div className="space-y-1 text-xs text-gray-600">
-                                {depot.phone && (
-                                  <div className="flex items-center gap-2">
-                                    <Phone className="w-3 h-3 text-gray-600" />
-                                    <a href={`tel:${depot.phone}`} className="hover:text-[#FF6600] font-medium">
-                                      {depot.phone}
-                                    </a>
-                                  </div>
-                                )}
-                                {depot.hours && (
-                                  <div className="flex items-center gap-2">
-                                    <Clock className="w-3 h-3 text-gray-600" />
-                                    <span>{depot.hours}</span>
-                                  </div>
-                                )}
+                      {data.depots.length > 0 && (
+                        <div>
+                          <h5 className="text-sm font-bold text-gray-700 mb-3 flex items-center gap-2 uppercase tracking-wide">
+                            <Warehouse className="w-4 h-4 text-[#FF6600]" />
+                            Dépôts ({data.depots.length})
+                          </h5>
+                          <div className="grid md:grid-cols-2 gap-3">
+                            {data.depots.map((depot) => (
+                              <div key={depot.id} className="border-l-4 border-gray-600 bg-gray-50 rounded-r-lg p-4 hover:shadow-md transition-shadow">
+                                <h6 className="font-bold text-gray-900 mb-2">{depot.name}</h6>
+                                <p className="text-sm text-gray-600 mb-2 flex items-start gap-2">
+                                  <MapPin className="w-3 h-3 mt-0.5 flex-shrink-0 text-gray-600" />
+                                  {depot.address}
+                                </p>
+                                <div className="space-y-1 text-xs text-gray-600">
+                                  {depot.phone && (
+                                    <div className="flex items-center gap-2">
+                                      <Phone className="w-3 h-3 text-gray-600" />
+                                      <a href={`tel:${depot.phone}`} className="hover:text-[#FF6600] font-medium">{depot.phone}</a>
+                                    </div>
+                                  )}
+                                  {depot.hours && (
+                                    <div className="flex items-center gap-2">
+                                      <Clock className="w-3 h-3 text-gray-600" />
+                                      <span>{depot.hours}</span>
+                                    </div>
+                                  )}
+                                </div>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      )}
+                    </div>
+                  ))
+                )}
               </div>
             </motion.div>
           </motion.div>
