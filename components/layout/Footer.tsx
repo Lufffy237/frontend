@@ -24,7 +24,7 @@ export function Footer() {
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_URL + '';
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
         const res = await fetch(`${apiUrl}/api/agencies/public`);
         const data = await res.json();
         if (data.success) {
@@ -69,14 +69,14 @@ export function Footer() {
                     <span className="text-[#f97316]">PRESSING</span>
                   </h3>
                   <p className="text-xs text-gray-400 tracking-widest uppercase">
-                    Propre c'est ï¿½lï¿½gant
+                    Propre c'est élégant
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="flex gap-3 mb-8">
-              <a href="" target="_blank" rel="noopener noreferrer" 
+              <a href="https://www.facebook.com/people/%C3%89l%C3%A9gance-Pressing-Officielle/61596974751335/?mibextid=rS40aB7S9Ucbxw6v" target="_blank" rel="noopener noreferrer" 
                  className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-[#f97316] transition-colors duration-300">
                 <Facebook className="w-5 h-5 text-[#1a1a1a]" />
               </a>
@@ -100,7 +100,7 @@ export function Footer() {
                       onChange={handleAgencyChange}
                       className="w-full px-3 py-2.5 rounded bg-white text-[#1a1a1a] text-sm appearance-none cursor-pointer focus:outline-none font-medium"
                     >
-                      <option value="" disabled>Sï¿½lectionnez une agence</option>
+                      <option value="" disabled>Sélectionnez une agence</option>
                       {agencies.map((agency) => (
                         <option key={agency.id} value={agency.id}>
                           {agency.name}
@@ -117,10 +117,10 @@ export function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-6">Navigation</h3>
             <ul className="space-y-2">
-              {['Accueil', 'Services', 'ï¿½ propos', 'Nos ï¿½tapes', 'Blog', 'Carriï¿½res', 'Galerie', 'Nos agences', 'Contact'].map((item) => (
+              {['Accueil', 'Services', 'À propos', 'Nos étapes', 'Blog', 'Carrières', 'Galerie', 'Nos agences', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link
-                    href={item === 'Accueil' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                    href={item === 'Accueil' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-').replace('à', 'a').replace('é', 'e')}`}
                     className="text-gray-300 text-sm hover:text-[#f97316] transition-colors duration-200"
                   >
                     {item}
@@ -133,7 +133,7 @@ export function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-6">Nos Services</h3>
             <ul className="space-y-2">
-              {['Nettoyage ï¿½ sec', 'Lavage professionnel', 'Repassage', 'Traitement des textiles', 'Service express', 'Collecte et livraison', 'FAQs', 'ï¿½ propos de nous'].map((item) => (
+              {['Nettoyage à sec', 'Lavage professionnel', 'Repassage', 'Traitement des textiles', 'Service express', 'Collecte et livraison', 'FAQs', 'À propos de nous'].map((item) => (
                 <li key={item}>
                   <Link
                     href="/services"
@@ -179,7 +179,7 @@ export function Footer() {
                   <p className="text-gray-300 text-xs leading-relaxed">
                     9 Av. De Gaulle Bonanjo, Face Beac<br />
                     BP: 12 695 Douala<br />
-                    Tï¿½l: 237 233 43 35 27 / 233 43 85 01<br />
+                    Tél: 237 233 43 35 27 / 233 43 85 01<br />
                     E-mail: elegancepressing@yahoo.fr
                   </p>
                 </div>
@@ -187,9 +187,9 @@ export function Footer() {
                 <div>
                   <h5 className="font-bold text-xs mb-2 text-white uppercase">DIRECTION REGIONALE DU CENTRE-SUD-EST</h5>
                   <p className="text-gray-300 text-xs leading-relaxed">
-                    Elig-Essono, Face Immeuble Torrï¿½s<br />
-                    B.P: 6944 Yaoundï¿½<br />
-                    Tï¿½l: 237 222 21 76 40 / 698 94 22 19
+                    Elig-Essono, Face Immeuble Torrès<br />
+                    B.P: 6944 Yaoundé<br />
+                    Tél: 237 222 21 76 40 / 698 94 22 19
                   </p>
                 </div>
 
@@ -197,15 +197,15 @@ export function Footer() {
                   <h5 className="font-bold text-xs mb-2 text-white uppercase">DIRECTION REGIONALE DE L'OUEST</h5>
                   <p className="text-gray-300 text-xs leading-relaxed">
                     Dschang, Ancien Abidjan en face de Fokou<br />
-                    Tï¿½l: 237 698 88 00 65
+                    Tél: 237 698 88 00 65
                   </p>
                 </div>
 
                 <div>
                   <h5 className="font-bold text-xs mb-2 text-white uppercase">DIRECTION REGIONALE DU GRAND-NORD</h5>
                   <p className="text-gray-300 text-xs leading-relaxed">
-                    Kousseri, Quartier rï¿½sidentiel en face Hï¿½tel La Paix<br />
-                    Tï¿½l: +237 691 81 90 74
+                    Kousseri, Quartier résidentiel en face Hôtel La Paix<br />
+                    Tél: +237 691 81 90 74
                   </p>
                 </div>
               </div>
@@ -231,8 +231,8 @@ export function Footer() {
                   </h5>
                   <p className="text-gray-300 text-xs leading-relaxed">
                     CAYDASA-UNGE, Al lado de Getesa-Los Angeles<br />
-                    Tï¿½l: 00240 222 221 454 / 00240 222 696 126<br />
-                    E-mail: elegancepressinggqe@gmail.com
+                    Tél: 00240 222 221 454 / 00240 222 696 126<br />
+                    E-mail: elegancepressing@gmail.com
                   </p>
                 </div>
 
@@ -241,8 +241,8 @@ export function Footer() {
                     REPRESENTATION DU TCHAD<br />NDJAMENA
                   </h5>
                   <p className="text-gray-300 text-xs leading-relaxed">
-                    Moursal ï¿½ cï¿½tï¿½ de l'immeuble SOTEL TCHAD<br />
-                    Tï¿½l: +235 66 20 67 79<br />
+                    Moursal à côté de l'immeuble SOTEL TCHAD<br />
+                    Tél: +235 66 20 67 79<br />
                     E-mail: elegancepressingtchad@gmail.com
                   </p>
                 </div>
@@ -252,9 +252,9 @@ export function Footer() {
                     REPRESENTATION DU CONGO<br />BRAZAVILLE
                   </h5>
                   <p className="text-gray-300 text-xs leading-relaxed">
-                    Avenue Charles De Gaulle Nï¿½213 Marchï¿½ plateau-ville (Ex-trï¿½sor)<br />
+                    Avenue Charles De Gaulle N°213 Marché plateau-ville (Ex-trésor)<br />
                     B.P: 11610 BRAZAVILLE<br />
-                    Tï¿½l: +242 055 024 498 / 068 619 004<br />
+                    Tél: +242 055 024 498 / 068 619 004<br />
                     E-mail: elegancepressingcongo1@gmail.com
                   </p>
                 </div>
@@ -264,9 +264,9 @@ export function Footer() {
                     REPRESENTATION DU GABON<br />LIBREVILLE
                   </h5>
                   <p className="text-gray-300 text-xs leading-relaxed">
-                    Centre Ville, Face BGD, ï¿½ cï¿½tï¿½ de l'immeuble CIMA-<br />
+                    Centre Ville, Face BGD, à côté de l'immeuble CIMA-<br />
                     B.P: 14305 Libreville<br />
-                    Tï¿½l: +241 07 33 83 80<br />
+                    Tél: +241 07 33 83 80<br />
                     E-mail: elegancepressinggabon@gmail.com
                   </p>
                 </div>
@@ -281,17 +281,17 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-wrap items-center justify-center gap-6">
               <Link href="/politique-confidentialite" className="text-gray-400 text-xs hover:text-[#f97316] transition-colors">
-                Politique de confidentialitï¿½
+                Politique de confidentialité
               </Link>
               <Link href="/conditions-generales" className="text-gray-400 text-xs hover:text-[#f97316] transition-colors">
-                Conditions gï¿½nï¿½rales
+                Conditions générales
               </Link>
             </div>
             <p className="text-gray-400 text-xs text-center">
-              ï¿½ {currentYear} <span className="text-white font-semibold">ï¿½lï¿½gance Pressing</span>. Tous Droits Rï¿½servï¿½s.
+              © {currentYear} <span className="text-white font-semibold">Élégance Pressing</span>. Tous Droits Réservés.
             </p>
             <p className="text-gray-400 text-xs">
-              conï¿½u par le service informatique
+              conçu par le service informatique
             </p>
           </div>
         </div>
