@@ -81,11 +81,21 @@ export default function AdminGalleryPage() {
 
   useEffect(() => { fetchItems(); }, [token, filterType, filterCategory]);
 
+  // ✅ CORRECTION : Validation adaptée selon le type de média
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.title || !formData.url) {
-      toast.error('Le titre et l\'URL principale sont requis');
-      return;
+
+    // Validation conditionnelle selon le type
+    if (formData.type === 'IMAGE') {
+      if (!formData.title || !formData.url) {
+        toast.error('Le titre et l\'URL de l\'image sont requis');
+        return;
+      }
+    } else if (formData.type === 'VIDEO') {
+      if (!formData.title || !formData.videoUrl) {
+        toast.error('Le titre et l\'URL de la vidéo sont requis');
+        return;
+      }
     }
 
     setSubmitting(true);
