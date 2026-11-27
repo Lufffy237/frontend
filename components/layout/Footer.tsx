@@ -57,11 +57,13 @@ export function Footer() {
           <div>
             <div className="mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12">
-                  <svg viewBox="0 0 100 100" className="w-full h-full">
-                    <circle cx="50" cy="50" r="45" fill="#f97316"/>
-                    <path d="M50 25 C35 25, 25 35, 25 50 C25 65, 35 75, 50 75 C65 75, 75 65, 75 50 C75 35, 65 25, 50 25 Z M50 35 C58 35, 65 42, 65 50 C65 58, 58 65, 50 65 C42 65, 35 58, 35 50 C35 42, 42 35, 50 35 Z" fill="white"/>
-                  </svg>
+                {/* ✅ LOGO PNG (remplace le cercle SVG orange/blanc) */}
+                <div className="w-14 h-14 flex-shrink-0">
+                  <img
+                    src="/images/logo.png"
+                    alt="Élégance Pressing"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold leading-tight">
